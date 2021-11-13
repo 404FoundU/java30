@@ -1,3 +1,5 @@
+package ArrayListConcept;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -20,17 +22,18 @@ public class ListDemo {
         }
         System.out.println(list1);
 
-        //Iterate
+        //Foreach
         for (String str : list1) {
             System.out.println(str);
         }
         for (int i =0; i< list1.size(); i++) {
             System.out.println(list1.get(i));
         }
+        //streams with Lamda
+        System.out.println("____________lamda______");
+        list1.stream().forEach(el-> System.out.println(el));
         //Iterator
-        Iterator<String> itr = list1.iterator();
-
-
+        Iterator<String> itr = list1.iterator();//apply iterator
         while (itr.hasNext()) {
             System.out.println(itr.next());
         }
