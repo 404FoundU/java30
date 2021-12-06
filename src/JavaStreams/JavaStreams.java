@@ -77,11 +77,16 @@ public class JavaStreams {
                 bands.forEach(System.out::println);
         bands.close();*/
         System.out.println();
+
         // Reduce
         double total = Stream.of(8.9, 7.0, 5.4)
                 .reduce(0.0, (Double a, Double b) -> a + b);
         System.out.println(total);
 
+        List<Integer> data= Arrays.asList(12, 13, 56, 790);
+        long Temp = data.stream()
+                .reduce(Integer::sum)
+                .get();
 
 
     }
