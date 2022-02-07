@@ -6,10 +6,20 @@ import java.util.Optional;
 public class OptionalsConcept {
     private static String email;
     //https://www.youtube.com/watch?v=rreENe7TdvI
+    public static Optional<Integer> findElement2(Integer[] arr, int x) {
+        for (Integer n : arr) {
+            if (arr[n] == x) {
+//                return x;
+                return Optional.of(x);
+            }
+        }
+//        return null;
+        return Optional.empty();
+    }
 
     public static Optional<Integer> findElement(Integer[] arr, int x) {
         return Arrays.stream(arr)
-                .filter(num -> num == x)
+                .filter(n -> n==x)
                 .findFirst();
     }
 
@@ -25,10 +35,11 @@ public class OptionalsConcept {
         //Optional is a container object
         // contains item or empty
         //get() to retrieve value
-        Optional<Integer> numExists = Optional.of(5);
+        Optional<Integer> numExists = Optional.of(5); //declare
         Optional<Integer> numDoesnotExists = Optional.empty();
         if (numExists.isPresent()) {
-            System.out.println(numExists.get());
+            System.out.println("num" + numExists);
+            System.out.println("num" + numExists.get());//retrieve
         }
         if (numDoesnotExists.isPresent()) {
             System.out.println(numDoesnotExists.get());
@@ -42,6 +53,11 @@ public class OptionalsConcept {
                 ()-> System.out.println("not present"));
 
 
+        //orElse
+        /*Course maxCourse = courses.stream()
+                .max(compareByNoOfStudentsAndReviews)
+                .orElse((new Course("Kubernetes", "Cloud", 91, 20000)));
+        System.out.println(maxCourse);*/
 
     }
 
