@@ -1,4 +1,4 @@
-package ArrayListConcept;
+package DSA.Arrays.ArrayListConcept;
 
 import java.util.*;
 import java.util.stream.Collectors;

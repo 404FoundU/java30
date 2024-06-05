@@ -1,3 +1,5 @@
+package HashMapDemo;
+
 import java.util.AbstractMap;
 import java.util.Collections;
 import java.util.HashMap;
