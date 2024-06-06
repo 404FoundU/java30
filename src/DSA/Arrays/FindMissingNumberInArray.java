@@ -1,6 +1,8 @@
 package DSA.Arrays;
 
 
+import java.util.Arrays;
+
 public class FindMissingNumberInArray {
     public static void main(String[] args) {
         FindMissingNumberInArray test = new FindMissingNumberInArray();
@@ -11,22 +13,10 @@ public class FindMissingNumberInArray {
     }
 
     private void testMethod(int[] intArr) {
-
-        int max = intArr[0];
-        for (int i = 1; i <intArr.length ; i++) {
-            if (intArr[i] > max) {
-                max = intArr[i];
-            }
-        }
-        System.out.println(max);
-
-        int secondMax = intArr[0] ;
-        for (int i = 0; i < intArr.length; i++) {
-            if (intArr[i] > secondMax && intArr[i] < max) {
-                secondMax = intArr[i];
-            }
-        }
-        System.out.println(secondMax);
+        int lastNumber = intArr.length+1;
+        int sumOfNumbers = lastNumber * (lastNumber + 1) / 2;
+        int arraySum = Arrays.stream(intArr).sum() ;
+        System.out.println("missing :"+ (sumOfNumbers-arraySum));
 
     }
 
