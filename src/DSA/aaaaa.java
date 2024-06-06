@@ -1,4 +1,4 @@
-package Functional;
+package DSA;
 
 
 public class aaaaa {
