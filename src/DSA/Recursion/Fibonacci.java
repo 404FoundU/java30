@@ -1,6 +1,6 @@
 package DSA.Recursion;
 
-
+//https://www.youtube.com/watch?v=wRH2I6IN4BE&list=PLxQ8cCJ6LyObv8vjQD443c-1JEqlhCCXe&index=2
 public class Fibonacci {
 
 
@@ -10,6 +10,8 @@ public class Fibonacci {
         System.out.println(test.fibonacciNum(6));
     }
 
+
+    //O(2^n) exponential, On
     private long fibonacciNum(int n) {
         if (n == 0) {
             return 0;
