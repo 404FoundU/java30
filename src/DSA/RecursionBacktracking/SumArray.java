@@ -1,4 +1,4 @@
-package DSA.Recursion;
+package DSA.RecursionBacktracking;
 
 
 public class SumArray {

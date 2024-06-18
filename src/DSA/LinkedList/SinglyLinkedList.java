@@ -2,17 +2,14 @@ package DSA.LinkedList;
 
 
 public class SinglyLinkedList {
-
     private static class Node {
         private final int data;
         private Node next;
-
         public Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
-
     private Node head;
     private Node tail;
     private int length;

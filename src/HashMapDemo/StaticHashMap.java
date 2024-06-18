@@ -47,10 +47,10 @@ public class StaticHashMap {
         //Singleton Map
         Map<String, String> singletonMap = Map.of("K", "V");
 //        singletonMap.put("K2", "V3");// unsupported operation
-        // MultiValue Map - Max 10 values - Mutable
+        // MultiValue Map - Max 10 values - ImMutable
         Map<String, String> multiMap = Map.of("K1", "V1", "K2", "V2");
 
-        // ofEntry - Immutable
+        // ofEntry - mutable
         Map<String, String> entryMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>("U", "Java")
         );

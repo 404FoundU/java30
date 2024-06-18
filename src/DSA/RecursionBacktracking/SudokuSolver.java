@@ -1,4 +1,4 @@
-package DSA.backtracking;
+package DSA.RecursionBacktracking;
 public class SudokuSolver {
 
     private static final int GRID_SIZE = 9;

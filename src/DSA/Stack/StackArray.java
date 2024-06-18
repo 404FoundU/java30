@@ -4,25 +4,18 @@ package DSA.Stack;
 import java.util.EmptyStackException;
 
 public class StackArray {
-
-
-
     private int[] stack;
     private int top;
-
     public StackArray(int capacity) {
         this.stack = new int[capacity];
         this.top = -1;
     }
-
     public boolean isEmpty() {
         return this.top <0;
     }
-
     private void push(int value) {
         if (this.top+1 == this.stack.length) {
             throw new RuntimeException("stack is full");
-
         }
         this.top++;
         this.stack[this.top] = value;

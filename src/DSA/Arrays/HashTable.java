@@ -12,25 +12,18 @@ public class HashTable<K,V> {
     private static final int DEFAULT_CAPACITY=10;
     private HashNode[] buckets;
     private int size;
-
-
-
     public HashTable() {
-
         buckets = new HashNode[DEFAULT_CAPACITY];
     }
 
     private static class HashNode<K,V>{
         private K key;
         private V value;
-
         private HashNode<K,V> next;
-
         public HashNode(K key, V value) {
             this.key = key;
             this.value = value;
         }
-
     }
 
 

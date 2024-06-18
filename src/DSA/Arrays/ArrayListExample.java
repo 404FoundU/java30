@@ -5,17 +5,12 @@ import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class ArrayListExample<E> {
-
-
     private static final int DEFAULT_CAPACITY = 10;
-
     private Object[] elementData;
     private int size =0;
-
     public ArrayListExample() {
         this.elementData = new Object[DEFAULT_CAPACITY];
     }
-
     public void add(E e) {
         ensureCapacity();
         this.elementData[size++] = e;

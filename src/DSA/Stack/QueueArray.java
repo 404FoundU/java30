@@ -7,27 +7,16 @@ import java.util.EmptyStackException;
 
 //https://github.com/geekific-official/geekific-youtube/blob/main/data-structures/queue/src/main/java/com/youtube/geekific/array/Queue.java
 public class QueueArray<T> {
-
-
-
     private Object[] queue;
     private static final int DEFAULT_CAPACITY=10;
-    private int head;
-    private int tail;
     private int size;
-
-
     public QueueArray() {
         this.queue =  new Object[DEFAULT_CAPACITY];
-        this.head = 0;
         this.size = 0;
-        this.tail = -1;
     }
-
     private boolean isEmpty() {
         return        this.size == 0;
     }
-
     private void enqueue(T value) {
         ensureCapacity();
         this.queue[size++] = value;
