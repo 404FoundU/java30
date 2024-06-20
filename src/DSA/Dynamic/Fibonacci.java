@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FibonacciMemo {
+public class Fibonacci {
 
 
     private static long[] memo ;
 
 
     public static void main(String[] args) {
-        FibonacciMemo test = new FibonacciMemo();
+        Fibonacci test = new Fibonacci();
         int n = 6;
         memo = new long[n+1];
 //        System.out.println(test.fibonacciNum(n));
