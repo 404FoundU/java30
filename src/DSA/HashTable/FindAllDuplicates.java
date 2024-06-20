@@ -17,7 +17,7 @@ public class FindAllDuplicates {
     }
 
     private List<Integer> testMethod(int[] arr1) {
-        Map<Integer, Integer> hs = new HashMap<>();
+        HashTable<Integer, Integer> hs = new HashTable<>();
         for (int j : arr1) {
             if (hs.get(j) == null) {
                 hs.put(j, 1);
@@ -27,7 +27,8 @@ public class FindAllDuplicates {
             }
         }
         List<Integer> list = new ArrayList<>();
-        for (Map.Entry<Integer, Integer> entry : hs.entrySet()) {
+
+        for (HashTable.Node<Integer, Integer> entry : hs.getAllEntries()) {
             Integer k = entry.getKey();
             Integer v = entry.getValue();
             if (v > 1) {

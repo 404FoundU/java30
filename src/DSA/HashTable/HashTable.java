@@ -17,7 +17,7 @@ public class HashTable<K,V> {
         buckets = new Node[DEFAULT_CAPACITY];
     }
 
-    private static class Node<K,V>{
+    static class Node<K, V> {
         private K key;
         private V value;
         private Node<K,V> next;
@@ -25,6 +25,18 @@ public class HashTable<K,V> {
             this.key = key;
             this.value = value;
         }
+
+
+        public K getKey() {
+            return key;
+        }
+
+
+        public V getValue() {
+            return value;
+        }
+
+
     }
 
 
@@ -97,6 +109,18 @@ public class HashTable<K,V> {
         return        this.size == 0;
     }
 
+
+    public List<Node<K, V>> getAllEntries() {
+        List<Node<K, V>> entries = new ArrayList<>();
+        for (Node<K, V> bucket : buckets) {
+            Node<K, V> currentNode = bucket;
+            while (currentNode != null) {
+                entries.add(currentNode);
+                currentNode = currentNode.next;
+            }
+        }
+        return entries;
+    }
 
     private void printHashTable() {
         if (isEmpty()) {
