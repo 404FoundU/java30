@@ -47,13 +47,16 @@ public class HashTable<K,V> {
         if (currentNode == null) {
             this.buckets[bucketIndex] = newNode;
         } else {
-            while (currentNode != null) {
-                if (currentNode.key == key) {
+            if (currentNode.key == key || currentNode.key.equals(key)) {
+                currentNode.value = value;
+                return;
+            }
+            while (currentNode.next != null) {
+                currentNode = currentNode.next;
+                if (currentNode.key == key || currentNode.key.equals(key)) {
                     currentNode.value = value;
                     return;
                 }
-                currentNode = currentNode.next;
-
             }
             currentNode.next = newNode;
             return;
@@ -68,7 +71,7 @@ public class HashTable<K,V> {
         Node<K,V> currentNode = (Node) this.buckets[bucketIndex];
 
             while (currentNode != null) {
-                if (currentNode.key == key) {
+                if (currentNode.key == key || currentNode.key.equals(key)) {
                     return currentNode.value;
                 }
                 currentNode = currentNode.next;
