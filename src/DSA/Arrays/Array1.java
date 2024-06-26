@@ -22,6 +22,7 @@ public class Array1 {
         List<String> list = Arrays.asList("unni", "pillai");
         List<Integer> integers = List.of(1, 2, 3);// Immutable - cannot add or remove, faster, no primitives
         List<String> name = new ArrayList<>(list);
+        List<List<String>> result = new ArrayList<>();
         Arrays.stream(intArr2).forEach(System.out::println);
         int[][] board = {
                 {7, 0, 2, 0, 5, 0, 6, 0, 0},
