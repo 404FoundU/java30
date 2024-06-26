@@ -18,13 +18,14 @@ public class GroupAnagrams {
     }
 
     private HashTable<String, List<String>> testMethod(String[] str) {
-        List<String> anagrams = new ArrayList<>();
         HashTable<String, List<String>> hs = new HashTable<>();
 
         for (String s : str) {
             String sorted = sortString(s);
             if (hs.get(sorted) == null) {
-                hs.put(sorted, new ArrayList<>());
+                ArrayList<String> anagrams = new ArrayList<>();
+                anagrams.add(s);
+                hs.put(sorted, anagrams);
             } else {
                 List<String> strings = hs.get(sorted);
                 strings.add(s);
