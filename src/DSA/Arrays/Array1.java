@@ -3,6 +3,7 @@ package DSA.Arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Array1 {
@@ -23,6 +24,7 @@ public class Array1 {
         List<Integer> integers = List.of(1, 2, 3);// Immutable - cannot add or remove, faster, no primitives
         List<String> name = new ArrayList<>(list);
         List<List<String>> result = new ArrayList<>();
+        List<Integer> multithreadList = Collections.synchronizedList(new ArrayList<>());
         Arrays.stream(intArr2).forEach(System.out::println);
         int[][] board = {
                 {7, 0, 2, 0, 5, 0, 6, 0, 0},
@@ -36,6 +38,17 @@ public class Array1 {
                 {0, 0, 7, 0, 4, 0, 2, 0, 3}
         };
 
+    }
+
+    public static String sortString(String str) {
+        // Convert the string to a character array
+        char[] charArray = str.toCharArray();
+
+        // Sort the character array
+        Arrays.sort(charArray);
+
+        // Convert the sorted character array back to a string
+        return new String(charArray);
     }
 
 

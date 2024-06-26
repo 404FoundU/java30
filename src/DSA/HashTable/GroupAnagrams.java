@@ -3,6 +3,7 @@ package DSA.HashTable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GroupAnagrams {
@@ -23,7 +24,7 @@ public class GroupAnagrams {
         for (String s : str) {
             String sorted = sortString(s);
             if (hs.get(sorted) == null) {
-                ArrayList<String> anagrams = new ArrayList<>();
+                List<String> anagrams = new LinkedList<>();
                 anagrams.add(s);
                 hs.put(sorted, anagrams);
             } else {

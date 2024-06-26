@@ -22,5 +22,19 @@ public class Multithreading {
 //            myThread.join();// Run the next thread only after this completes
             myThread.isAlive();
         }
+
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(i);
+            }
+        });
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
