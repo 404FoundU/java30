@@ -26,6 +26,7 @@ public class Array1 {
         List<List<String>> result = new ArrayList<>();
         List<Integer> multithreadList = Collections.synchronizedList(new ArrayList<>());
         Arrays.stream(intArr2).forEach(System.out::println);
+        System.out.println(Arrays.toString(new int[]{1, 2}));
         int[][] board = {
                 {7, 0, 2, 0, 5, 0, 6, 0, 0},
                 {0, 0, 0, 0, 0, 3, 0, 0, 0},
