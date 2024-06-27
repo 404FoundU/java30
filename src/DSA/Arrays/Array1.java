@@ -16,6 +16,8 @@ public class Array1 {
         int[] intArr = new int[5]; // 0,0,0,0,0
         int length = intArr.length;
         int[] intArr2 = {1, 2, 3, 4, 5};
+        int[] emptyArr = {};
+        int[] emptyArr2 = new int[]{};
         intArr[0] = 1;
 
         int[] intArr3 = new int[] {1, 2, 3, 4, 5};

@@ -16,15 +16,15 @@ public class TwoSum {
 
     }
 
-    private int[] testMethod(int[] num, int sum) {
-        HashTable<Integer, Integer> hs = new HashTable<>();
+    private int[] testMethod(int[] num, int target) {
+        HashTable<Integer, Integer> numIndex = new HashTable<>();
         for (int i = 0; i < num.length; i++) {
             int key = num[i];
-            int compliment = sum - key;
-            if (hs.get(compliment) != null) {
-                return new int[]{hs.get(compliment), i};
+            int compliment = target - key;
+            if (numIndex.get(compliment) != null) {
+                return new int[]{numIndex.get(compliment), i};
             } else {
-                hs.put(key, i);
+                numIndex.put(key, i);
             }
         }
         return new int[0];

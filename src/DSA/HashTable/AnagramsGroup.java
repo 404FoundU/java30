@@ -1,16 +1,15 @@
 package DSA.HashTable;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupAnagrams {
+public class AnagramsGroup {
 
 
     public static void main(String[] args) {
-        GroupAnagrams test = new GroupAnagrams();
+        AnagramsGroup test = new AnagramsGroup();
         String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
         HashTable<String, List<String>> hashTable = test.testMethod(str);
         for (HashTable.Node<String, List<String>> hst : hashTable.getAllEntries()) {

@@ -4,11 +4,11 @@ package DSA.HashTable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KAnagramsString {
+public class AnagramsKAnagramsString {
 
 
     public static void main(String[] args) {
-        KAnagramsString test = new KAnagramsString();
+        AnagramsKAnagramsString test = new AnagramsKAnagramsString();
         String str1 = "fodre";
         String str2 = "gorke";
         System.out.println(test.testMethod(str1, str2, 2));
