@@ -23,11 +23,12 @@ public class Multithreading {
             myThread.isAlive();
         }
 
-        Thread t1 = new Thread(() -> {
+        Runnable runnable = () -> {
             for (int i = 0; i < 10; i++) {
                 System.out.println(i);
             }
-        });
+        };
+        Thread t1 = new Thread(runnable);
         t1.start();
         try {
             t1.join();

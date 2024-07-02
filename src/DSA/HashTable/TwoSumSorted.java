@@ -10,7 +10,6 @@ public class TwoSumSorted {
         TwoSumSorted test = new TwoSumSorted();
 
         int[] ints = {2, 7, 11, 15};
-//        int[] ints = {3,3};
         int sum = 18;
         System.out.println(Arrays.toString(test.testMethod(ints, sum)));
 
@@ -30,10 +29,6 @@ public class TwoSumSorted {
                 left++;
             }
         }
-
         return new int[]{};
-
-
     }
-
 }

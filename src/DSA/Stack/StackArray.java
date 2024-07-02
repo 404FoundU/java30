@@ -6,32 +6,40 @@ import java.util.EmptyStackException;
 public class StackArray {
     private int[] stack;
     private int top;
+
+    private Object lock;
+
     public StackArray(int capacity) {
         this.stack = new int[capacity];
         this.top = -1;
-    }
-    public boolean isEmpty() {
-        return this.top <0;
-    }
-    private void push(int value) {
-        if (this.top+1 == this.stack.length) {
-            throw new RuntimeException("stack is full");
-        }
-        this.top++;
-        this.stack[this.top] = value;
+        this.lock = new Object();
     }
 
+    public boolean isEmpty() {
+        return this.top < 0;
+    }
+
+    private void push(int value) {
+        synchronized (lock) {
+            if (this.top + 1 == this.stack.length) {
+                throw new RuntimeException("stack is full");
+            }
+            this.top++;
+            this.stack[this.top] = value;
+        }
+    }
 
 
     private int pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
+        synchronized (new Object()) {
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+            int result = this.stack[this.top];
+            this.stack[this.top] = Integer.MAX_VALUE;
+            this.top--;
+            return result;
         }
-        int result = this.stack[this.top];
-
-        this.top--;
-
-        return result;
     }
 
     public int peek() {
@@ -64,7 +72,7 @@ public class StackArray {
         ll.printStack();
 
 
-        System.out.println("pop: "+ ll.pop());
+        System.out.println("pop: " + ll.pop());
 
         ll.printStack();
 
