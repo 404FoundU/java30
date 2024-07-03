@@ -1,5 +1,9 @@
 package Multithreading;
 
+
+/*
+Blocked for Lock Acquisition state
+ */
 public class Deadlock {
     public static void main(String[] args) {
         System.out.println("Started main thread");
@@ -10,7 +14,8 @@ public class Deadlock {
         Thread thread1 = new Thread(() -> {
             synchronized (lock1) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(10); // wont relinquish the lock
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -28,14 +33,15 @@ public class Deadlock {
                     e.printStackTrace();
                 }
                 synchronized (lock1) {
-                    System.out.println("lock acquired 2");
+                    System.out.println("lock acquired for " + Thread.currentThread().getName());
                 }
             }
         }, "Thread2");
 
         thread1.start();
+        System.out.println(thread1.getState().name());
         thread2.start();
-
+        System.out.println(thread1.getState().name());
         System.out.println("exit main thread");
 
     }
