@@ -15,7 +15,7 @@ public class Snippets {
     public static void main(String[] args) {
         Snippets test = new Snippets();
 
-
+        Runtime.getRuntime().gc();
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
             writer.write("\n Rishi");

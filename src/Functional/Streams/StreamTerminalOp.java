@@ -4,6 +4,7 @@ package Functional.Streams;
 import Functional.data.Student;
 import Functional.data.StudentDataBase;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,7 @@ public class StreamTerminalOp {
                 .collect(Collectors.toList());
         stList.sort(Comparator.naturalOrder());// reverse list
         stList.sort(Comparator.reverseOrder());
+        Collections.sort(StudentDataBase.getAllStudents());
 
 
     }

@@ -3,7 +3,7 @@ package Functional.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String name;
     private int gradeLevel;
     private double gpa;
@@ -72,4 +72,14 @@ public class Student {
     }
 
 
+    @Override
+    public int compareTo(Student o) {
+        if (this.gradeLevel == o.getGradeLevel()) {
+            return 0;
+        }
+        if (this.gradeLevel > o.getGradeLevel()) {
+            return 1;
+        }
+        return -1;
+    }
 }
