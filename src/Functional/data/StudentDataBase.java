@@ -30,4 +30,9 @@ public class StudentDataBase {
         List<Student> students = Arrays.asList(student1,student2,student3,student4,student5,student6);
         return students;
     }
+
+    public static Student getStudent() {
+        return new Student("Unni", 2, 3.6, "male", Arrays.asList("swimming", "basketball", "volleyball"));
+    }
+
 }
