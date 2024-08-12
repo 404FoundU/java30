@@ -21,6 +21,7 @@ public class MethodReference {
         names.forEach(greeter::greet);
         Person person = new Person();
         names.forEach(person::setPerson);//Instance method
+        names.forEach(student::setName);//Instance method
         names.stream().map(Person::new);//Constructor
         names.sort(String::compareTo);//Instance method of arbitrary object
 
