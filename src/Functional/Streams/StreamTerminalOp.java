@@ -2,6 +2,7 @@ package Functional.Streams;
 
 
 import Functional.data.Student;
+import Functional.data.StudentComparator;
 import Functional.data.StudentDataBase;
 
 import java.util.Collections;
@@ -21,33 +22,39 @@ public class StreamTerminalOp {
 
     private void testMethod() {
 
-        String names = StudentDataBase.getAllStudents().stream()
+        List<Student> allStudents = StudentDataBase.getAllStudents();
+        String names = allStudents.stream()
                 .map(Student::getName)
                 .collect(Collectors.joining("_"));
 
         System.out.println(names);
-        long studentCount = StudentDataBase.getAllStudents().stream()
+        long studentCount = allStudents.stream()
                 .collect(Collectors.counting());
 
         System.out.println(studentCount);
 
-        List<String> sList = StudentDataBase.getAllStudents().stream()
+        List<String> sList = allStudents.stream()
                 .collect(Collectors.mapping(s -> s.getName(), Collectors.toList()));
 
         System.out.println(sList);
-        Map<String, List<Student>> genderMap = StudentDataBase.getAllStudents().stream()
+        Map<String, List<Student>> genderMap = allStudents.stream()
                 .collect(Collectors.groupingBy(s -> s.getGender()));
 
         System.out.println(genderMap);
         System.out.println(Runtime.getRuntime().availableProcessors());
 
 
-        List<String> stList = StudentDataBase.getAllStudents().stream()
+        List<String> stList = allStudents.stream()
                 .map(Student::getName)
                 .collect(Collectors.toList());
         stList.sort(Comparator.naturalOrder());// reverse list
         stList.sort(Comparator.reverseOrder());
-        Collections.sort(StudentDataBase.getAllStudents());
+        Collections.sort(allStudents);
+        StudentComparator comparator = new StudentComparator();
+        allStudents.sort(comparator);
+        Collections.sort(allStudents, comparator);
+
+
 
 
     }

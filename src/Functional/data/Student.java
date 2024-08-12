@@ -77,7 +77,7 @@ public class Student implements Comparable<Student> {
         if (this.gradeLevel == o.getGradeLevel()) {
             return 0;
         }
-        if (this.gradeLevel > o.getGradeLevel()) {
+        if (this.gradeLevel < o.getGradeLevel()) {
             return 1;
         }
         return -1;
