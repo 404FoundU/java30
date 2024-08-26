@@ -23,6 +23,8 @@ public class Snippets {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // create a couple of events...
+
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader("output.txt"));

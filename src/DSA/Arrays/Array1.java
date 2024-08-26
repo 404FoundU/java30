@@ -16,12 +16,14 @@ public class Array1 {
         int[] intArr = new int[5]; // 0,0,0,0,0
         int length = intArr.length;
         int[] intArr2 = {1, 2, 3, 4, 5};
+        intArr2[4] = Integer.MIN_VALUE; // delete element 2^ -31
         int[] emptyArr = {};
         int[] emptyArr2 = new int[]{};
         intArr[0] = 1;
 
-        int[] intArr3 = new int[] {1, 2, 3, 4, 5};
-        Integer[] intArr4 = new Integer[] {1, 2, 3, 4, 5};
+
+        int[] intArr3 = new int[]{1, 2, 3, 4, 5};
+        Integer[] intArr4 = new Integer[]{1, 2, 3, 4, 5};
         List<String> list = Arrays.asList("unni", "pillai");
         List<Integer> integers = List.of(1, 2, 3);// Immutable - cannot add or remove, faster, no primitives
         List<String> name = new ArrayList<>(list);
@@ -39,6 +41,10 @@ public class Array1 {
                 {0, 0, 9, 7, 0, 0, 0, 0, 5},
                 {0, 0, 0, 2, 0, 0, 0, 0, 0},
                 {0, 0, 7, 0, 4, 0, 2, 0, 3}
+        };
+        int[][][] array3D = {
+                {{1, 2, 10}, {3, 4, 11}},
+                {{5, 6, 12}, {7, 8, 13}}
         };
 
     }
