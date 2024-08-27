@@ -1,7 +1,7 @@
-package DSA.LinkedList;
+package DSA.Tree;
 
 
-public class BST {
+public class BSTLinkedList {
     private class Node {
         private final int data;
         private Node left;
@@ -16,7 +16,7 @@ public class BST {
 
 
     public static void main(String[] args) {
-        BST bst = new BST();
+        BSTLinkedList bst = new BSTLinkedList();
         System.out.println(bst.root);
 
         bst.insert(10);
@@ -76,7 +76,17 @@ public class BST {
 
     }
 
-
+    public void preOrderTraversal() {
+        Node current = this.root;
+        while (current != null) {
+            System.out.println(current.data);
+            if (current.left != null) {
+                current = current.left;
+            } else if (current.right != null) {
+                current = current.right;
+            }
+        }
+    }
 
 
 }
