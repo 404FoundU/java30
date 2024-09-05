@@ -52,5 +52,24 @@ public class BTLinkedList {
         preOrderTraversal(node.right);
     }
 
+    public void inOrderTraversal(BinaryNode node) {
+        if (node == null) {
+            return;
+        }
+        preOrderTraversal(node.left);
+        System.out.println(node.data + " ");
+        preOrderTraversal(node.right);
+    }
+
+    public void postOrderTraversal(BinaryNode node) {
+        if (node == null) {
+            return;
+        }
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
+        System.out.println(node.data + " ");
+
+    }
+
 
 }

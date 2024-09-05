@@ -26,6 +26,7 @@ public class Array1 {
         Integer[] intArr4 = new Integer[]{1, 2, 3, 4, 5};
         List<String> list = Arrays.asList("unni", "pillai");
         List<Integer> integers = List.of(1, 2, 3);// Immutable - cannot add or remove, faster, no primitives
+        int[] intArray = integers.stream().mapToInt(i -> i).toArray();
         List<String> name = new ArrayList<>(list);
         List<List<String>> result = new ArrayList<>();
         List<Integer> multithreadList = Collections.synchronizedList(new ArrayList<>());
