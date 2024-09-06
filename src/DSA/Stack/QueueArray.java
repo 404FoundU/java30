@@ -10,9 +10,11 @@ public class QueueArray<T> {
     private Object[] queue;
     private static final int DEFAULT_CAPACITY=10;
     private int size;
+    private int beginning;
     public QueueArray() {
         this.queue =  new Object[DEFAULT_CAPACITY];
         this.size = 0;
+        this.beginning = 0;
     }
     private boolean isEmpty() {
         return        this.size == 0;
@@ -29,7 +31,7 @@ public class QueueArray<T> {
         T value = (T) this.queue[0];
 
         int lengthToMove = this.size - 1;
-        System.arraycopy(queue, 1, queue, 0, lengthToMove);
+        System.arraycopy(queue, 1, queue, 0, lengthToMove);// this.beginning ++
         this.queue[--size] = null;
         return value;
     }
