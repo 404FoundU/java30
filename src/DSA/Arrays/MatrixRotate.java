@@ -40,28 +40,31 @@ public class MatrixRotate {
         }
     }
 
+    //https://www.youtube.com/watch?v=Ux058jpRB9Y&t=330s
+    public void rotate(int[][] matrix) {
 
-    private void inPlaceRotate(int[][] a) {
-        int n = a.length;
+        int n = matrix.length;
 
-        for (int layer = 0; layer < n / 2; layer++) {
-            int first = layer;
-            int last = n - 1 - layer;
-            for (int col = first; col < last; col++) {
-                int offset = col - first;
-                int temp = a[first][col];
-                // first top = bottom first
-                a[first][col] = a[last - offset][first];
-                // bottom first to last bottom
-                a[last - offset][first] = a[last][last - offset];
-                //last bottom = top last
-                a[last][last - offset] = a[col][last];
-                a[col][last] = temp;
+        for (int i = 0; i < (n + 1) / 2; i++) {
+
+            for (int j = 0; j < n / 2; j++) {
+                // Start 4 way swaps
+                // temp = bottom left
+                int temp = matrix[n - 1 - j][i];
+
+                // bottom left = bottom right
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - j - 1];
+
+                // bottom right = top right
+                matrix[n - 1 - i][n - j - 1] = matrix[j][n - 1 - i];
+
+                // top right = top left
+                matrix[j][n - 1 - i] = matrix[i][j];
+
+                // top left = temp
+                matrix[i][j] = temp;
             }
         }
-        return;
-
-
     }
 
 
