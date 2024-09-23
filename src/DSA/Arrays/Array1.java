@@ -14,6 +14,7 @@ public class Array1 {
 
     private void testMethod() {
         int[] intArr = new int[5]; // 0,0,0,0,0
+        Arrays.fill(intArr, 1);
         int length = intArr.length;
         int[] intArr2 = {1, 2, 3, 4, 5};
         intArr2[4] = Integer.MIN_VALUE; // delete element 2^ -31
