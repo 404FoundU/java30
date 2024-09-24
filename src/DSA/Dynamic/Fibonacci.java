@@ -39,7 +39,7 @@ public class Fibonacci {
 
     // Bottom up (Tabulation )
     private long fibonacciNumArray(int n) {
-        List<Integer> list = new ArrayList<>(Arrays.asList(0, 1));
+        List<Integer> list = Arrays.asList(0, 1);
         for (int i = 2; i < n + 1; i++) {
             Integer newElem = list.get(i - 2) + list.get(i - 1);
             list.add(newElem);

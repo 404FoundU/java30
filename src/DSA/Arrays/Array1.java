@@ -26,6 +26,8 @@ public class Array1 {
         int[] intArr3 = new int[]{1, 2, 3, 4, 5};
         Integer[] intArr4 = new Integer[]{1, 2, 3, 4, 5};
         List<String> list = Arrays.asList("unni", "pillai");
+        String[] array = {"apple", "banana", "cherry"};
+        List<String> list1 = Arrays.asList(array);
         List<Integer> integers = List.of(1, 2, 3);// Immutable - cannot add or remove, faster, no primitives
         int[] intArray = integers.stream().mapToInt(i -> i).toArray();
         List<String> name = new ArrayList<>(list);

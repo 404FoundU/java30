@@ -1,4 +1,4 @@
-package DSA.Arrays;
+package DSA.RecursionBacktracking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,6 @@ public class Combinations {
     public static List<List<Character>> combination(char[] arr) {
         if (arr.length == 0) {
             List<List<Character>> emptyCombination = new ArrayList<>();
-            System.out.println(emptyCombination);
 
             emptyCombination.add(new ArrayList<>());
             System.out.println(emptyCombination);
