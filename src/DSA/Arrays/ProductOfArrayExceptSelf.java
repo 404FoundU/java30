@@ -22,13 +22,14 @@ public class ProductOfArrayExceptSelf {
             arr[i] = right;
             right = nums[i] * right;
         }
-        System.out.println("arr = " + Arrays.toString(arr));
+        System.out.println("rightArr = " + Arrays.toString(arr));
 
         for (int j = 0; j < nums.length; j++) {
             arr[j] = arr[j] * left;
             left = left * nums[j];
         }
-        System.out.println("arr = " + Arrays.toString(arr));
+        System.out.println("leftArr = " + Arrays.toString(arr));
+
         return 0;
     }
 

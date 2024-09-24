@@ -26,5 +26,24 @@ public class Palindrome {
         return _testMethod(str, left + 1, right - 1);
     }
 
+    private boolean testMethod2(String p) {
+
+        char[] a = p.toCharArray();
+
+        int start = 0;
+        int length = a.length;
+        int end = length - 1;
+        while (start < end) {
+            if (a[start] != a[end]) {
+                return false;
+            }
+
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+
 
 }

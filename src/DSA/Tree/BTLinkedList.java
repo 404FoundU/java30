@@ -1,6 +1,9 @@
 package DSA.Tree;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BTLinkedList {
 
 
@@ -56,20 +59,61 @@ public class BTLinkedList {
         if (node == null) {
             return;
         }
-        preOrderTraversal(node.left);
+        inOrderTraversal(node.left);
         System.out.println(node.data + " ");
-        preOrderTraversal(node.right);
+        inOrderTraversal(node.right);
     }
 
     public void postOrderTraversal(BinaryNode node) {
         if (node == null) {
             return;
         }
-        preOrderTraversal(node.left);
-        preOrderTraversal(node.right);
+        postOrderTraversal(node.left);
+        postOrderTraversal(node.right);
         System.out.println(node.data + " ");
 
     }
 
+    void levelOrderTraversal() {
+        Queue<BinaryNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            BinaryNode firstNode = queue.remove();
+            System.out.println(firstNode.data + " ");
+            if (firstNode.left != null) {
+                queue.add(firstNode.left);
+            }
+            if (firstNode.right != null) {
+                queue.add(firstNode.right);
+            }
+        }
+    }
 
+    void insert(String data) {
+        BinaryNode node = new BinaryNode();
+        node.data = data;
+        Queue<BinaryNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            BinaryNode firstNode = q.remove();
+            if (firstNode.left != null) {
+                firstNode.left = node;
+                System.out.println("inserted left child at " + firstNode.data);
+                break;
+            } else if (firstNode.right != null) {
+                firstNode.right = node;
+                System.out.println("inserted right child at " + firstNode.data);
+                break;
+            }
+            if (firstNode.left != null) {
+                q.add(firstNode.left);
+            }
+            if (firstNode.right != null) {
+                q.add(firstNode.right);
+            }
+        }
+    }
+
+// delete node
+    // https://www.udemy.com/course/java-data-structures-and-algorithms-masterclass/learn/lecture/24644378#overview
 }
