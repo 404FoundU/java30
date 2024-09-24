@@ -59,7 +59,8 @@ public class Array1 {
 
         // Sort the character array
         Arrays.sort(charArray);
-
+        String original = "Hello";
+        String result = "Hello".substring(0);
         // Convert the sorted character array back to a string
         return new String(charArray);
     }
