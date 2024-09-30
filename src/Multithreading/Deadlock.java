@@ -11,7 +11,7 @@ public class Deadlock {
         Object lock1 = "unni";
         Object lock2 = "rishi";
 
-        Thread thread1 = new Thread(() -> {
+        Runnable runnable = () -> {
             synchronized (lock1) {
                 try {
                     Thread.sleep(10); // wont relinquish the lock
@@ -23,7 +23,8 @@ public class Deadlock {
                     System.out.println("lock acquired 1");
                 }
             }
-        }, "Thread1");
+        };
+        Thread thread1 = new Thread(runnable, "Thread1");
 
         Thread thread2 = new Thread(() -> {
             synchronized (lock2) {

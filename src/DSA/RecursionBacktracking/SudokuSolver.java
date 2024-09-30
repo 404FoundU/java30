@@ -91,13 +91,13 @@ public class SudokuSolver {
                 if (board[row][column] == 0) {
                     for (int numberToTry = 1; numberToTry <= GRID_SIZE; numberToTry++) {
                         if (isValidPlacement(board, numberToTry, row, column)) {
-                            board[row][column] = numberToTry;
+                            board[row][column] = numberToTry; // make choices
 
-                            if (solveBoard(board)) {
+                            if (solveBoard(board)) {// backrack
                                 return true;
                             }
                             else {
-                                board[row][column] = 0;
+                                board[row][column] = 0;// undo choices
                             }
                         }
                     }
