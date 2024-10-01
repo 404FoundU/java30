@@ -36,6 +36,7 @@ public class PermutationsBT {
                 //make choice
                 used[i] = true;
                 perm.add(arr.get(i));
+                //backtrack
                 backtrack(result, arr, perm, used);
                 //undo choice
                 used[i] = false;
