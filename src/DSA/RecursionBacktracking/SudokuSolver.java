@@ -106,9 +106,9 @@ public class SudokuSolver {
 
                 if (solveBoard(board)) {// backtrack
                     return true;
-                } else {
-                    board[row][col] = 0;// undo choices
                 }
+                board[row][col] = 0;// undo choices
+
             }
         }
         return false;
