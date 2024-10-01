@@ -1,4 +1,5 @@
 package DSA.RecursionBacktracking;
+
 public class SudokuSolver {
 
     private static final int GRID_SIZE = 9;
@@ -21,8 +22,7 @@ public class SudokuSolver {
 
         if (solveBoard(board)) {
             System.out.println("Solved successfully!");
-        }
-        else {
+        } else {
             System.out.println("Unsolvable board :(");
         }
 
@@ -89,17 +89,8 @@ public class SudokuSolver {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
                 if (board[row][col] == 0) {
-                    for (int numberToTry = 1; numberToTry <= GRID_SIZE; numberToTry++) {
-                        if (isValidPlacement(board, numberToTry, row, col)) {
-                            board[row][col] = numberToTry; // make choices
-
-                            if (solveBoard(board)) {// backrack
-                                return true;
-                            }
-                            else {
-                                board[row][col] = 0;// undo choices
-                            }
-                        }
+                    if (backtrack(board, row, col)) {
+                        return true;
                     }
                     return false;
                 }
@@ -108,6 +99,20 @@ public class SudokuSolver {
         return true;
     }
 
+    private static boolean backtrack(int[][] board, int row, int col) {
+        for (int numberToTry = 1; numberToTry <= GRID_SIZE; numberToTry++) {
+            if (isValidPlacement(board, numberToTry, row, col)) {
+                board[row][col] = numberToTry; // make choices
+
+                if (solveBoard(board)) {// backtrack
+                    return true;
+                } else {
+                    board[row][col] = 0;// undo choices
+                }
+            }
+        }
+        return false;
+    }
 
 
 }
