@@ -89,7 +89,7 @@ public class SudokuSolver {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
                 if (board[row][col] == 0) {
-                    if (backtrack(board, row, col)) {
+                    if (tryNumbers(board, row, col)) {
                         return true;
                     }
                     return false;
@@ -99,7 +99,7 @@ public class SudokuSolver {
         return true;
     }
 
-    private static boolean backtrack(int[][] board, int row, int col) {
+    private static boolean tryNumbers(int[][] board, int row, int col) {
         for (int numberToTry = 1; numberToTry <= GRID_SIZE; numberToTry++) {
             if (isValidPlacement(board, numberToTry, row, col)) {
                 board[row][col] = numberToTry; // make choices

@@ -18,14 +18,14 @@ public class CombinationsBT {
         System.out.println(permutations);
     }
 
+    static List<List<Character>> result = new ArrayList<>();
+
     public static List<List<Character>> combinations(List<Character> arr) {
-        List<List<Character>> result = new ArrayList<>();
-        backtrack(result, arr, new ArrayList<>(), 0);
+        backtrack(arr, new ArrayList<>(), 0);
         return result;
     }
 
-    public static void backtrack(List<List<Character>> result,
-                                 List<Character> arr, List<Character> combination, int start) {
+    public static void backtrack(List<Character> arr, List<Character> combination, int start) {
         // Add the current combination to the result
         result.add(new ArrayList<>(combination)); // Make a copy of the combination
 
@@ -33,8 +33,8 @@ public class CombinationsBT {
         for (int i = start; i < arr.size(); i++) {
             // Make choice. Include arr[i] in the combination
             combination.add(arr.get(i));
-            // Move to the next element
-            backtrack(result, arr, combination, i + 1);
+            // Move to the next element (adjust start index for the next recursion)
+            backtrack(arr, combination, i + 1);
             // Undo choice (remove the last added element)
             combination.remove(combination.size() - 1);
         }
