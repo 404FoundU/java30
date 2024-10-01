@@ -18,28 +18,28 @@ public class PermutationsBT {
         System.out.println(permutations);
     }
 
+    static List<List<Character>> result = new ArrayList<>();
+
     public static List<List<Character>> permutations(List<Character> arr) {
-        List<List<Character>> result = new ArrayList<>();
-        backtrack(result, arr, new ArrayList<>(), new boolean[arr.size()]);
+        backtrack(arr, new ArrayList<>(), new boolean[arr.size()]);
         return result;
     }
 
-    public static void backtrack(List<List<Character>> result,
-                                 List<Character> arr, List<Character> perm, boolean[] used) {
+    public static void backtrack(List<Character> arr, List<Character> perm, boolean[] visited) {
         if (perm.size() == arr.size()) { // goal reached
             result.add(new ArrayList<>(perm));
             return;
         }
         for (int i = 0; i < arr.size(); i++) { //choices
             // did we already use arr[i]. use a hashmap or boolean array used[i]
-            if (!used[i]) {
+            if (!visited[i]) {
                 //make choice
-                used[i] = true;
+                visited[i] = true;
                 perm.add(arr.get(i));
                 //backtrack
-                backtrack(result, arr, perm, used);
+                backtrack(arr, perm, visited);
                 //undo choice
-                used[i] = false;
+                visited[i] = false;
                 perm.remove(arr.get(i));
             }
         }
