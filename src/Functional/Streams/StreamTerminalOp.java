@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamTerminalOp {
@@ -23,8 +24,9 @@ public class StreamTerminalOp {
     private void testMethod() {
 
         List<Student> allStudents = StudentDataBase.getAllStudents();
+        Function<Student, String> getName = student -> student.getName();
         String names = allStudents.stream()
-                .map(Student::getName)
+                .map(getName)
                 .collect(Collectors.joining("_"));
 
         System.out.println(names);

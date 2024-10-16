@@ -17,14 +17,14 @@ public class Array1 {
         Arrays.fill(intArr, 1);
         int length = intArr.length;
         int[] intArr2 = {1, 2, 3, 4, 5};
+        int[] intArr3 = new int[]{1, 2, 3, 4, 5};
         intArr2[4] = Integer.MIN_VALUE; // delete element 2^ -31
         int[] emptyArr = {};
         int[] emptyArr2 = new int[]{};
         intArr[0] = 1;
 
-
-        int[] intArr3 = new int[]{1, 2, 3, 4, 5};
         Integer[] intArr4 = new Integer[]{1, 2, 3, 4, 5};
+        List<Integer> intList = Arrays.asList(intArr4);
         List<String> list = Arrays.asList("unni", "pillai");
         String[] array = {"apple", "banana", "cherry"};
         List<String> list1 = Arrays.asList(array);

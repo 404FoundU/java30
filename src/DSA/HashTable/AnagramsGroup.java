@@ -12,7 +12,7 @@ public class AnagramsGroup {
         AnagramsGroup test = new AnagramsGroup();
         String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
         HashTable<String, List<String>> hashTable = test.testMethod(str);
-        for (HashTable.Node<String, List<String>> hst : hashTable.getAllEntries()) {
+        for (HashTable.Node<String, List<String>> hst : hashTable.entrySet()) {
             System.out.println(hst.getValue());
         }
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class NumericStreams {
 
@@ -44,6 +45,11 @@ public class NumericStreams {
                 .mapToObj(i -> new Integer(i))
                 .collect(Collectors.toList());
 
+        Integer sum3 = Stream.of(10, 20, 30, 40)
+                .reduce(0, (a, b) -> a + b);
+        int sum4 = IntStream.rangeClosed(0, 100)
+                .parallel()
+                .sum();
 
     }
 

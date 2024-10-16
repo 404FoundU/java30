@@ -113,7 +113,7 @@ public class HashTable<K,V> {
     }
 
 
-    public List<Node<K, V>> getAllEntries() {
+    public List<Node<K, V>> entrySet() {
         List<Node<K, V>> entries = new ArrayList<>();
         for (Node<K, V> bucket : buckets) {
             Node<K, V> currentNode = bucket;

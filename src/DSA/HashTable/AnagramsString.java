@@ -1,8 +1,6 @@
 package DSA.HashTable;
 
 
-import java.util.Arrays;
-
 public class AnagramsString {
 
 
@@ -39,7 +37,7 @@ public class AnagramsString {
             }
         }
 
-        for (HashTable.Node<Character, Integer> entry : hs.getAllEntries()) {
+        for (HashTable.Node<Character, Integer> entry : hs.entrySet()) {
             if (entry.getValue() > 0) {
                 return false;
             }

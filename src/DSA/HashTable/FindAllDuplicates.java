@@ -2,9 +2,7 @@ package DSA.HashTable;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FindAllDuplicates {
 
@@ -28,7 +26,7 @@ public class FindAllDuplicates {
         }
         List<Integer> list = new ArrayList<>();
 
-        for (HashTable.Node<Integer, Integer> entry : hs.getAllEntries()) {
+        for (HashTable.Node<Integer, Integer> entry : hs.entrySet()) {
             Integer k = entry.getKey();
             Integer v = entry.getValue();
             if (v > 1) {

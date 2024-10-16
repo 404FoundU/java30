@@ -1,9 +1,7 @@
-package JavaStreams;
+package Functional.Streams;
 
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -87,6 +85,7 @@ public class JavaStreams {
         long Temp = data.stream()
                 .reduce(Integer::sum)
                 .get();
+        Stream.<String>builder().add("Unni").add("Rishi").build();
 
 
     }

@@ -40,7 +40,7 @@ public class AnagramsKAnagramsString {
             }
         }
         List<Character> list = new ArrayList<>();
-        for (HashTable.Node<Character, Integer> entry : hs.getAllEntries()) {
+        for (HashTable.Node<Character, Integer> entry : hs.entrySet()) {
             if (entry.getValue() > 0) {
                 list.add(entry.getKey());
             }
