@@ -27,19 +27,30 @@ public class ValidParanthesis {
     }
 
     private boolean testMethod(String str) {
-        char[] charArray = str.toCharArray();
         Stack<Character> stack = new Stack<>();
-        Map<Character, Character> paraMap = getParaMap();
-        for (char c : charArray) {
-            if (paraMap.containsKey(c)) {
-                stack.push(c);
-            } else {
-                Character c2 = stack.pop();
-                if (paraMap.get(c2) != c) {
+        for (char c : str.toCharArray()) {
+            if (c == ')') {
+                if (stack.peek() == '(') {
+                    stack.pop();
+                } else {
                     return false;
                 }
-
+            } else if (c == '}') {
+                if (stack.peek() == '{') {
+                    stack.pop();
+                } else {
+                    return false;
+                }
+            } else if (c == ']') {
+                if (stack.peek() == '[') {
+                    stack.pop();
+                } else {
+                    return false;
+                }
+            } else {
+                stack.push(c);
             }
+
         }
 
         if (!stack.isEmpty()) {
