@@ -37,8 +37,6 @@ public class QueueArray<T> {
     }
 
 
-
-
     public T peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
