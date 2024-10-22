@@ -42,12 +42,12 @@ public class GraphAdjacencyList {
             String vertex = q.poll();
             System.out.println(vertex + " ");
             Set<String> vertices = adjacencyList.get(vertex);
-            vertices.forEach(e -> {
+            for (String e : vertices) {
                 if (!visited.contains(e)) {
                     visited.add(e);
                     q.add(e);
                 }
-            });
+            }
 
         }
 

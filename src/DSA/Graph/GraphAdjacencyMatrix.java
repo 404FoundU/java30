@@ -45,16 +45,16 @@ public class GraphAdjacencyMatrix {
         }
     }
 
-    void bfsTraversal(String startNode) {
+    void bfsTraversal(String start) {
         boolean[] visited = new boolean[adjacencyMatrix.length]; // To track visited vertices
         Queue<Integer> queue = new LinkedList<>();  // Queue for BFS
 
         // Get the start index from the vertex map
-        int startIndex = vertices.get(startNode);
+        int startIndex = vertices.get(start);
         visited[startIndex] = true;  // Mark the starting vertex as visited
         queue.add(startIndex);  // Add the starting vertex to the queue
 
-        System.out.println("BFS starting from node: " + startNode);
+        System.out.println("BFS starting from node: " + start);
 
         while (!queue.isEmpty()) {
             int currentIndex = queue.poll();  // Dequeue a vertex
