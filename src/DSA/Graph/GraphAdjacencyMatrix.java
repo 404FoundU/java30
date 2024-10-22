@@ -2,14 +2,16 @@ package DSA.Graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
-public class Graph {
+public class GraphAdjacencyMatrix {
     int[][] adjacencyMatrix = null;
     Map<String, Integer> vertices = new HashMap<>();
 
-    public Graph(int size) {
+    public GraphAdjacencyMatrix(int size) {
         this.adjacencyMatrix = new int[size][size];
     }
 
@@ -43,8 +45,44 @@ public class Graph {
         }
     }
 
+    void bfsTraversal(String startNode) {
+        boolean[] visited = new boolean[adjacencyMatrix.length]; // To track visited vertices
+        Queue<Integer> queue = new LinkedList<>();  // Queue for BFS
+
+        // Get the start index from the vertex map
+        int startIndex = vertices.get(startNode);
+        visited[startIndex] = true;  // Mark the starting vertex as visited
+        queue.add(startIndex);  // Add the starting vertex to the queue
+
+        System.out.println("BFS starting from node: " + startNode);
+
+        while (!queue.isEmpty()) {
+            int currentIndex = queue.poll();  // Dequeue a vertex
+            System.out.print(getKeyByValue(vertices, currentIndex) + " ");  // Print the current vertex
+
+            // Get all adjacent vertices of the dequeued vertex
+            for (int i = 0; i < adjacencyMatrix.length; i++) {
+                if (adjacencyMatrix[currentIndex][i] == 1 && !visited[i]) {  // If adjacent and not visited
+                    visited[i] = true;  // Mark it as visited
+                    queue.add(i);  // Enqueue the adjacent vertex
+                }
+            }
+        }
+        System.out.println();  // For newline after traversal
+    }
+
+    private String getKeyByValue(Map<String, Integer> map, int value) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == value) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+
     public static void main(String[] args) {
-        Graph graph = new Graph(5);
+        GraphAdjacencyMatrix graph = new GraphAdjacencyMatrix(5);
         graph.addNode("A", 0);
         graph.addNode("B", 1);
         graph.addNode("C", 2);
@@ -63,6 +101,7 @@ public class Graph {
         graph.addEdge("D", "E");
 
         graph.printGraph();
+        graph.bfsTraversal("A");
     }
 }
 
