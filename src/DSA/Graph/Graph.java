@@ -1,6 +1,8 @@
 package DSA.Graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Graph {
@@ -24,12 +26,20 @@ public class Graph {
 
     void printGraph() {
         int length = adjacencyMatrix.length;
+        System.out.print("  ");
+        List<String> nodes = new ArrayList<>();
+        for (Map.Entry<String, Integer> vertex : vertices.entrySet()) {
+            System.out.print(vertex.getKey() + " ");
+            nodes.add(vertex.getKey());
+        }
+        System.out.println(" ");
+
         for (int i = 0; i < length; i++) {
+            System.out.print(nodes.get(i) + " ");
             for (int j = 0; j < length; j++) {
                 System.out.print(adjacencyMatrix[i][j] + " ");
             }
-            System.out.println("\n");
-
+            System.out.println(" ");
         }
     }
 
