@@ -25,12 +25,9 @@ class Task implements Comparable<Task> {
 public class SimplePriorityQueue {
     public static void main(String[] args) {
         PriorityQueue<Task> taskQueue = new PriorityQueue<>();
-
         taskQueue.add(new Task("Write Code", 2));
         taskQueue.add(new Task("Test Code", 3));
         taskQueue.add(new Task("Debug", 1));
-
-        // Polling tasks based on priority (min priority comes first)
         while (!taskQueue.isEmpty()) {
             System.out.println(taskQueue.poll());
         }

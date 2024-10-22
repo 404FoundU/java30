@@ -1,8 +1,6 @@
 package DSA.Heap;
 
-
-import DSA.Tree.BinaryNode;
-
+//https://www.udemy.com/course/java-data-structures-and-algorithms-masterclass/learn/lecture/24845804#overview
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -10,14 +8,12 @@ import java.util.Queue;
 // left child = 2x
 // right child = 2x+1
 public class BinaryHeap {
-    int arr[];
+    int[] arr = null;
     int sizeOfTree;
-
     BinaryHeap(int size) {
         arr = new int[size + 1]; // skip 0th index
         sizeOfTree = 0;
     }
-
     boolean isEmpty() {
         if (sizeOfTree == 0) {
             return true;
@@ -32,7 +28,7 @@ public class BinaryHeap {
         return arr[1];
     }
 
-    void levelOrderTraversal() {
+    void levelOrderTraversalArrayHeap() {
         Queue<Integer> q = new LinkedList<>();
         int leftIndex = 1;
         q.add(arr[1]);
@@ -55,6 +51,69 @@ public class BinaryHeap {
         System.out.println("\n");*/
     }
 
+    void heapifyTopToBottom(int index, String heapType) {
+        int leftIndex = 2 * index;
+        int rightIndex = leftIndex + 1;
+        int swapIndex = leftIndex;
+        if (index >= sizeOfTree) {
+            return;
+        }
+        if (heapType.equals("MAX")) {
+            if (sizeOfTree == leftIndex) {
+                if (arr[index] < arr[leftIndex]) {
+                    int temp = arr[index];
+                    arr[index] = arr[leftIndex];
+                    arr[leftIndex] = temp;
+                }
+                return;
+            }
+            if (arr[leftIndex] > arr[rightIndex]) {
+                swapIndex = leftIndex;
+            } else {
+                swapIndex = rightIndex;
+            }
+            if (arr[index] < arr[swapIndex]) {
+                int temp = arr[index];
+                arr[index] = arr[swapIndex];
+                arr[swapIndex] = temp;
+            }
+
+        }
+        if (heapType.equals("MIN")) {
+            if (sizeOfTree == leftIndex) {
+                if (arr[index] > arr[leftIndex]) {
+                    int temp = arr[index];
+                    arr[index] = arr[leftIndex];
+                    arr[leftIndex] = temp;
+                }
+                return;
+            }
+            if (arr[leftIndex] < arr[rightIndex]) {
+                swapIndex = leftIndex;
+            } else {
+                swapIndex = rightIndex;
+            }
+            if (arr[index] > arr[swapIndex]) {
+                int temp = arr[index];
+                arr[index] = arr[swapIndex];
+                arr[swapIndex] = temp;
+            }
+
+        }
+        heapifyTopToBottom(swapIndex, heapType);
+    }
+
+    Integer extractHead(String heapType) {
+        if (isEmpty()) {
+            return null;
+        }
+        int val = arr[1];
+        arr[1] = arr[sizeOfTree];
+        sizeOfTree--;
+        heapifyBottomToTop(1, heapType);
+        return val;
+    }
+
     void heapifyBottomToTop(int index, String heapType) {
         int parentIndex = index / 2;
         if (index <= 1) {
@@ -64,7 +123,6 @@ public class BinaryHeap {
             if (arr[index] < arr[parentIndex]) {
                 int temp = arr[parentIndex];
                 arr[parentIndex] = arr[index];
-
                 arr[index] = temp;
             }
         }
@@ -72,7 +130,6 @@ public class BinaryHeap {
             if (arr[index] > arr[parentIndex]) {
                 int temp = arr[parentIndex];
                 arr[parentIndex] = arr[index];
-
                 arr[index] = temp;
             }
         }
@@ -91,6 +148,6 @@ public class BinaryHeap {
         heap.insert(5, "MAX");
         heap.insert(15, "MAX");
         heap.insert(1, "MAX");
-        heap.levelOrderTraversal();
+        heap.levelOrderTraversalArrayHeap();
     }
 }
