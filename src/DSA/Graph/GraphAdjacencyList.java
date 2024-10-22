@@ -2,7 +2,9 @@ package DSA.Graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class GraphAdjacencyList {
@@ -31,6 +33,26 @@ public class GraphAdjacencyList {
         }
     }
 
+    void bfsTraversal(String start) {
+        Queue<String> q = new LinkedList<>();
+        q.add(start);
+        Set<String> visited = new HashSet<>();
+        visited.add(start);
+        while (!q.isEmpty()) {
+            String vertex = q.poll();
+            System.out.println(vertex + " ");
+            Set<String> vertices = adjacencyList.get(vertex);
+            vertices.forEach(e -> {
+                if (!visited.contains(e)) {
+                    visited.add(e);
+                    q.add(e);
+                }
+            });
+
+        }
+
+    }
+
     public static void main(String[] args) {
         GraphAdjacencyList graph = new GraphAdjacencyList();
 
@@ -51,5 +73,6 @@ public class GraphAdjacencyList {
         graph.addEdge("D", "A");
         graph.addEdge("D", "E");
         graph.printGraph();
+        graph.bfsTraversal("A");
     }
 }
