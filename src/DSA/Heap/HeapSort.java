@@ -15,7 +15,7 @@ public class HeapSort {
             heap.insert(arr[i], "MIN");
         }
         for (int j = 0; j < arr.length; j++) {
-            arr[j] = heap.extractHeadOfBP("MIN");
+            arr[j] = heap.extractHead("MIN");
         }
     }
 
