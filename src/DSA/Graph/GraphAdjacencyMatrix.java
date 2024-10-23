@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Stack;
 
 public class GraphAdjacencyMatrix {
     int[][] adjacencyMatrix = null;
@@ -71,6 +72,32 @@ public class GraphAdjacencyMatrix {
         System.out.println();  // For newline after traversal
     }
 
+    void dfsTraversal(String start) {
+        boolean[] visited = new boolean[adjacencyMatrix.length]; // To track visited vertices
+        Stack<Integer> stack = new Stack<>();  // Queue for BFS
+
+        // Get the start index from the vertex map
+        int startIndex = vertices.get(start);
+        visited[startIndex] = true;  // Mark the starting vertex as visited
+        stack.add(startIndex);  // Add the starting vertex to the queue
+
+        System.out.println("BFS starting from node: " + start);
+
+        while (!stack.isEmpty()) {
+            int currentIndex = stack.pop();  // Dequeue a vertex
+            System.out.print(getKeyByValue(vertices, currentIndex) + " ");  // Print the current vertex
+
+            // Get all adjacent vertices of the dequeued vertex
+            for (int i = 0; i < adjacencyMatrix.length; i++) {
+                if (adjacencyMatrix[currentIndex][i] == 1 && !visited[i]) {  // If adjacent and not visited
+                    visited[i] = true;  // Mark it as visited
+                    stack.add(i);  // Enqueue the adjacent vertex
+                }
+            }
+        }
+        System.out.println();  // For newline after traversal
+    }
+
     private String getKeyByValue(Map<String, Integer> map, int value) {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             if (entry.getValue() == value) {
@@ -78,6 +105,7 @@ public class GraphAdjacencyMatrix {
             }
         }
         return null;
+
     }
 
 
@@ -101,7 +129,8 @@ public class GraphAdjacencyMatrix {
         graph.addEdge("D", "E");
 
         graph.printGraph();
-        graph.bfsTraversal("A");
+//        graph.bfsTraversal("A");
+        graph.dfsTraversal("A");
     }
 }
 

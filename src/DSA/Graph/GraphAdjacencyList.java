@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 public class GraphAdjacencyList {
 
@@ -53,6 +54,26 @@ public class GraphAdjacencyList {
 
     }
 
+    void dfsTraversal(String start) {
+        Stack<String> stack = new Stack<>();
+        stack.add(start);
+        Set<String> visited = new HashSet<>();
+        visited.add(start);
+        while (!stack.isEmpty()) {
+            String vertex = stack.pop();
+            System.out.println(vertex + " ");
+            Set<String> vertices = adjacencyList.get(vertex);
+            for (String e : vertices) {
+                if (!visited.contains(e)) {
+                    visited.add(e);
+                    stack.add(e);
+                }
+            }
+
+        }
+
+    }
+
     public static void main(String[] args) {
         GraphAdjacencyList graph = new GraphAdjacencyList();
 
@@ -73,6 +94,7 @@ public class GraphAdjacencyList {
         graph.addEdge("D", "A");
         graph.addEdge("D", "E");
         graph.printGraph();
-        graph.bfsTraversal("A");
+//        graph.bfsTraversal("A");
+        graph.dfsTraversal("A");
     }
 }
