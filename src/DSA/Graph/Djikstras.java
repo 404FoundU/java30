@@ -2,6 +2,7 @@ package DSA.Graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -41,13 +42,62 @@ public class Djikstras {
                 int distanceOfNeighbour = node.distance;
                 Integer distanceFromParentVertex = distances.get(parentVertex);
 
-                int newDistance = distanceFromParentVertex + distanceOfNeighbour;
+                int candidateDistance = distanceFromParentVertex + distanceOfNeighbour;
                 // Update the distanceOfNeighbour if a shorter path is found
                 Integer oldDistance = distances.get(neighbour);
-                if (newDistance < oldDistance) {
-                    distances.put(neighbour, newDistance);
-                    pq.add(new GraphNode(neighbour, newDistance));
+                if (candidateDistance < oldDistance) {
+                    distances.put(neighbour, candidateDistance);
+                    pq.add(new GraphNode(neighbour, candidateDistance));
                 }
+            }
+        }
+
+        return distances;
+
+    }
+
+    Map<String, Integer> djikstrasPath2(String source, String dest) {
+        Map<String, Integer> distances = new HashMap<>();
+        Map<String, String> previous = new HashMap<>();
+        List<String> path = new LinkedList<>();
+
+        for (String vertex : adjacencyList.keySet()) {
+            distances.put(vertex, Integer.MAX_VALUE);
+            previous.put(vertex, null);
+        }
+        distances.put(source, 0);
+
+        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
+        pq.add(new GraphNode(source, 0));
+        String smallestVertex = null;
+
+
+        while (!pq.isEmpty()) {
+            smallestVertex = pq.poll().target;
+            if (smallestVertex.equals(dest)) {
+
+//we are done
+// build path to smallest
+                while (previous.get(smallestVertex) != null) {
+                    path.add(smallestVertex);
+                    smallestVertex = previous.get(smallestVertex);
+                }
+                path.add(smallestVertex);
+                path.forEach(System.out::println);
+            }
+
+            for (GraphNode nextNeighbourNode : adjacencyList.get(smallestVertex)) {
+                // calculate new distance to neighbouring node
+                int candidateDistance = distances.get(smallestVertex) + nextNeighbourNode.distance;
+                //if candiateDistance < what is stored in distances table
+                String nextNeighbourVertex = nextNeighbourNode.target;
+                if (candidateDistance < distances.get(nextNeighbourVertex)) {
+                    distances.put(nextNeighbourVertex, candidateDistance);
+                    previous.put(nextNeighbourVertex, smallestVertex);
+                    pq.add(new GraphNode(nextNeighbourVertex, candidateDistance));
+
+                }
+
             }
         }
 
@@ -71,7 +121,8 @@ public class Djikstras {
         graph.addWeightedEdge("C", "E", 3);
         graph.addWeightedEdge("D", "E", 1);
 
-        Map<String, Integer> distances = graph.djikstrasPath("A");
+//        Map<String, Integer> distances = graph.djikstrasPath("A");
+        Map<String, Integer> distances = graph.djikstrasPath2("A", "E");
 
         distances.entrySet().forEach(
                 e -> System.out.println(e.getKey() + "=" + e.getValue())
