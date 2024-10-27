@@ -86,12 +86,17 @@ public class Djikstras {
                 path.forEach(System.out::println);
             }
 
+            // for each neighbouring node- calculate candidateDistance from starting node
             for (GraphNode nextNeighbourNode : adjacencyList.get(smallestVertex)) {
-                // calculate new distance to neighbouring node
-                int candidateDistance = distances.get(smallestVertex) + nextNeighbourNode.distance;
-                //if candiateDistance < what is stored in distances table
+                int distance = nextNeighbourNode.distance;
                 String nextNeighbourVertex = nextNeighbourNode.target;
-                if (candidateDistance < distances.get(nextNeighbourVertex)) {
+                Integer nextNeighbourDistance = distances.get(nextNeighbourVertex);
+                // calculate new distance to neighbouring node
+                Integer oldDistance = distances.get(smallestVertex);
+                int candidateDistance = oldDistance + distance;
+                //if candiateDistance < what is stored in distances table
+
+                if (candidateDistance < nextNeighbourDistance) {
                     distances.put(nextNeighbourVertex, candidateDistance);
                     previous.put(nextNeighbourVertex, smallestVertex);
                     pq.add(new GraphNode(nextNeighbourVertex, candidateDistance));
