@@ -88,8 +88,9 @@ public class Djikstras {
 
             // for each neighbouring node- calculate candidateDistance from starting node
             for (GraphNode nextNeighbourNode : adjacencyList.get(smallestVertex)) {
-                int distance = nextNeighbourNode.distance;
+
                 String nextNeighbourVertex = nextNeighbourNode.target;
+                int distance = nextNeighbourNode.distance;
                 Integer nextNeighbourDistance = distances.get(nextNeighbourVertex);
                 // calculate new distance to neighbouring node
                 Integer oldDistance = distances.get(smallestVertex);
