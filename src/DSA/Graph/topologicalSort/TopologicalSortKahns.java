@@ -1,4 +1,4 @@
-package DSA.Graph;
+package DSA.Graph.topologicalSort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
