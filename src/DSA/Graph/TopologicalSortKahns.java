@@ -2,7 +2,6 @@ package DSA.Graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,7 @@ public class TopologicalSortKahns {
 
     // Add a vertex to the graph
     void addVertex(String vertex) {
-        adjacencyList.putIfAbsent(vertex, new HashSet<>());
+        adjacencyList.putIfAbsent(vertex, new ArrayList<>());
     }
 
     // Add a directional edge (x -> y)
@@ -105,7 +104,8 @@ public class TopologicalSortKahns {
         graph.printGraph();
 
         // Perform Topological Sort
-        graph.topologicalSort();
+        List<String> strings = graph.topologicalSort();
+        System.out.println("strings = " + strings);
     }
 }
 
