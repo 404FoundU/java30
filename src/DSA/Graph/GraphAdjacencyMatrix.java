@@ -62,10 +62,10 @@ public class GraphAdjacencyMatrix {
             System.out.print(getKeyByValue(vertices, currentIndex) + " ");  // Print the current vertex
 
             // Get all adjacent vertices of the dequeued vertex
-            for (int i = 0; i < adjacencyMatrix.length; i++) {
-                if (adjacencyMatrix[currentIndex][i] == 1 && !visited[i]) {  // If adjacent and not visited
-                    visited[i] = true;  // Mark it as visited
-                    queue.add(i);  // Enqueue the adjacent vertex
+            for (int j = 0; j < adjacencyMatrix.length; j++) {
+                if (adjacencyMatrix[currentIndex][j] == 1 && !visited[j]) {  // If adjacent and not visited
+                    visited[j] = true;  // Mark it as visited
+                    queue.add(j);  // Enqueue the adjacent vertex
                 }
             }
         }

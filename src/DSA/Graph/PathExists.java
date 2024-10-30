@@ -47,9 +47,7 @@ public class PathExists {
                 }
             }
         }
-
         return false;
-
     }
 
     public static void main(String[] args) {
