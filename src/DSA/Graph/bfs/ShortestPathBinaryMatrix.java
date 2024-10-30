@@ -1,4 +1,4 @@
-package DSA.Graph;
+package DSA.Graph.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
