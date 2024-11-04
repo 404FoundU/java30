@@ -3,6 +3,7 @@ package DSA.Tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BTLinkedList {
 
@@ -41,8 +42,10 @@ public class BTLinkedList {
         n3.right = n7;
         n4.left = n8;
         n4.right = n9;
+
         bt.root = n1;
         bt.preOrderTraversal(bt.root);
+        bt.dfs();
     }
 
 
@@ -74,7 +77,7 @@ public class BTLinkedList {
 
     }
 
-    void levelOrderTraversal() {
+    void levelOrderTraversal() { // BFS
         Queue<BinaryNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -85,6 +88,22 @@ public class BTLinkedList {
             }
             if (firstNode.right != null) {
                 queue.add(firstNode.right);
+            }
+        }
+    }
+
+    void dfs() {
+        System.out.println("dfs");
+        Stack<BinaryNode> stack = new Stack<>();
+        stack.add(this.root);
+        while (!stack.isEmpty()) {
+            BinaryNode currentNode = stack.pop();
+            System.out.println(" " + currentNode.data);
+            if (currentNode.right != null) {
+                stack.push(currentNode.right);
+            }
+            if (currentNode.left != null) {
+                stack.push(currentNode.left);
             }
         }
     }
