@@ -46,10 +46,11 @@ public class BTLinkedList {
         bt.root = n1;
         bt.preOrderTraversal(bt.root);
         bt.dfs();
+        System.out.println(bt.maxHeight());
     }
 
 
-    public void preOrderTraversal(BinaryNode node) {
+    public void preOrderTraversal(BinaryNode node) { // OLR
         if (node == null) {
             return;
         }
@@ -58,7 +59,7 @@ public class BTLinkedList {
         preOrderTraversal(node.right);
     }
 
-    public void inOrderTraversal(BinaryNode node) {
+    public void inOrderTraversal(BinaryNode node) { // LOR
         if (node == null) {
             return;
         }
@@ -67,13 +68,33 @@ public class BTLinkedList {
         inOrderTraversal(node.right);
     }
 
-    public void postOrderTraversal(BinaryNode node) {
+    public void postOrderTraversal(BinaryNode node) { // LR0
         if (node == null) {
             return;
         }
         postOrderTraversal(node.left);
         postOrderTraversal(node.right);
         System.out.println(node.data + " ");
+
+    }
+
+    public void inOrderStack() {
+        Stack<BinaryNode> stack = new Stack<>();
+        BinaryNode current = root;
+
+        while (current != null || !stack.isEmpty()) {
+            // reach the left most node
+            while (current != null) {
+                stack.push(current); // Place pointer to the tree node on the stack
+                current = current.left;
+            }
+            // Current must be null at this point, so we pop the top node from the stack
+            current = stack.pop();
+            System.out.println(current.data + " ");
+
+            // traverse right subtree
+            current = current.right;
+        }
 
     }
 
@@ -95,7 +116,7 @@ public class BTLinkedList {
     void dfs() {
         System.out.println("dfs");
         Stack<BinaryNode> stack = new Stack<>();
-        stack.add(this.root);
+        stack.push(this.root);
         while (!stack.isEmpty()) {
             BinaryNode currentNode = stack.pop();
             System.out.println(" " + currentNode.data);
@@ -106,6 +127,48 @@ public class BTLinkedList {
                 stack.push(currentNode.left);
             }
         }
+    }
+
+    int maxHeight() {
+        Stack<BinaryNode> stack = new Stack<>();
+        stack.add(root);
+        Stack<Integer> depthStack = new Stack<>();
+        depthStack.push(1);
+        int maxDepth = 0;
+        while (!stack.isEmpty()) {
+            BinaryNode currentNode = stack.pop();
+            Integer depth = depthStack.pop();
+            maxDepth = Math.max(maxDepth, depth);
+            if (currentNode.right != null) {
+                stack.push(currentNode.right);
+                depthStack.push(depth + 1);
+            }
+            if (currentNode.left != null) {
+                stack.push(currentNode.left);
+                depthStack.push(depth + 1);
+
+            }
+        }
+        return maxDepth;
+    }
+
+    int maxHeightDfs(BinaryNode current) {
+        if (current == null) {
+            return 0;
+        }
+        int leftDepth = maxHeightDfs(current.left);
+
+        int rightDepth = maxHeightDfs(current.right);
+
+        return Math.max(leftDepth, rightDepth) + 1;
+
+    }
+
+
+    boolean isBalanced(BinaryNode current) {
+
+
+        return false;
     }
 
     void insert(String data) {
