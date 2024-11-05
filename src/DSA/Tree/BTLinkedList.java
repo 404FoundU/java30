@@ -50,7 +50,7 @@ public class BTLinkedList {
     }
 
 
-    public void preOrderTraversal(BinaryNode node) { // OLR
+    public void preOrderTraversal(BinaryNode node) { // OLR DFS
         if (node == null) {
             return;
         }
@@ -165,11 +165,7 @@ public class BTLinkedList {
     }
 
 
-    boolean isBalanced(BinaryNode current) {
 
-
-        return false;
-    }
 
     void insert(String data) {
         BinaryNode node = new BinaryNode();

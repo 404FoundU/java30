@@ -42,51 +42,99 @@ package DSA.Tree;
 
  */
 
-public class Balanced {
+import java.util.LinkedList;
+import java.util.Queue;
 
-    // Static variable to store the maximum diameter
-    private boolean balanced = true;
+public class Invert {
 
-    public boolean balanced(BinaryNode root) {
-        // Reset balanced for each new tree calculation
-        balanced = true;
-        maxHeightHelper(root);
-        return balanced;
+
+    public BinaryNode invertTree(BinaryNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        BinaryNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        invertTree(root.left);
+        invertTree(root.right);
+        return root;
     }
 
-    private int maxHeightHelper(BinaryNode root) {
+    public BinaryNode invertTreeBfs(BinaryNode root) {
         if (root == null) {
-            return 0; // Height of an empty subtree is 0
+            return null;
         }
 
-        // Recursively get the height of the left and right subtrees
-        int leftHeight = maxHeightHelper(root.left);
-        int rightHeight = maxHeightHelper(root.right);
+        Queue<BinaryNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-        if (Math.abs(leftHeight - rightHeight) > 1) {
-            balanced = false;
-            return 0;
+        while (!queue.isEmpty()) {
+            BinaryNode current = queue.poll();
+
+            // Swap the left and right children
+            BinaryNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+
+            // Add children to the queue for further processing
+            if (current.left != null) queue.offer(current.left);
+            if (current.right != null) queue.offer(current.right);
         }
 
-        // Return the height of the current node
-        return 1 + Math.max(leftHeight, rightHeight);
+        return root;
+    }
+
+    public void printTree(BinaryNode node) {
+        if (node == null) {
+            return;
+        }
+        printTree(node.left);
+        System.out.print(node.data + " ");
+        printTree(node.right);
     }
 
     public static void main(String[] args) {
-        // Example to test the code
+        // Creating a sample binary tree
         BinaryNode root = new BinaryNode();
         root.data = "1";
         root.left = new BinaryNode();
         root.left.data = "2";
+
         root.right = new BinaryNode();
         root.right.data = "3";
+
         root.left.left = new BinaryNode();
         root.left.left.data = "4";
+
         root.left.right = new BinaryNode();
         root.left.right.data = "5";
 
-        Balanced treeDiameter = new Balanced();
-        System.out.println("Balanced: " + treeDiameter.balanced(root));
+        root.right.left = new BinaryNode();
+        root.right.left.data = "6";
+
+        root.right.right = new BinaryNode();
+        root.right.right.data = "7";
+
+        // Print the original tree
+        Invert treeInverter = new Invert();
+        System.out.print("Original tree (in-order traversal): ");
+        treeInverter.printTree(root);
+        System.out.println();
+
+        // Invert the tree
+        treeInverter.invertTree(root);
+
+        // Print the inverted tree
+        System.out.print("Inverted tree (in-order traversal): ");
+        treeInverter.printTree(root);
+        System.out.println();
     }
 }
+
+
+
+
+
 
