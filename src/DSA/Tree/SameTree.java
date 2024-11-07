@@ -1,5 +1,6 @@
 package DSA.Tree;
 
+//https://www.youtube.com/watch?v=jK6XXYezw2g&list=PLKYEe2WisBTH48RzVCL_LQrGW-ahPY44S&index=5
 public class SameTree {
 
     public boolean isSameTree(BinaryNode p, BinaryNode q) {

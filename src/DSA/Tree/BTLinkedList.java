@@ -45,7 +45,7 @@ public class BTLinkedList {
 
         bt.root = n1;
         bt.preOrderTraversal(bt.root);
-        bt.dfs();
+        bt.dfsStack();
         System.out.println(bt.maxHeight());
     }
 
@@ -113,7 +113,7 @@ public class BTLinkedList {
         }
     }
 
-    void dfs() {
+    void dfsStack() {
         System.out.println("dfs");
         Stack<BinaryNode> stack = new Stack<>();
         stack.push(this.root);
