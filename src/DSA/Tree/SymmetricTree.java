@@ -38,6 +38,8 @@ public class SymmetricTree {
 
         SymmetricTree checker = new SymmetricTree();
         System.out.println("Are the trees symmetric? " + checker.symmetric(root)); // Output: true
+
+
     }
 }
 
