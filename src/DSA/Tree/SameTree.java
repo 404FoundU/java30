@@ -14,7 +14,7 @@ public class SameTree {
             return false;
         }
 
-        if (!p.data.equals(q.data)) {
+        if (!p.val.equals(q.val)) {
             return false;
         }
 
@@ -27,18 +27,18 @@ public class SameTree {
 
     public static void main(String[] args) {
         BinaryNode root1 = new BinaryNode();
-        root1.data = "1";
+        root1.val = "1";
         root1.left = new BinaryNode();
-        root1.left.data = "2";
+        root1.left.val = "2";
         root1.right = new BinaryNode();
-        root1.right.data = "3";
+        root1.right.val = "3";
 
         BinaryNode root2 = new BinaryNode();
-        root2.data = "1";
+        root2.val = "1";
         root2.left = new BinaryNode();
-        root2.left.data = "2";
+        root2.left.val = "2";
         root2.right = new BinaryNode();
-        root2.right.data = "3";
+        root2.right.val = "3";
 
         SameTree checker = new SameTree();
         System.out.println("Are the trees the same? " + checker.isSameTree(root1, root2)); // Output: true

@@ -25,15 +25,15 @@ public class BTLinkedList {
         BinaryNode n7 = new BinaryNode();
         BinaryNode n8 = new BinaryNode();
         BinaryNode n9 = new BinaryNode();
-        n1.data = "N1";
-        n2.data = "N2";
-        n3.data = "N3";
-        n4.data = "N4";
-        n5.data = "N5";
-        n6.data = "N6";
-        n7.data = "N7";
-        n8.data = "N8";
-        n9.data = "N9";
+        n1.val = "N1";
+        n2.val = "N2";
+        n3.val = "N3";
+        n4.val = "N4";
+        n5.val = "N5";
+        n6.val = "N6";
+        n7.val = "N7";
+        n8.val = "N8";
+        n9.val = "N9";
         n1.left = n2;
         n1.right = n3;
         n2.left = n4;
@@ -54,7 +54,7 @@ public class BTLinkedList {
         if (node == null) {
             return;
         }
-        System.out.println(node.data + " ");
+        System.out.println(node.val + " ");
         preOrderTraversal(node.left);
         preOrderTraversal(node.right);
     }
@@ -64,7 +64,7 @@ public class BTLinkedList {
             return;
         }
         inOrderTraversal(node.left);
-        System.out.println(node.data + " ");
+        System.out.println(node.val + " ");
         inOrderTraversal(node.right);
     }
 
@@ -74,7 +74,7 @@ public class BTLinkedList {
         }
         postOrderTraversal(node.left);
         postOrderTraversal(node.right);
-        System.out.println(node.data + " ");
+        System.out.println(node.val + " ");
 
     }
 
@@ -90,7 +90,7 @@ public class BTLinkedList {
             }
             // Current must be null at this point, so we pop the top node from the stack
             current = stack.pop();
-            System.out.println(current.data + " ");
+            System.out.println(current.val + " ");
 
             // traverse right subtree
             current = current.right;
@@ -103,7 +103,7 @@ public class BTLinkedList {
         queue.add(root);
         while (!queue.isEmpty()) {
             BinaryNode firstNode = queue.remove();
-            System.out.println(firstNode.data + " ");
+            System.out.println(firstNode.val + " ");
             if (firstNode.left != null) {
                 queue.add(firstNode.left);
             }
@@ -119,7 +119,7 @@ public class BTLinkedList {
         stack.push(this.root);
         while (!stack.isEmpty()) {
             BinaryNode currentNode = stack.pop();
-            System.out.println(" " + currentNode.data);
+            System.out.println(" " + currentNode.val);
             if (currentNode.right != null) {
                 stack.push(currentNode.right);
             }
@@ -169,18 +169,18 @@ public class BTLinkedList {
 
     void insert(String data) {
         BinaryNode node = new BinaryNode();
-        node.data = data;
+        node.val = data;
         Queue<BinaryNode> q = new LinkedList<>();
         q.add(root);
         while (!q.isEmpty()) {
             BinaryNode firstNode = q.remove();
             if (firstNode.left != null) {
                 firstNode.left = node;
-                System.out.println("inserted left child at " + firstNode.data);
+                System.out.println("inserted left child at " + firstNode.val);
                 break;
             } else if (firstNode.right != null) {
                 firstNode.right = node;
-                System.out.println("inserted right child at " + firstNode.data);
+                System.out.println("inserted right child at " + firstNode.val);
                 break;
             }
             if (firstNode.left != null) {

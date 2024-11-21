@@ -19,7 +19,7 @@ public class SymmetricTree {
             return false;
         }
 
-        if (!root1.data.equals(root2.data)) {
+        if (!root1.val.equals(root2.val)) {
             return false;
         }
         boolean sameLeft = same(root1.left, root2.right);
@@ -29,11 +29,11 @@ public class SymmetricTree {
 
     public static void main(String[] args) {
         BinaryNode root = new BinaryNode();
-        root.data = "1";
+        root.val = "1";
         root.left = new BinaryNode();
-        root.left.data = "2";
+        root.left.val = "2";
         root.right = new BinaryNode();
-        root.right.data = "3";
+        root.right.val = "3";
 
 
         SymmetricTree checker = new SymmetricTree();

@@ -91,31 +91,31 @@ public class Invert {
             return;
         }
         printTree(node.left);
-        System.out.print(node.data + " ");
+        System.out.print(node.val + " ");
         printTree(node.right);
     }
 
     public static void main(String[] args) {
         // Creating a sample binary tree
         BinaryNode root = new BinaryNode();
-        root.data = "1";
+        root.val = "1";
         root.left = new BinaryNode();
-        root.left.data = "2";
+        root.left.val = "2";
 
         root.right = new BinaryNode();
-        root.right.data = "3";
+        root.right.val = "3";
 
         root.left.left = new BinaryNode();
-        root.left.left.data = "4";
+        root.left.left.val = "4";
 
         root.left.right = new BinaryNode();
-        root.left.right.data = "5";
+        root.left.right.val = "5";
 
         root.right.left = new BinaryNode();
-        root.right.left.data = "6";
+        root.right.left.val = "6";
 
         root.right.right = new BinaryNode();
-        root.right.right.data = "7";
+        root.right.right.val = "7";
 
         // Print the original tree
         Invert treeInverter = new Invert();

@@ -33,15 +33,15 @@ public class Diameter {
     public static void main(String[] args) {
         // Example to test the code
         BinaryNode root = new BinaryNode();
-        root.data = "1";
+        root.val = "1";
         root.left = new BinaryNode();
-        root.left.data = "2";
+        root.left.val = "2";
         root.right = new BinaryNode();
-        root.right.data = "3";
+        root.right.val = "3";
         root.left.left = new BinaryNode();
-        root.left.left.data = "4";
+        root.left.left.val = "4";
         root.left.right = new BinaryNode();
-        root.left.right.data = "5";
+        root.left.right.val = "5";
 
         Diameter treeDiameter = new Diameter();
         System.out.println("Diameter of the tree: " + treeDiameter.diameter(root)); // Expected Output: 3

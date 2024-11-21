@@ -2,7 +2,7 @@ package DSA.Tree;
 
 public class BinaryNode {
 
-    public String data;
+    public String val;
     public BinaryNode left;
     public BinaryNode right;
 
