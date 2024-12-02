@@ -9,7 +9,7 @@ public class Utility {
 
     }
 
-    public static void SwapArrayIndexes(int[] numArray, int i, int j) {
+    public static void swapArrayIndexes(int[] numArray, int i, int j) {
         int temp = numArray[i];
         numArray[i] = numArray[j];
         numArray[j] = temp;

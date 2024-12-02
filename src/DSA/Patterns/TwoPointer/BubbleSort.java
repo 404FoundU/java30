@@ -3,7 +3,7 @@ package DSA.Patterns.TwoPointer;
 
 import java.util.Arrays;
 
-import static DSA.Utility.SwapArrayIndexes;
+import static DSA.Utility.swapArrayIndexes;
 
 //https://www.youtube.com/watch?v=g8qeaEd2jTc
 public class BubbleSort { // O(n^2) due to 2 loops
@@ -21,7 +21,7 @@ public class BubbleSort { // O(n^2) due to 2 loops
             for (int i = 1; i < arr.length; i++) {
                 if (arr[i] > arr[i - 1]) {
                     swappedSomething = true;
-                    SwapArrayIndexes(arr, i, i - 1);
+                    swapArrayIndexes(arr, i, i - 1);
                 }
             }
         }
