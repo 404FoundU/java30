@@ -54,6 +54,7 @@ public class GoodNodesIterative {
             this.node = node;
             this.maxVal = maxVal;
         }
+
     }
 
     public static void main(String[] args) {
@@ -84,6 +85,8 @@ public class GoodNodesIterative {
         GoodNodesIterative checker = new GoodNodesIterative();
         System.out.println("Good nodes in Tree 1: " + checker.goodNodes(root));  // Output: 4
         System.out.println("Good nodes in Tree 2: " + checker.goodNodes(root2)); // Output: 3
+
+
     }
 }
 
