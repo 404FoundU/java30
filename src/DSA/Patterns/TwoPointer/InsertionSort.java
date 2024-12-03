@@ -16,6 +16,8 @@ public class InsertionSort { // O(n^2) due to 2 loops
         System.out.println(Arrays.toString(arr));
     }
 
+    // sorted region on left and unsorted on right
+    // take element from unsorted and place in sorted array correct position
     private void testMethod(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j > 0; j--) {
