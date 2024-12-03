@@ -14,37 +14,37 @@ public class QuickSort { // O(n log n) dividing by half
 
         int[] arr = getRandomArray();
         QuickSort test = new QuickSort();
-        test.quickSort(arr);
-        System.out.println(Arrays.toString(arr));
+        int[] sorted = test.quickSort(arr);
+        System.out.println(Arrays.toString(sorted));
     }
 
-    private int[] quickSort(int[] arr) {
-
+    public int[] quickSort(int[] arr) {
         if (arr.length <= 1) {
-            return arr;
+            return arr; // Base case: If the array has 1 or 0 elements, it's already sorted
         }
-        int pivot = arr[arr.length - 1];
 
-        List<Integer> leftArrayList = new ArrayList<>();
-        List<Integer> rightArrayList = new ArrayList<>();
+        int pivot = arr[arr.length - 1]; // Choose the last element as the pivot
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
 
-        for (int i = 0; i < arr.length - 2; i++) {
+        // Partitioning: Separate elements into left and right lists
+        for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i] <= pivot) {
-                leftArrayList.add(arr[i]);
+                left.add(arr[i]);
             } else {
-                rightArrayList.add(arr[i]);
+                right.add(arr[i]);
             }
         }
 
-        int[] leftArray = quickSort(integerListToArray(leftArrayList));
-        int[] rightArray = quickSort(integerListToArray(rightArrayList));
+        // Recursively sort the left and right lists
+        int[] leftSorted = quickSort(integerListToArray(left));
+        int[] rightSorted = quickSort(integerListToArray(right));
 
-        return concatanate(leftArray, pivot, rightArray);
-
-
+        // Combine the sorted left, pivot, and sorted right
+        return concatenate(leftSorted, pivot, rightSorted);
     }
 
-    private int[] concatanate(int[] leftArray, int pivot, int[] rightArray) {
+    private int[] concatenate(int[] leftArray, int pivot, int[] rightArray) {
         int[] result = new int[leftArray.length + 1 + rightArray.length];
         int index = 0;
         for (int e : leftArray) {
