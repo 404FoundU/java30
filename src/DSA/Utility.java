@@ -2,6 +2,7 @@ package DSA;
 
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Utility {
@@ -25,5 +26,12 @@ public class Utility {
         return numbers;
     }
 
-
+    public static int[] integerListToArray(List<Integer> list) {
+        int[] array = new int[list.size()];
+        int index = 0;
+        for (Integer e : list) {
+            array[index++] = e;
+        }
+        return array;
+    }
 }

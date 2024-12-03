@@ -7,11 +7,11 @@ import static DSA.Utility.getRandomArray;
 import static DSA.Utility.swapArrayIndexes;
 
 //https://youtu.be/gcRUIO-8r3U?t=513&si=exE30xD_1s5aMeak
-public class SelectionSort { // O(n^2) due to 2 loops
+public class MinSelectionSort { // O(n^2) due to 2 loops
     public static void main(String[] args) {
 
         int[] arr = getRandomArray();
-        SelectionSort test = new SelectionSort();
+        MinSelectionSort test = new MinSelectionSort();
         test.testMethod(arr);
         System.out.println(Arrays.toString(arr));
     }
