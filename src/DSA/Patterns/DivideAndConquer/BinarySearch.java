@@ -1,4 +1,4 @@
-package DSA.Search;
+package DSA.Patterns.DivideAndConquer;
 
 
 public class BinarySearch {
