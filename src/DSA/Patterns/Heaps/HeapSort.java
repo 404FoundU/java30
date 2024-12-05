@@ -1,4 +1,4 @@
-package DSA.Heap;
+package DSA.Patterns.Heaps;
 
 import java.util.Arrays;
 
