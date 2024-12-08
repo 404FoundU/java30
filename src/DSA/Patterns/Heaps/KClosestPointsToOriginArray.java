@@ -2,7 +2,6 @@ package DSA.Patterns.Heaps;
 
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 //https://leetcode.com/problems/top-k-frequent-elements/description/
@@ -26,18 +25,14 @@ public class KClosestPointsToOriginArray {
     private int[][] KClosestPoints(int[][] nums, int k) {
 
 
-        PriorityQueue<int[]> maxHeap = new PriorityQueue<>(k, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if (distanceSquared(o2) == distanceSquared(o1)) {
-                    return 0;
-                }
-                if (distanceSquared(o2) > distanceSquared(o1)) {
-                    return 1;
-                }
-
-                return -1;
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>(k, (o1, o2) -> {
+            if (distanceSquared(o2) == distanceSquared(o1)) {
+                return 0;
             }
+            if (distanceSquared(o2) > distanceSquared(o1)) {
+                return 1;
+            }
+            return -1;
         }
         );
         for (int[] numPairs : nums) {
