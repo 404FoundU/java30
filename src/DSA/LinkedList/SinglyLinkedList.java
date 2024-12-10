@@ -3,10 +3,11 @@ package DSA.LinkedList;
 
 public class SinglyLinkedList {
     private static class Node {
-        private final int data;
+        private final int val;
         private Node next;
-        public Node(int data) {
-            this.data = data;
+
+        public Node(int val) {
+            this.val = val;
             this.next = null;
         }
     }
@@ -43,7 +44,7 @@ public class SinglyLinkedList {
         this.tail.next = null;
 
         this.length--;
-        System.out.println("pop " + current.data);
+        System.out.println("pop " + current.val);
     }
 
     private void insertFirst(int value) {
@@ -160,10 +161,10 @@ public class SinglyLinkedList {
     private void printList() {
         Node current = this.head;
         while (current.next != null) {
-            System.out.println(current.data);
+            System.out.println(current.val);
             current = current.next;
         }
-        System.out.println(current.data);
+        System.out.println(current.val);
 
     }
 

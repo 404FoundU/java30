@@ -6,7 +6,7 @@ import java.util.Map;
 //https://www.youtube.com/watch?v=NDpwj0VWz1U
 class LRUCache {
     private class Node {
-        int key, value;
+        int key, value; // maps to key in hashmap for adding and removing
         Node prev, next;
 
         Node(int key, int value) {
@@ -33,7 +33,7 @@ class LRUCache {
             return -1;
         }
         // Move the accessed node to the front
-        Node node = map.get(key);
+        Node node = map.get(key);// always get node from map. It will have next and prev
         remove(node);
         insertToFront(node);
         return node.value;
@@ -43,9 +43,11 @@ class LRUCache {
         if (map.containsKey(key)) {
             // Remove the old node
             remove(map.get(key));
+            map.remove(key);
         } else if (map.size() == capacity) {
             // Evict the least recently used item
             remove(tail.prev);
+            map.remove(key);
         }
         // Insert the new node
         Node node = new Node(key, value);
@@ -54,15 +56,19 @@ class LRUCache {
     }
 
     private void remove(Node node) {
-        map.remove(node.key);
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+        Node nextNode = node.next;
+        Node prevNode = node.prev;
+
+        nextNode.prev = prevNode;
+        prevNode.next = nextNode;
     }
 
     private void insertToFront(Node node) {
         node.next = head.next;
         node.prev = head;
-        head.next.prev = node;
+
+        Node nextNode = head.next;
+        nextNode.prev = node;
         head.next = node;
     }
 
