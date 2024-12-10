@@ -5,22 +5,7 @@ package DSA.LinkedList;
 public class MergeTwoSortedLists {
 
     // Definition for singly-linked list.
-    static class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     // Method to merge two sorted linked lists
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
