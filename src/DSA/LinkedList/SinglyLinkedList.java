@@ -132,31 +132,7 @@ public class SinglyLinkedList {
 
         this.length--;
     }
-    private void reverse() {
 
-
-
-        Node current = this.head;
-        Node previous = null;
-//        previous.next = null;
-//        this.tail = this.head;
-//        this.tail.next = null;
-        Node nextN = null;
-
-
-        while (current.next != null) {
-
-             nextN = current.next;
-            current.next = previous;
-            previous = current;
-            current = nextN;
-        }
-
-        current.next = previous;
-        this.tail = this.head;
-        this.head = current;
-
-    }
 
     private void printList() {
         Node current = this.head;
@@ -182,8 +158,7 @@ public class SinglyLinkedList {
 //        ll.pop();
 //        ll.deleteAt( 3);
         ll.printList();
-        System.out.println("reverse");
-        ll.reverse();
+
         ll.printList();
     }
 }
