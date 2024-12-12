@@ -1,5 +1,6 @@
 package DSA.LinkedList;
 
+//https://www.youtube.com/watch?v=y-ckZ2hpC8Y&list=PLKYEe2WisBTF21RGRtZfGGolpHmca_d3N&index=4
 public class LinkedListCycle {
 
     public boolean hasCycle(ListNode head) {

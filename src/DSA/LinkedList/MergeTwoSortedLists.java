@@ -1,6 +1,8 @@
 package DSA.LinkedList;
 
 
+import static DSA.LinkedList.ListNode.printList;
+
 //https://leetcode.com/problems/merge-two-sorted-lists/?envType=problem-list-v2&envId=9rizphpj
 public class MergeTwoSortedLists {
 
@@ -36,15 +38,6 @@ public class MergeTwoSortedLists {
         return dummy.next;
     }
 
-    // Utility function to print a linked list
-    public static void printList(ListNode head) {
-        ListNode current = head;
-        while (current != null) {
-            System.out.print(current.val + " -> ");
-            current = current.next;
-        }
-        System.out.println("null");
-    }
 
     // Main method to test the merging function
     public static void main(String[] args) {
