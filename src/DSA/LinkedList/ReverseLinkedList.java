@@ -17,6 +17,17 @@ public class ReverseLinkedList {
         return newHead;
     }
 
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode nextTemp = current.next; // Store next node
+            current.next = prev;              // Reverse current node's pointer
+            prev = current;                   // Move prev to current node
+            current = nextTemp;               // Move to next node
+        }
+        return prev; // New head of the reversed list
+    }
     // Helper function to print the linked list.
     public void printList(ListNode head) {
         ListNode current = head;
