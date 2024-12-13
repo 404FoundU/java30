@@ -2,6 +2,7 @@ package DSA.Tree;
 
 
 import static DSA.Tree.TreeNode.printTreeBfs;
+import static DSA.Tree.TreeNode.printTreeDfsInOrder;
 import static DSA.Tree.TreeNode.printTreeDfsPreOrder;
 
 public class InvertTree {
@@ -20,11 +21,15 @@ public class InvertTree {
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
-        System.out.println("Original Tree BFS: ");
         printTreeBfs(root);
-        System.out.println("Original Tree DFS Preorder: ");
+        System.out.println("Original Tree BFS: ");
+
         printTreeDfsPreOrder(root);
-        // Reversing the linked list recursively
+        System.out.println("Original Tree DFS Preorder: ");
+
+        printTreeDfsInOrder(root);
+        System.out.println("Original Tree DFS Inorder: ");
+
         solution.invert(root);
 
         System.out.println(" Update Tree): ");
