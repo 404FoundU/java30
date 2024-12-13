@@ -59,13 +59,12 @@ public class TreeNode {
 //Stack 1 is for traversal, and stack 2 is for storing nodes.
         Stack<TreeNode> stack1 = new Stack<>();
         Stack<TreeNode> stack2 = new Stack<>();
-
         stack1.push(root);
         while (!stack1.isEmpty()) {
             TreeNode current = stack1.pop();
             // push popped nodes instead of print
             stack2.push(current);
-//  reverse order of preorder traversal
+            //  reverse order of preorder traversal
             if (current.left != null) {
                 stack1.push(current.left);
             }
@@ -73,7 +72,6 @@ public class TreeNode {
                 stack1.push(current.right);
             }
         }
-
         // Print from the second stack
         while (!stack2.isEmpty()) {
             System.out.print(stack2.pop().val + " -> ");
