@@ -38,6 +38,21 @@ public class TreeNode {
         }
     }
 
+    public static void printTreeDfsPostTest(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            System.out.print(current.val + "->");
+            if (current.left != null) {
+                stack.add(current.left);
+            }
+            if (current.right != null) {
+                stack.add(current.right);
+            }
+        }
+    }
+
     public static void printTreeDfsPreOrder(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
@@ -70,6 +85,38 @@ public class TreeNode {
         }
     }
 
+    // DFS Postorder Traversal using Stack (Left -> Right -> Root)
+    /*
+    Stack 1 is for traversal, and stack 2 is for storing nodes in reverse order of postorder traversal.
+Process nodes from stack 1, pushing left and right children onto it.
+Push processed nodes from stack 1 onto stack 2.
+Finally, pop nodes from stack 2 to print them in postorder.
+     */
+    public static void printTreeDfsPostorder(TreeNode root) {
+        if (root == null) return;
+
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+
+        stack1.push(root);
+        while (!stack1.isEmpty()) {
+            TreeNode current = stack1.pop();
+            stack2.push(current);
+
+            if (current.left != null) {
+                stack1.push(current.left);
+            }
+            if (current.right != null) {
+                stack1.push(current.right);
+            }
+        }
+
+        // Print from the second stack
+        while (!stack2.isEmpty()) {
+            System.out.print(stack2.pop().val + " -> ");
+        }
+        System.out.println("null");
+    }
     public static void main(String[] args) {
         InvertTree solution = new InvertTree();
         TreeNode root = new TreeNode(4);
@@ -79,10 +126,13 @@ public class TreeNode {
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
+
         /*
-                    4
-             2              7
-         1      3       6       9
+        4
+       / \
+      2   7
+     / \ / \
+    1  3 6  9
          */
         printTreeBfs(root);
         System.out.println("Original Tree BFS: ");
@@ -92,6 +142,8 @@ public class TreeNode {
 
         printTreeDfsInOrder(root);
         System.out.println("Original Tree DFS Inorder: ");
+        printTreeDfsPostorder(root);
+        System.out.println("Original Tree DFS postOrder: ");
 
         solution.invert(root);
 
