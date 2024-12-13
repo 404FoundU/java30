@@ -1,29 +1,22 @@
 package DSA.Tree;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class TreeNode {
-    private String data;
-    private List<TreeNode> children;
+    int val;
+    TreeNode left;
+    TreeNode right;
 
-    public TreeNode(String data) {
-        this.data = data;
-        this.children = new ArrayList<>();
+    TreeNode() {
     }
 
-    public void addChild(TreeNode node) {
-        children.add(node);
+    TreeNode(int val) {
+        this.val = val;
     }
 
-    public String printTree(int level) {
-        StringBuilder value;
-        value = new StringBuilder(" ".repeat(level) + data + "\n");
-        for (TreeNode node : children) {
-            value.append(node.printTree(level + 1));
-
-        }
-        return value.toString();
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 }
