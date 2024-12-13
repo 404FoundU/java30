@@ -97,7 +97,6 @@ public class TreeNode {
 
 
     public static void main(String[] args) {
-        InvertTree solution = new InvertTree();
         TreeNode root = new TreeNode(4);
         root.left = new TreeNode(2);
         root.right = new TreeNode(7);
@@ -124,7 +123,6 @@ public class TreeNode {
         printTreeDfsPostorder(root);
         System.out.println("Original Tree DFS postOrder: ");
 
-        solution.invert(root);
 
         System.out.println(" Update Tree): ");
         printTreeBfs(root);
