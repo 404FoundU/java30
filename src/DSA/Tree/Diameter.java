@@ -9,7 +9,6 @@ public class Diameter {
 
     public int diameter(BinaryNode root) {
         // Reset maxDiameter for each new tree calculation
-        maxDiameter = 0;
         maxHeightHelper(root);
         return maxDiameter;
     }
