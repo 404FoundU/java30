@@ -23,7 +23,7 @@ public class TreeNode {
         this.right = right;
     }
 
-    public static void printTreeBfs(TreeNode root) {
+    public static void printTreeBfs(TreeNode root) {//NLR
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         while (!q.isEmpty()) {
@@ -38,7 +38,7 @@ public class TreeNode {
         }
     }
 
-    public static void printTreeDfsPreOrder(TreeNode root) {
+    public static void printTreeDfsPreOrder(TreeNode root) {//NLLR
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
@@ -54,7 +54,7 @@ public class TreeNode {
         }
     }
 
-    public static void printTreeDfsPostorder(TreeNode root) { // LeftRightRoot
+    public static void printTreeDfsPostorder(TreeNode root) { // LRNLRN
         if (root == null) return;
 //Stack 1 is for traversal, and stack 2 is for storing nodes.
         Stack<TreeNode> stack1 = new Stack<>();
@@ -79,7 +79,8 @@ public class TreeNode {
         System.out.println("null");
     }
 
-    public static void printTreeDfsInOrder(TreeNode root) {// print left most subtree
+    // print left most subtree
+    public static void printTreeDfsInOrder(TreeNode root) {//LNRLNR
         Stack<TreeNode> stack = new Stack<>();
         TreeNode current = root;
         while (current != null || !stack.isEmpty()) {
