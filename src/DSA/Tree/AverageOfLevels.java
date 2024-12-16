@@ -5,7 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+//https://www.youtube.com/watch?v=92zdLCeiumk&list=PLKYEe2WisBTH48RzVCL_LQrGW-ahPY44S&index=11
 
+/*
+Mario has to go through 2 levels in bfs
+Each level will have a loop pipeline.
+ */
 public class AverageOfLevels {
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> result = new ArrayList<>();
@@ -40,7 +45,6 @@ public class AverageOfLevels {
     }
 
 
-    // Main method to test the solution
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
