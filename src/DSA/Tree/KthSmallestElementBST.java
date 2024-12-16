@@ -7,8 +7,8 @@ import java.util.Stack;
 //https://www.youtube.com/watch?v=92zdLCeiumk&list=PLKYEe2WisBTH48RzVCL_LQrGW-ahPY44S&index=11
 
 /*
-Mario has to go through 2 levels in bfs
-Each level will have a loop pipeline.
+family tree of 8 people. Dad at the top
+Dad wants everything in order
  */
 public class KthSmallestElementBST {
     public int kSmallestElement(TreeNode root, int k) {
