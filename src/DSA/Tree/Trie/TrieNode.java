@@ -2,15 +2,13 @@ package DSA.Tree.Trie;
 
 
 import java.util.HashMap;
+import java.util.Map;
+//https://www.youtube.com/watch?v=92zdLCeiumk&list=PLKYEe2WisBTH48RzVCL_LQrGW-ahPY44S&index=11
 
 class TrieNode {
-    HashMap<Character, TrieNode> children; // HashMap to hold children nodes dynamically
-    boolean isEndOfWord; // Flag to mark the end of a word
+    Map<Character, TrieNode> children = new HashMap<>(); // HashMap to hold children nodes dynamically
+    boolean isEndOfWord;
 
-    public TrieNode() {
-        children = new HashMap<>();
-        isEndOfWord = false;
-    }
 }
 
 
