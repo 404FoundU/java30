@@ -1,17 +1,18 @@
-package DSA.Tree;
+package DSA.Tree.BST;
 
-import java.util.ArrayList;
-import java.util.List;
+import DSA.Tree.TreeNode;
+
 import java.util.Stack;
 
 //https://www.youtube.com/watch?v=92zdLCeiumk&list=PLKYEe2WisBTH48RzVCL_LQrGW-ahPY44S&index=11
 
 /*
 family tree of 8 people. Dad at the top
-Dad wants everything in order
+Dad wants everything in order. Inorder will be sorted.
+Dad is standing previous to mom. Mom is standing previous to son
  */
-public class KthSmallestElementBST {
-    public int kSmallestElement(TreeNode root, int k) {
+public class MinAbsoluteDifferenceBST {
+    public int minAbsDiff(TreeNode root) {
         if (root == null) {
             return -1;
         }
@@ -19,18 +20,23 @@ public class KthSmallestElementBST {
         Stack<TreeNode> stack = new Stack<>();
         stack.add(root);
         TreeNode current = root;
-        List<Integer> result = new ArrayList<>();
-
+        int minDifference = Integer.MAX_VALUE;
+        TreeNode previous = null;
         while (current != null || !stack.isEmpty()) {
             while (current != null) {
                 stack.push(current);
+
                 current = current.left;
             }
             current = stack.pop();
-            result.add(current.val);
+            if (previous != null) {
+                minDifference = Math.max(minDifference, Math.abs(current.val - previous.val));
+            }
+
+            previous = current;
             current = current.right;
         }
-        return result.get(k - 1);
+        return minDifference;
     }
 
 
@@ -43,8 +49,8 @@ public class KthSmallestElementBST {
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
 
-        KthSmallestElementBST solution = new KthSmallestElementBST();
-        int smallest = solution.kSmallestElement(root, 3);
-        System.out.println("smallest: " + smallest);
+        MinAbsoluteDifferenceBST solution = new MinAbsoluteDifferenceBST();
+        int minAbsDiff = solution.minAbsDiff(root);
+        System.out.println("minAbsDiff: " + minAbsDiff);
     }
 }
