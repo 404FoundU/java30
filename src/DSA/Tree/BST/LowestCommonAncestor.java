@@ -3,6 +3,11 @@ package DSA.Tree.BST;
 
 import DSA.Tree.TreeNode;
 
+/*
+check which direction to go.
+If both values are less than current node go left.
+If both values > current node go right
+ */
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         // Traverse the tree
