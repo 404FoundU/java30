@@ -1,5 +1,40 @@
 package DSA.Tree;
 
+/*
+
+
+
+4. How would you design an algorithm to serialize and deserialize a binary tree?
+
+5. How would you find the maximum path sum in a binary tree, where the path can start and end at any node?
+
+
+7. Given a node in a BST, how would you find its in-order successor without using additional space?
+
+
+9. How would you construct a binary tree from its preorder and inorder traversal sequences?
+
+10. How can you flatten a binary tree to a linked list in-place following the pre-order traversal order?
+
+
+12. How can you determine if there is a root-to-leaf path in a binary tree that adds up to a given target sum?
+
+13. How would you perform a zigzag (spiral) level order traversal of a binary tree?
+
+
+15. How can you convert a sorted array into a height-balanced binary search tree?
+
+16. How would you return the rightmost elements that are visible from the right side of a binary tree?
+
+
+18. How would you delete a node with a given key in a binary search tree?
+
+
+20. Given a binary tree and a target node, how would you find all nodes at a distance K from the target node?
+
+
+
+ */
 
 import java.util.LinkedList;
 import java.util.Queue;
