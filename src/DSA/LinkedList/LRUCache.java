@@ -5,25 +5,17 @@ import java.util.Map;
 
 //https://www.youtube.com/watch?v=NDpwj0VWz1U
 class LRUCache {
-    private class Node {
-        int key, value; // maps to key in hashmap for adding and removing
-        Node prev, next;
 
-        Node(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
 
     private final int capacity;
-    private final Map<Integer, Node> map;
-    private final Node head, tail;
+    private final Map<Integer, DoubleNode> map;
+    private final DoubleNode head, tail;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         this.map = new HashMap<>();
-        this.head = new Node(0, 0); // Dummy head
-        this.tail = new Node(0, 0); // Dummy tail
+        this.head = new DoubleNode(0, 0); // Dummy head
+        this.tail = new DoubleNode(0, 0); // Dummy tail
         head.next = tail;
         tail.prev = head;
     }
@@ -33,7 +25,7 @@ class LRUCache {
             return -1;
         }
         // Move the accessed node to the front
-        Node node = map.get(key);// always get node from map. It will have next and prev
+        DoubleNode node = map.get(key);// always get node from map. It will have next and prev
         remove(node);
         insertToFront(node);
         return node.value;
@@ -50,24 +42,24 @@ class LRUCache {
             map.remove(key);
         }
         // Insert the new node
-        Node node = new Node(key, value);
+        DoubleNode node = new DoubleNode(key, value);
         insertToFront(node);
         map.put(key, node);
     }
 
-    private void remove(Node node) {
-        Node nextNode = node.next;
-        Node prevNode = node.prev;
+    private void remove(DoubleNode node) {
+        DoubleNode nextNode = node.next;
+        DoubleNode prevNode = node.prev;
 
         nextNode.prev = prevNode;
         prevNode.next = nextNode;
     }
 
-    private void insertToFront(Node node) {
+    private void insertToFront(DoubleNode node) {
         node.next = head.next;
         node.prev = head;
 
-        Node nextNode = head.next;
+        DoubleNode nextNode = head.next;
         nextNode.prev = node;
         head.next = node;
     }
