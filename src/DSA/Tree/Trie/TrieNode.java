@@ -9,6 +9,7 @@ class TrieNode {
     Map<Character, TrieNode> children = new HashMap<>(); // HashMap to hold children nodes dynamically
     boolean isEndOfWord;
 
+
 }
 
 

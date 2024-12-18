@@ -1,6 +1,13 @@
 package DSA.Tree.Trie;
 
 //https://www.youtube.com/watch?v=SDgp7TJJtk4&t=187s
+
+import java.util.Map;
+
+/*
+Prefix tree optimized to store strings
+Trie node stores map of char and TrieNode like linked list
+ */
 public class Trie {
     private final TrieNode root;
 
@@ -11,15 +18,18 @@ public class Trie {
     // Inserts a word into the trie
     public void insert(String word) {
         TrieNode current = root;
+        Map<Character, TrieNode> children = root.children;
         for (char ch : word.toCharArray()) {
             // Check if the character already exists in the current nodes's children
-            if (!current.children.containsKey(ch)) {
-                // If not, add a new TrieNode for this character
-                current.children.put(ch, new TrieNode());
+            if (children.containsKey(ch)) {
+                current = children.get(ch);
+            } else {
+                current = new TrieNode();
+                children.put(ch, current);
             }
 
             // Move to the child current corresponding to the current character
-            current = current.children.get(ch);
+            children = current.children;
         }
 
         current.isEndOfWord = true; // Mark the end of the word
@@ -39,6 +49,7 @@ public class Trie {
     // Helper method to search for a prefix or word
     private TrieNode searchPrefix(String word) {
         TrieNode current = root;
+        //current = current.next
         for (char ch : word.toCharArray()) {
             if (!current.children.containsKey(ch)) {
                 return null; // Prefix or word not found
@@ -68,5 +79,11 @@ public class Trie {
 
         // Search again
         System.out.println("Search 'app': " + trie.search("app"));       // true
+        // Insert more words
+        trie.insert("applebee");
+        System.out.println("Inserted 'applebee'");
+
+        // Search again
+        System.out.println("Search 'applebee': " + trie.search("applebee"));       // true
     }
 }
