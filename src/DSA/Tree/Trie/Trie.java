@@ -1,7 +1,7 @@
 package DSA.Tree.Trie;
 
 public class Trie {
-    private TrieNode root;
+    private final TrieNode root;
 
     public Trie() {
         root = new TrieNode(); // Initialize root node
@@ -9,19 +9,19 @@ public class Trie {
 
     // Inserts a word into the trie
     public void insert(String word) {
-        TrieNode node = root;
+        TrieNode current = root;
         for (char ch : word.toCharArray()) {
-            // Check if the character already exists in the current node's children
-            if (!node.children.containsKey(ch)) {
+            // Check if the character already exists in the current nodes's children
+            if (!current.children.containsKey(ch)) {
                 // If not, add a new TrieNode for this character
-                node.children.put(ch, new TrieNode());
+                current.children.put(ch, new TrieNode());
             }
 
-            // Move to the child node corresponding to the current character
-            node = node.children.get(ch);
+            // Move to the child current corresponding to the current character
+            current = current.children.get(ch);
         }
 
-        node.isEndOfWord = true; // Mark the end of the word
+        current.isEndOfWord = true; // Mark the end of the word
     }
 
     // Returns true if the word is in the trie
