@@ -1,5 +1,6 @@
 package DSA.Tree.Trie;
 
+//https://www.youtube.com/watch?v=SDgp7TJJtk4&t=187s
 public class Trie {
     private final TrieNode root;
 
@@ -26,8 +27,8 @@ public class Trie {
 
     // Returns true if the word is in the trie
     public boolean search(String word) {
-        TrieNode node = searchPrefix(word);
-        return node != null && node.isEndOfWord;
+        TrieNode lastPresentNode = searchPrefix(word);
+        return lastPresentNode != null && lastPresentNode.isEndOfWord;
     }
 
     // Returns true if any word in the trie starts with the given prefix
@@ -37,14 +38,14 @@ public class Trie {
 
     // Helper method to search for a prefix or word
     private TrieNode searchPrefix(String word) {
-        TrieNode node = root;
+        TrieNode current = root;
         for (char ch : word.toCharArray()) {
-            if (!node.children.containsKey(ch)) {
+            if (!current.children.containsKey(ch)) {
                 return null; // Prefix or word not found
             }
-            node = node.children.get(ch);
+            current = current.children.get(ch);
         }
-        return node; // Return the node at the end of the prefix
+        return current; // Return the node at the end of the prefix
     }
 
     public static void main(String[] args) {
