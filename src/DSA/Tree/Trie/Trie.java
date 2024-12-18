@@ -2,8 +2,6 @@ package DSA.Tree.Trie;
 
 //https://www.youtube.com/watch?v=SDgp7TJJtk4&t=187s
 
-import java.util.Map;
-
 /*
 Prefix tree optimized to store strings
 Trie node stores map of char and TrieNode like linked list
@@ -18,22 +16,20 @@ public class Trie {
     // Inserts a word into the trie
     public void insert(String word) {
         TrieNode current = root;
-        Map<Character, TrieNode> children = root.children;
         for (char ch : word.toCharArray()) {
             // Check if the character already exists in the current nodes's children
-            if (children.containsKey(ch)) {
-                current = children.get(ch);
-            } else {
-                current = new TrieNode();
-                children.put(ch, current);
+            if (!current.children.containsKey(ch)) {
+                // If not, add a new TrieNode for this character
+                current.children.put(ch, new TrieNode());
             }
 
             // Move to the child current corresponding to the current character
-            children = current.children;
+            current = current.children.get(ch);
         }
 
         current.isEndOfWord = true; // Mark the end of the word
     }
+
 
     // Returns true if the word is in the trie
     public boolean search(String word) {
