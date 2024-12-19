@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //https://www.youtube.com/watch?v=gCswsDauXPc&list=PLKYEe2WisBTHCmJ6IfEMjg8o--Bvfc5gt&index=2
-public class NumberOfIslands {
+public class NumberOfIslands { // O( mxn)
 
 
     // Define the 4 possible directions (up, down, left, right)
