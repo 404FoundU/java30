@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 //https://leetcode.com/problems/network-delay-time/
+//https://www.youtube.com/watch?v=Bp7STMWMMQw&list=PLKYEe2WisBTHCmJ6IfEMjg8o--Bvfc5gt&index=10
 /*
 Djikstra has a graph node and a distance array.
  */
@@ -26,9 +27,9 @@ class NetworkDelayTime {
             int t = distance[2];
             graph.get(src).add(new GraphNode(dist, t));
         }
-        int[] dist = new int[noOfVertices + 1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[source] = 0;
+        int[] distArray = new int[noOfVertices + 1];
+        Arrays.fill(distArray, Integer.MAX_VALUE);
+        distArray[source] = 0;
 
         PriorityQueue<GraphNode> pq = new PriorityQueue<>();
         pq.add(new GraphNode(source, 0));
@@ -38,7 +39,7 @@ class NetworkDelayTime {
             int src = current.vertex;
             int d = current.distance;
 
-            int existingDistance = dist[src];
+            int existingDistance = distArray[src];
             if (existingDistance < d) {
                 continue;
             }
@@ -47,19 +48,24 @@ class NetworkDelayTime {
                 int dest = neighbour.vertex;
                 int travelDistance = neighbour.distance;
 
-                int candidateDistance = dist[src] + travelDistance;
-                if (candidateDistance < dist[dest]) {
-                    dist[dest] = candidateDistance;
-                    pq.add(new GraphNode(dest, dist[dest]));
+                int candidateDistance = distArray[src] + travelDistance;
+                int previousDistance = distArray[dest];
+                if (candidateDistance < previousDistance) {
+                    distArray[dest] = candidateDistance;
+                    pq.add(new GraphNode(dest, distArray[dest]));
                 }
             }
         }
+
+        // get the maximum in distArray
         int maxDistance = 0;
-        for (int i = 1; i < dist.length; i++) {
-            if (dist[i] == Integer.MAX_VALUE) {
+        for (int i = 1; i < distArray.length; i++) {
+
+            // if there are nodes that cannot be reached
+            if (distArray[i] == Integer.MAX_VALUE) {
                 return -1;
             }
-            maxDistance = Math.max(maxDistance, dist[i]);
+            maxDistance = Math.max(maxDistance, distArray[i]);
         }
         return maxDistance;
     }
