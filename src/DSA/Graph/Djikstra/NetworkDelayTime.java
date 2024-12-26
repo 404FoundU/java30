@@ -33,6 +33,7 @@ class NetworkDelayTime {
         visited[source] = 0;
 
         PriorityQueue<GraphNode> pq = new PriorityQueue<>();
+        // dist of source to node
         pq.add(new GraphNode(source, 0));
 
         while (!pq.isEmpty()) {
