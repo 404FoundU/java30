@@ -8,19 +8,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+//https://leetcode.com/problems/network-delay-time/
+/*
+Djikstra has a graph node and a distance array.
+ */
 class NetworkDelayTime {
 
 
-    public int networkDelayTime(int[][] times, int noOfVertices, int source) {
+    public int networkDelayTime(int[][] distances, int noOfVertices, int source) {
         Map<Integer, List<GraphNode>> graph = new HashMap<>();
         for (int i = 1; i <= noOfVertices; i++) {
             graph.put(i, new ArrayList<>());
         }
-        for (int[] time : times) {
-            int src = time[0];
-            int dest = time[1];
-            int t = time[2];
-            graph.get(src).add(new GraphNode(dest, t));
+        for (int[] distance : distances) {
+            int src = distance[0];
+            int dist = distance[1];
+            int t = distance[2];
+            graph.get(src).add(new GraphNode(dist, t));
         }
         int[] dist = new int[noOfVertices + 1];
         Arrays.fill(dist, Integer.MAX_VALUE);
@@ -32,32 +36,32 @@ class NetworkDelayTime {
         while (!pq.isEmpty()) {
             GraphNode current = pq.poll();
             int src = current.vertex;
-            int t = current.distance;
+            int d = current.distance;
 
-            int existingTime = dist[src];
-            if (existingTime < t) {
+            int existingDistance = dist[src];
+            if (existingDistance < d) {
                 continue;
             }
 
             for (GraphNode neighbour : graph.get(src)) {
                 int dest = neighbour.vertex;
-                int travelTime = neighbour.distance;
+                int travelDistance = neighbour.distance;
 
-                int candidateDistance = dist[src] + travelTime;
+                int candidateDistance = dist[src] + travelDistance;
                 if (candidateDistance < dist[dest]) {
                     dist[dest] = candidateDistance;
                     pq.add(new GraphNode(dest, dist[dest]));
                 }
             }
         }
-        int maxTime = 0;
+        int maxDistance = 0;
         for (int i = 1; i < dist.length; i++) {
             if (dist[i] == Integer.MAX_VALUE) {
                 return -1;
             }
-            maxTime = Math.max(maxTime, dist[i]);
+            maxDistance = Math.max(maxDistance, dist[i]);
         }
-        return maxTime;
+        return maxDistance;
     }
 
     public static void main(String[] args) {
