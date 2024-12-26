@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
 
 //https://leetcode.com/problems/network-delay-time/
 //https://www.youtube.com/watch?v=Bp7STMWMMQw&list=PLKYEe2WisBTHCmJ6IfEMjg8o--Bvfc5gt&index=10
+// O(V+E) log V
 /*
 Djikstra has a graph node and a distance array.
  */
@@ -55,6 +56,7 @@ class NetworkDelayTime {
                 int previousDistance = visited[dest];
                 if (candidateDistance < previousDistance) {
                     visited[dest] = candidateDistance;
+                    // distance from source to node
                     pq.add(new GraphNode(dest, visited[dest]));
                 }
             }
