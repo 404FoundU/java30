@@ -27,9 +27,10 @@ class NetworkDelayTime {
             int t = distance[2];
             graph.get(src).add(new GraphNode(dist, t));
         }
-        int[] distArray = new int[noOfVertices + 1];
-        Arrays.fill(distArray, Integer.MAX_VALUE);
-        distArray[source] = 0;
+        // array with nodes as index and distance as values
+        int[] visited = new int[noOfVertices + 1];
+        Arrays.fill(visited, Integer.MAX_VALUE);
+        visited[source] = 0;
 
         PriorityQueue<GraphNode> pq = new PriorityQueue<>();
         pq.add(new GraphNode(source, 0));
@@ -39,7 +40,8 @@ class NetworkDelayTime {
             int src = current.vertex;
             int d = current.distance;
 
-            int existingDistance = distArray[src];
+            // have we already seen this
+            int existingDistance = visited[src];
             if (existingDistance < d) {
                 continue;
             }
@@ -48,24 +50,24 @@ class NetworkDelayTime {
                 int dest = neighbour.vertex;
                 int travelDistance = neighbour.distance;
 
-                int candidateDistance = distArray[src] + travelDistance;
-                int previousDistance = distArray[dest];
+                int candidateDistance = visited[src] + travelDistance;
+                int previousDistance = visited[dest];
                 if (candidateDistance < previousDistance) {
-                    distArray[dest] = candidateDistance;
-                    pq.add(new GraphNode(dest, distArray[dest]));
+                    visited[dest] = candidateDistance;
+                    pq.add(new GraphNode(dest, visited[dest]));
                 }
             }
         }
 
         // get the maximum in distArray
         int maxDistance = 0;
-        for (int i = 1; i < distArray.length; i++) {
+        for (int i = 1; i < visited.length; i++) {
 
             // if there are nodes that cannot be reached
-            if (distArray[i] == Integer.MAX_VALUE) {
+            if (visited[i] == Integer.MAX_VALUE) {
                 return -1;
             }
-            maxDistance = Math.max(maxDistance, distArray[i]);
+            maxDistance = Math.max(maxDistance, visited[i]);
         }
         return maxDistance;
     }
