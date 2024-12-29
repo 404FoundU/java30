@@ -36,10 +36,12 @@ public class Prims {
                 int newDest = neighbour.dest;
                 int weight = neighbour.weight;
 
-                if (!visited[newDest] && weight < cost[newDest]) {
-                    cost[newDest] = weight;
-                    pq.offer(new GraphNode(newDest, cost[newDest]));
-                    parent[newDest] = src;
+                if (weight < cost[newDest]) {
+                    if (!visited[newDest]) {
+                        cost[newDest] = weight;
+                        pq.offer(new GraphNode(newDest, cost[newDest]));
+                        parent[newDest] = src;
+                    }
                 }
             }
         }
