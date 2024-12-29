@@ -10,15 +10,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+//https://www.youtube.com/watch?v=lg-HC6Q7kEE&t=589s
 public class Prims {
 
 
     public static int[] primMST(Map<Integer, List<GraphNode>> graph, int V) {
         boolean[] visited = new boolean[V];  // Tracks visited vertices
         int[] parent = new int[V];  // Store MST
-        int[] key = new int[V];  // Minimum weights to connect vertices
-        Arrays.fill(key, Integer.MAX_VALUE);
-        key[0] = 0;
+        int[] cost = new int[V];  // Minimum weights to connect vertices
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        cost[0] = 0;
         parent[0] = -1;  // Root of MST
 
         PriorityQueue<GraphNode> pq = new PriorityQueue<>();
@@ -26,19 +27,19 @@ public class Prims {
 
         while (!pq.isEmpty()) {
             GraphNode curr = pq.poll();
-            int u = curr.dest;
+            int src = curr.dest;
 
-            if (visited[u]) continue;
-            visited[u] = true;
+            if (visited[src]) continue;
+            visited[src] = true;
 
-            for (GraphNode edge : graph.getOrDefault(u, new ArrayList<>())) {
-                int v = edge.dest;
-                int weight = edge.weight;
+            for (GraphNode neighbour : graph.get(src)) {
+                int newDest = neighbour.dest;
+                int weight = neighbour.weight;
 
-                if (!visited[v] && weight < key[v]) {
-                    key[v] = weight;
-                    pq.offer(new GraphNode(v, key[v]));
-                    parent[v] = u;
+                if (!visited[newDest] && weight < cost[newDest]) {
+                    cost[newDest] = weight;
+                    pq.offer(new GraphNode(newDest, cost[newDest]));
+                    parent[newDest] = src;
                 }
             }
         }
