@@ -25,12 +25,13 @@ class DijkstrasAlgorithm {
             GraphNode curr = pq.poll();
             int source = curr.dest;
 
-            for (GraphNode edge : graph.get(source)) {
-                int newDest = edge.dest;
-                int weight = edge.weight;
+            for (GraphNode neighbour : graph.get(source)) {
+                int newDest = neighbour.dest;
+                int weight = neighbour.weight;
 
-                if (cost[source] + weight < cost[newDest]) {
-                    cost[newDest] = cost[source] + weight;
+                int candidateWeight = cost[source] + weight;
+                if (candidateWeight < cost[newDest]) {
+                    cost[newDest] = candidateWeight;
                     pq.offer(new GraphNode(newDest, cost[newDest]));
                     parent[newDest] = source;
                 }
