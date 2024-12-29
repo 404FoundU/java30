@@ -10,15 +10,15 @@ import java.util.PriorityQueue;
 //https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass/learn/lecture/11241590#overview
 public class Djikstras {
 
-    private Map<String, List<GraphNode>> adjacencyList = new HashMap<>();
+    private Map<String, List<GraphNodeOld>> adjacencyList = new HashMap<>();
 
     void addVertex(String vertex) {
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
     }
 
     void addWeightedEdge(String x, String y, int weight) {
-        List<GraphNode> graphNodes = adjacencyList.get(x);
-        graphNodes.add(new GraphNode(y, weight));
+        List<GraphNodeOld> graphNodeOlds = adjacencyList.get(x);
+        graphNodeOlds.add(new GraphNodeOld(y, weight));
     }
 
     Map<String, Integer> djikstrasPath(String source) {
@@ -29,15 +29,15 @@ public class Djikstras {
         }
 
         distances.put(source, 0);
-        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
-        pq.add(new GraphNode(source, 0));
+        PriorityQueue<GraphNodeOld> pq = new PriorityQueue<>();
+        pq.add(new GraphNodeOld(source, 0));
 
 
         while (!pq.isEmpty()) {
-            GraphNode currentNode = pq.poll();
+            GraphNodeOld currentNode = pq.poll();
             String parentVertex = currentNode.target;
             // Iterate over neighbors of the current vertex
-            for (GraphNode node : adjacencyList.get(parentVertex)) {
+            for (GraphNodeOld node : adjacencyList.get(parentVertex)) {
                 String neighbour = node.target;
                 int distanceOfNeighbour = node.distance;
                 Integer distanceFromParentVertex = distances.get(parentVertex);
@@ -47,7 +47,7 @@ public class Djikstras {
                 Integer oldDistance = distances.get(neighbour);
                 if (candidateDistance < oldDistance) {
                     distances.put(neighbour, candidateDistance);
-                    pq.add(new GraphNode(neighbour, candidateDistance));
+                    pq.add(new GraphNodeOld(neighbour, candidateDistance));
                 }
             }
         }
@@ -67,8 +67,8 @@ public class Djikstras {
         }
         distances.put(source, 0);
 
-        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
-        pq.add(new GraphNode(source, 0));
+        PriorityQueue<GraphNodeOld> pq = new PriorityQueue<>();
+        pq.add(new GraphNodeOld(source, 0));
         String smallestVertex = null;
 
 
@@ -87,7 +87,7 @@ public class Djikstras {
             }
 
             // for each neighbouring node- calculate candidateDistance from starting node
-            for (GraphNode nextNeighbourNode : adjacencyList.get(smallestVertex)) {
+            for (GraphNodeOld nextNeighbourNode : adjacencyList.get(smallestVertex)) {
 
                 String nextNeighbourVertex = nextNeighbourNode.target;
                 int distance = nextNeighbourNode.distance;
@@ -100,7 +100,7 @@ public class Djikstras {
                 if (candidateDistance < nextNeighbourDistance) {
                     distances.put(nextNeighbourVertex, candidateDistance);
                     previous.put(nextNeighbourVertex, smallestVertex);
-                    pq.add(new GraphNode(nextNeighbourVertex, candidateDistance));
+                    pq.add(new GraphNodeOld(nextNeighbourVertex, candidateDistance));
 
                 }
 
@@ -138,17 +138,17 @@ public class Djikstras {
 
 }
 
-class GraphNode implements Comparable<GraphNode> {
+class GraphNodeOld implements Comparable<GraphNodeOld> {
     String target;
     int distance;
 
-    public GraphNode(String target, int distance) {
+    public GraphNodeOld(String target, int distance) {
         this.target = target;
         this.distance = distance;
     }
 
     @Override
-    public int compareTo(GraphNode other) {
+    public int compareTo(GraphNodeOld other) {
         return this.distance - other.distance;
     }
 }

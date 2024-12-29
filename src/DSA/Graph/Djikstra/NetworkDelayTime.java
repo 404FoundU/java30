@@ -1,6 +1,8 @@
 package DSA.Graph.Djikstra;
 
 
+import DSA.Graph.GraphNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,8 +41,8 @@ class NetworkDelayTime {
 
         while (!pq.isEmpty()) {
             GraphNode current = pq.poll();
-            int src = current.vertex;
-            int d = current.distance;
+            int src = current.dest;
+            int d = current.weight;
 
             // have we already seen this
             int existingDistance = visited[src];
@@ -49,8 +51,8 @@ class NetworkDelayTime {
             }
 
             for (GraphNode neighbour : graph.get(src)) {
-                int dest = neighbour.vertex;
-                int travelDistance = neighbour.distance;
+                int dest = neighbour.dest;
+                int travelDistance = neighbour.weight;
 
                 int candidateDistance = visited[src] + travelDistance;
                 int previousDistance = visited[dest];
