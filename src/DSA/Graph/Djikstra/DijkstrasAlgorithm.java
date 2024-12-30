@@ -27,9 +27,9 @@ class DijkstrasAlgorithm {
 
             for (GraphNode neighbour : graph.get(source)) {
                 int newDest = neighbour.dest;
-                int weight = neighbour.weight;
+                int newWeight = neighbour.weight;
 
-                int candidateWeight = cost[source] + weight;
+                int candidateWeight = cost[source] + newWeight;
                 if (candidateWeight < cost[newDest]) {
                     cost[newDest] = candidateWeight;
                     pq.offer(new GraphNode(newDest, cost[newDest]));

@@ -34,11 +34,11 @@ public class Prims {
 
             for (GraphNode neighbour : graph.get(src)) {
                 int newDest = neighbour.dest;
-                int weight = neighbour.weight;
+                int newWeight = neighbour.weight;
 
-                if (weight < cost[newDest]) {
+                if (newWeight < cost[newDest]) {
                     if (!visited[newDest]) {
-                        cost[newDest] = weight;
+                        cost[newDest] = newWeight;
                         pq.offer(new GraphNode(newDest, cost[newDest]));
                         parent[newDest] = src;
                     }
