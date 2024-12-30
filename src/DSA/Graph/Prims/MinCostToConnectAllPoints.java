@@ -1,45 +1,75 @@
 package DSA.Graph.Prims;
 
 
+import DSA.Graph.GraphNode;
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 
 public class MinCostToConnectAllPoints {
     public int minCostConnectPoints(int[][] points) {
-        int n = points.length;
-        boolean[] inMST = new boolean[n];
-        int[] minDist = new int[n];
-        Arrays.fill(minDist, Integer.MAX_VALUE);
-        minDist[0] = 0;
-        int totalCost = 0;
 
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
-        pq.offer(new int[]{0, 0});
+        int length = points.length;
+        int[] cost = new int[length];
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        int[] parent = new int[length];
+        boolean[] visited = new boolean[length];
+        Map<Integer, List<GraphNode>> graph = new HashMap<>();
 
-        int edgesUsed = 0;
-        while (edgesUsed < n) {
-            int[] node = pq.poll();
-            int currNode = node[0];
-            int currDist = node[1];
+        for (int i = 0; i < length; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+        for (int i = 0; i < points.length; i++) {
+            for (int j = 1; j < points.length; j++) {
+                //|xi - xj| + |yi - yj|,
 
-            if (inMST[currNode]) continue;
+                int xi = points[i][0];
+                int xj = points[j][0];
+                int yi = points[i][1];
+                int yj = points[j][1];
+                int weight = Math.abs(xi - xj) + Math.abs(yi - yj);
+                graph.get(i).add(new GraphNode(j, weight)); // X->Y
+                graph.get(j).add(new GraphNode(i, weight));// Y->X
+            }
+        }
 
-            inMST[currNode] = true;
-            totalCost += currDist;
-            edgesUsed++;
+        cost[0] = 0;
+        parent[0] = -1;
 
-            for (int nextNode = 0; nextNode < n; nextNode++) {
-                if (!inMST[nextNode]) {
-                    int nextDist = Math.abs(points[currNode][0] - points[nextNode][0]) +
-                            Math.abs(points[currNode][1] - points[nextNode][1]);
-                    if (nextDist < minDist[nextNode]) {
-                        minDist[nextNode] = nextDist;
-                        pq.offer(new int[]{nextNode, nextDist});
+        PriorityQueue<GraphNode> pq = new PriorityQueue<>();
+        pq.add(new GraphNode(0, 0));
+
+        while (!pq.isEmpty()) {
+            GraphNode current = pq.poll();
+            int src = current.dest;
+            int d = current.weight;
+
+            if (visited[src]) {
+                continue;
+            }
+            visited[src] = true;
+            for (GraphNode neighbour : graph.get(src)) {
+                int newDest = neighbour.dest;
+                int newWeight = neighbour.weight;
+                if (newWeight < cost[newDest]) {
+                    if (!visited[newDest]) {
+                        cost[newDest] = newWeight;
+                        pq.add(new GraphNode(newDest, cost[newDest]));
+                        parent[newDest] = src;
                     }
                 }
+
+
             }
+        }
+        int totalCost = 0;
+        for (int i = 0; i < points.length; i++) { // cost[0] = 0
+            totalCost += cost[i];
         }
         return totalCost;
     }
