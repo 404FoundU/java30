@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-
+//https://www.youtube.com/watch?v=8VPIrqwQ8sQ&list=PLKYEe2WisBTHCmJ6IfEMjg8o--Bvfc5gt&index=9
 public class MinCostToConnectAllPoints {
     public int minCostConnectPoints(int[][] points) {
 
