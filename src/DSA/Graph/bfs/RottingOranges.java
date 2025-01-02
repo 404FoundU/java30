@@ -44,13 +44,13 @@ public class RottingOranges {
                 int col = point[1];
 
                 for (int[] direction : DIRECTIONS) {
-                    int newRow = row + direction[0];
-                    int newCol = col + direction[1];
+                    int r = row + direction[0];
+                    int c = col + direction[1];
 
-                    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-                        if (grid[newRow][newCol] == 1) {
-                            grid[newRow][newCol] = 2;
-                            queue.offer(new int[]{newRow, newCol});
+                    if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                        if (grid[r][c] == 1) {
+                            grid[r][c] = 2;
+                            queue.offer(new int[]{r, c});
                             freshOranges--;
                         }
                     }
