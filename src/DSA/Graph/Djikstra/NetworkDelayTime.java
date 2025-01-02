@@ -31,9 +31,9 @@ class NetworkDelayTime {
             graph.get(src).add(new GraphNode(dist, t));
         }
         // array with nodes as index and distance as values
-        int[] visited = new int[noOfVertices + 1];
-        Arrays.fill(visited, Integer.MAX_VALUE);
-        visited[source] = 0;
+        int[] cost = new int[noOfVertices + 1];
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        cost[source] = 0;
 
         PriorityQueue<GraphNode> pq = new PriorityQueue<>();
         // dist of source to node
@@ -45,7 +45,7 @@ class NetworkDelayTime {
             int d = current.weight;
 
             // have we already seen this
-            int existingDistance = visited[src];
+            int existingDistance = cost[src];
             if (existingDistance < d) {
                 continue;
             }
@@ -54,25 +54,25 @@ class NetworkDelayTime {
                 int dest = neighbour.dest;
                 int travelDistance = neighbour.weight;
 
-                int candidateDistance = visited[src] + travelDistance;
-                int previousDistance = visited[dest];
+                int candidateDistance = cost[src] + travelDistance;
+                int previousDistance = cost[dest];
                 if (candidateDistance < previousDistance) {
-                    visited[dest] = candidateDistance;
+                    cost[dest] = candidateDistance;
                     // distance from source to node
-                    pq.add(new GraphNode(dest, visited[dest]));
+                    pq.add(new GraphNode(dest, cost[dest]));
                 }
             }
         }
 
         // get the maximum in distArray
         int maxDistance = 0;
-        for (int i = 1; i < visited.length; i++) {
+        for (int i = 1; i < cost.length; i++) {
 
             // if there are nodes that cannot be reached
-            if (visited[i] == Integer.MAX_VALUE) {
+            if (cost[i] == Integer.MAX_VALUE) {
                 return -1;
             }
-            maxDistance = Math.max(maxDistance, visited[i]);
+            maxDistance = Math.max(maxDistance, cost[i]);
         }
         return maxDistance;
     }
