@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+//https://leetcode.com/problems/path-with-minimum-effort/description/?envType=problem-list-v2&envId=9id9smj2
 public class PathWithMinimumEffort {
 
     private static final int[][] DIRECTIONS = {
