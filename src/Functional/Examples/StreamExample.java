@@ -2,6 +2,7 @@ package Functional.Examples;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -72,9 +73,19 @@ public class StreamExample {
         maxSalary.ifPresent(s -> System.out.println("salary = " + s));
 
         empList.stream()
-                .max(Comparator.comparing(e -> e.getSalary()))
-                .ifPresent(s -> System.out.println("salary = " + s));
+                .min(Comparator.comparing(e -> e.getSalary()))
+                .ifPresent(s -> System.out.println("salary = " + s.getSalary()));
+
+        empList.stream()
+                .sorted(Comparator.comparing(Employee::getSalary).reversed())
+                .findFirst()
+                .ifPresent(System.out::println);
         //max salary of an employee for each dept
+
+        // employee details with max salary
+        empList.stream()
+                .collect(Collectors.maxBy(Comparator.comparing(e -> e.getSalary())))
+                .ifPresent(System.out::println);
 
         Map<Integer, Optional<Employee>> salaryMap = empList.stream()
                 .collect(Collectors.groupingBy(e -> e.getDeptId(),
@@ -110,6 +121,56 @@ public class StreamExample {
         // employee names to set
         Set<String> employeeNameset = empList.stream()
                 .collect(Collectors.mapping(Employee::getName, Collectors.toSet()));
+
+// Print name of all dept in org
+        empList.stream()
+                .map(e -> e.getDeptId())
+                .distinct()
+                .forEach(System.out::println);
+
+// avg salary per dept
+        empList.stream()
+                .collect(Collectors.groupingBy(e -> e.getDeptId(), Collectors.averagingInt(e -> e.getSalary())));
+
+        // Group employee names by department
+        Map<Integer, List<String>> namesByDept = empList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDeptId, // Grouping key: Department ID
+                        Collectors.mapping(Employee::getName, Collectors.toList()) // Extract names into a List
+                ));
+
+        double totalSalary = empList.stream()
+                .mapToDouble(Employee::getSalary)
+                .sum(); // Calculate the sum of all salaries
+
+
+        List<List<Integer>> nestedList = Arrays.asList(
+                Arrays.asList(1, 2, 3),
+                Arrays.asList(4, 5),
+                Arrays.asList(6, 7, 8, 9)
+        );
+
+        // Flatten the nested list into a single list
+        List<Integer> flatList = nestedList.stream()
+                .flatMap(List::stream) // Flatten each list into a single stream
+                .collect(Collectors.toList());
+
+        List<String> words = Arrays.asList("cat", "dog", "bird");
+
+        // Transform each word into a list of its characters
+        List<List<String>> listOfCharLists = words.stream()
+                .map(word -> Arrays.stream(word.split("")) // Split word into characters
+                        .collect(Collectors.toList())) // Collect characters into a List
+                .collect(Collectors.toList()); // Collect all lists into a List<List<String>>
+
+
+        // Partition employees by their active status
+        Map<Boolean, List<Employee>> partitioned = empList.stream()
+                .collect(Collectors.partitioningBy(e -> "active".equals(e.getStatus())));
+
+        System.out.println("Active Employees: " + partitioned.get(true));
+        System.out.println("Inactive Employees: " + partitioned.get(false));
+
 
 
 
