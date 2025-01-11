@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StreamExample {
@@ -24,7 +25,7 @@ public class StreamExample {
         Map<Integer, List<Employee>> depMap = empList.stream()
                 .collect(Collectors.groupingBy(e -> e.getDeptId(), Collectors.toList()));
 
-     /*   depMap.forEach((k,v)->{
+        depMap.forEach((k, v) -> {
             System.out.println("k = " + k);
             v.forEach(System.out::println);
                 }
@@ -35,16 +36,16 @@ public class StreamExample {
                 .forEach(entry -> {
                     System.out.println("Department ID: " + entry.getKey());
                     entry.getValue().forEach(System.out::println);
-                });*/
+                });
 
         // print employee count in each dept
         Map<Integer, Long> deptCount = empList.stream()
                 .collect(Collectors.groupingBy(e -> e.getDeptId(), Collectors.counting()));
-/*        deptCount.forEach((k,v)->{
+        deptCount.forEach((k, v) -> {
                     System.out.println("k = " + k);
             System.out.println("v = " + v);
                 }
-        )*/
+        )
         ;
 
         // active and inactive employees in the collection
@@ -83,6 +84,36 @@ public class StreamExample {
             System.out.println("k = " + k);
             v.ifPresent(e -> System.out.println("salary = " + e.getSalary()));
         });
+
+        Map<Integer, String> empIdToNameMap = empList.stream()
+                .collect(Collectors.toMap(
+                        Employee::getEmpId,
+                        Employee::getName
+                ));
+        //Map of Department ID to List of Employee Names
+        Map<Integer, List<String>> deptToEmpNames = empList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDeptId,
+                        Collectors.mapping(Employee::getName, Collectors.toList())
+                ));
+        // Reverse map empName to ID
+        Map<String, Integer> nameToIdMap = empList.stream()
+                .collect(Collectors.toMap(
+                        Employee::getName,  // Key: Employee Name
+                        Employee::getDeptId     // Value: Employee ID
+                ));
+        String employeeNames = empList.stream()
+                .map(Employee::getName)
+                .collect(Collectors.joining(", ", "[", "]"));
+        System.out.println("Employee Names: " + employeeNames);
+
+        // employee names to set
+        Set<String> employeeNameset = empList.stream()
+                .collect(Collectors.mapping(Employee::getName, Collectors.toSet()));
+
+
+
+
 
 
     }
