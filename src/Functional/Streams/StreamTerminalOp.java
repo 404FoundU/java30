@@ -35,6 +35,7 @@ public class StreamTerminalOp {
 
         System.out.println(studentCount);
 
+        // collect names
         List<String> sList = allStudents.stream()
                 .collect(Collectors.mapping(s -> s.getName(), Collectors.toList()));
 

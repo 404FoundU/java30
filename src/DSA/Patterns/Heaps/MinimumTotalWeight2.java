@@ -50,35 +50,26 @@ Total weight after 2 days =
 3
 2+1=3.
  */
-public class MinimumTotalWeight {
+public class MinimumTotalWeight2 {
 
     // Function to calculate the minimum total weight after d days
     public static int findMinWeight(int[] weights, int d) {
-        // Use a max-heap to prioritize chocolates with the highest weight
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b.compareTo(a));
-
-        // Add all weights to the max-heap
+        if (weights.length == 0) {
+            return 0;
+        }
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b.compareTo(a));
         for (int weight : weights) {
-            maxHeap.offer(weight);
+            pq.add(weight);
         }
-
-        // Consume chocolates for d days
         for (int i = 0; i < d; i++) {
-            // Get the largest chocolate weight
-            int maxWeight = maxHeap.poll();
-
-            int remainingWeight = (int) Math.ceil(maxWeight / 2.0);
-
-            // Add the remaining weight back to the heap
-                maxHeap.offer(remainingWeight);
+            int maxWeight = pq.poll();
+            int newWeight = (int) Math.ceil(maxWeight / 2.0);
+            pq.add(newWeight);
         }
-
-        // Calculate the total weight of all chocolates left in the heap
         int totalWeight = 0;
-        while (!maxHeap.isEmpty()) {
-            totalWeight += maxHeap.poll();
+        while (!pq.isEmpty()) {
+            totalWeight += pq.poll();
         }
-
         return totalWeight;
     }
 
