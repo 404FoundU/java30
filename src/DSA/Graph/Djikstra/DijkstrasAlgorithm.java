@@ -25,6 +25,7 @@ class DijkstrasAlgorithm {
             GraphNode curr = pq.poll();
             int source = curr.dest;
 
+            // have we already seen this
             int existingDistance = cost[source];
             if (existingDistance < curr.weight) {
                 continue;
