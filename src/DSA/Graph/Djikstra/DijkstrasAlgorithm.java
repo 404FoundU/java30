@@ -25,6 +25,10 @@ class DijkstrasAlgorithm {
             GraphNode curr = pq.poll();
             int source = curr.dest;
 
+            int existingDistance = cost[source];
+            if (existingDistance < curr.weight) {
+                continue;
+            }
             for (GraphNode neighbour : graph.get(source)) {
                 int newDest = neighbour.dest;
                 int newWeight = neighbour.weight;
