@@ -36,9 +36,13 @@ public class NumberOfWaysToArrive {
             GraphNode current = pq.poll();
             int src = current.dest;
             int dist = current.weight;
-            if (dist > cost[src]) {
+
+            // have we already seen this
+            int existingDistance = cost[src];
+            if (existingDistance < dist) {
                 continue;
             }
+
 
             for (GraphNode neighbour : graph.get(src)) {
                 int newDest = neighbour.dest;
