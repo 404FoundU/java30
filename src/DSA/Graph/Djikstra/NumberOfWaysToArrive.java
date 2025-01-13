@@ -1,4 +1,4 @@
-package DSA.Graph.Prims;
+package DSA.Graph.Djikstra;
 
 import DSA.Graph.GraphNode;
 
