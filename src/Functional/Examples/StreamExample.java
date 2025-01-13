@@ -189,6 +189,24 @@ public class StreamExample {
                     LinkedHashMap::new, // Custom Map Supplier
                     Collectors.toList() // Downstream collector
             ));
+
+    String result = words.stream()
+            .reduce("", (a, b) -> a + b);
+
+    // no identity
+    // Find the maximum value
+    List<Integer> numbers = Arrays.asList(10, 20, 30, 5, 15);
+    Optional<Integer> max = numbers.stream()
+            .reduce((a, b) -> a > b ? a : b); // Accumulator finds the max
+
+
+    // Parallel stream reduction
+    int sum = numbers.parallelStream()
+            .reduce(0,
+                    (partialSum, element) -> partialSum + element, // Accumulator
+                    (sum1, sum2) -> sum1 + sum2); // Combiner
+
+
 }
 
 // Assuming the Employee class looks something like this:
