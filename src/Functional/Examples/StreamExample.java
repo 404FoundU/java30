@@ -4,6 +4,7 @@ package Functional.Examples;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -171,15 +172,23 @@ public class StreamExample {
         System.out.println("Active Employees: " + partitioned.get(true));
         System.out.println("Inactive Employees: " + partitioned.get(false));
 
+        List<List<String>> nested = List.of(List.of("a", "b"), List.of("c"));
+        List<String> flat = nested.stream().flatMap(strings -> strings.stream()).collect(Collectors.toList());
 
 
-
-
-
+        Optional<Object> optional = Optional.ofNullable(null);
+        optional.ifPresent(System.out::println);
 
     }
 
-
+    List<String> words = Arrays.asList("apple", "banana", "cherry");
+    // Group words by their length using a LinkedHashMap
+    Map<Integer, List<String>> groupedWords = words.stream()
+            .collect(Collectors.groupingBy(
+                    String::length, // Key: Word length
+                    LinkedHashMap::new, // Custom Map Supplier
+                    Collectors.toList() // Downstream collector
+            ));
 }
 
 // Assuming the Employee class looks something like this:
