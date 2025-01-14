@@ -78,6 +78,18 @@ public class StreamExample {
                 .ifPresent(s -> System.out.println("salary = " + s.getSalary()));
 
         empList.stream()
+                .min((a, b) -> {
+                    if (a.getSalary() == b.getSalary()) {
+                        return 0;
+                    }
+                    if (a.getSalary() < b.getSalary()) {
+                        return 1;
+                    }
+                    return -1;
+                })
+                .ifPresent(s -> System.out.println("salary = " + s.getSalary()));
+
+        empList.stream()
                 .sorted(Comparator.comparing(Employee::getSalary).reversed())
                 .findFirst()
                 .ifPresent(System.out::println);

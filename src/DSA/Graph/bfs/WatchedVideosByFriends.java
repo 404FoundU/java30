@@ -2,6 +2,7 @@ package DSA.Graph.bfs;
 
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,9 +53,10 @@ public class WatchedVideosByFriends {
             });
         }
 
+        Comparator<Map.Entry<String, Integer>> entryComparator = (a, b) -> a.getValue().compareTo(b.getValue());
         return freqCounter.entrySet()
                 .stream()
-                .sorted((a, b) -> a.getValue().compareTo(b.getValue()))
+                .sorted(entryComparator)
                 .map(f -> f.getKey())
                 .collect(Collectors.toList());
 

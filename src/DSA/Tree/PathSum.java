@@ -32,7 +32,7 @@ public class PathSum {
         if (root == null) {
             return false;
         }
-        currentSum += root.val;
+        currentSum += root.val; // Compound Assignment Op
         //leaf node
         if (root.left == null && root.right == null) {
             return currentSum == targetSum;
