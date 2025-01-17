@@ -1,5 +1,6 @@
 package DSA.Arrays;
 
+// https://leetcode.com/problems/car-pooling/description/
 public class CarPooling {
 
     public boolean carPooling(int[][] trips, int capacity) {
