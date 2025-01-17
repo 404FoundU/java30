@@ -81,11 +81,11 @@ import java.util.PriorityQueue;
 
 public class CarPooling {
 
-    static class Edge {
+    static class GraphNode {
         String destination;
         int duration;
 
-        public Edge(String destination, int duration) {
+        public GraphNode(String destination, int duration) {
             this.destination = destination;
             this.duration = duration;
         }
@@ -95,13 +95,13 @@ public class CarPooling {
             List<String[]> roads, List<String> starts, List<String[]> people) {
 
         // Step 1: Build the graph
-        Map<String, List<Edge>> graph = new HashMap<>();
+        Map<String, List<GraphNode>> graph = new HashMap<>();
         for (String[] road : roads) {
             String origin = road[0];
             String destination = road[1];
             int duration = Integer.parseInt(road[2]);
 
-            graph.computeIfAbsent(origin, k -> new ArrayList<>()).add(new Edge(destination, duration));
+            graph.computeIfAbsent(origin, k -> new ArrayList<>()).add(new GraphNode(destination, duration));
         }
 
         // Step 2: Calculate shortest paths for each car's starting location
@@ -133,15 +133,15 @@ public class CarPooling {
         return result;
     }
 
-    private static Map<String, Integer> dijkstra(Map<String, List<Edge>> graph, String start) {
+    private static Map<String, Integer> dijkstra(Map<String, List<GraphNode>> graph, String start) {
         Map<String, Integer> distances = new HashMap<>();
-        PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(e -> e.duration));
+        PriorityQueue<GraphNode> pq = new PriorityQueue<>(Comparator.comparingInt(e -> e.duration));
 
-        pq.add(new Edge(start, 0));
+        pq.add(new GraphNode(start, 0));
         distances.put(start, 0);
 
         while (!pq.isEmpty()) {
-            Edge current = pq.poll();
+            GraphNode current = pq.poll();
             String currentLocation = current.destination;
             int currentDuration = current.duration;
 
@@ -149,12 +149,12 @@ public class CarPooling {
                 continue;
             }
 
-            for (Edge neighbor : graph.getOrDefault(currentLocation, new ArrayList<>())) {
+            for (GraphNode neighbor : graph.getOrDefault(currentLocation, new ArrayList<>())) {
                 int newDuration = currentDuration + neighbor.duration;
 
                 if (newDuration < distances.getOrDefault(neighbor.destination, Integer.MAX_VALUE)) {
                     distances.put(neighbor.destination, newDuration);
-                    pq.add(new Edge(neighbor.destination, newDuration));
+                    pq.add(new GraphNode(neighbor.destination, newDuration));
                 }
             }
         }
