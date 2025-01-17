@@ -3,6 +3,7 @@ package DSA.Graph.bfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://leetcode.com/problems/rotting-oranges/description/
 public class RottingOranges {
 
     // Define the 4 possible directions (up, down, left, right)
@@ -23,7 +24,8 @@ public class RottingOranges {
         Queue<int[]> queue = new LinkedList<>();
         int freshOranges = 0;
 
-        // Step 1: Initialize the queue with all rotten oranges and count fresh ones
+        // calculate fresh oranges
+        // add first rotten orange to queue
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 if (grid[r][c] == 2) {
@@ -34,10 +36,10 @@ public class RottingOranges {
             }
         }
 
-        // Step 2: Perform BFS to rot adjacent fresh oranges
         int minutes = 0;
         while (!queue.isEmpty() && freshOranges > 0) {
             int size = queue.size();
+            // finish all at the level
             for (int i = 0; i < size; i++) {
                 int[] point = queue.poll();
                 int row = point[0];
@@ -50,7 +52,7 @@ public class RottingOranges {
                     if (r >= 0 && r < rows && c >= 0 && c < cols) {
                         if (grid[r][c] == 1) {
                             grid[r][c] = 2;
-                            queue.offer(new int[]{r, c});
+                            queue.add(new int[]{r, c});
                             freshOranges--;
                         }
                     }
