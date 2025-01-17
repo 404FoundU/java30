@@ -195,12 +195,14 @@ public class StreamExample {
 
     List<String> words = Arrays.asList("apple", "banana", "cherry");
     // Group words by their length using a LinkedHashMap
+
     Map<Integer, List<String>> groupedWords = words.stream()
             .collect(Collectors.groupingBy(
                     String::length, // Key: Word length
                     LinkedHashMap::new, // Custom Map Supplier
                     Collectors.toList() // Downstream collector
             ));
+
 
     String result = words.stream()
             .reduce("", (a, b) -> a + b);
