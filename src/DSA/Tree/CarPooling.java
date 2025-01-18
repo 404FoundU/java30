@@ -1,4 +1,4 @@
-package DSA.Graph.Djikstra;
+package DSA.Tree;
 /*
 You and your friends are driving to a Campground to go camping. Only two of you have cars, so you will be carpooling.
 
@@ -73,42 +73,20 @@ Indicate which people are in each car upon arrival at the campground.
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 public class CarPooling {
-
-    static class GraphNode {
-        String destination;
-        int duration;
-
-        public GraphNode(String destination, int duration) {
-            this.destination = destination;
-            this.duration = duration;
-        }
-    }
 
     public static Map<String, List<String>> assignPeopleToCars(
             List<String[]> roads, List<String> starts, List<String[]> people) {
 
-        // Step 1: Build the graph
-        Map<String, List<GraphNode>> graph = new HashMap<>();
-        for (String[] road : roads) {
-            String origin = road[0];
-            String destination = road[1];
-            int duration = Integer.parseInt(road[2]);
+        // Cost from src to dest Map
+        Map<String, Integer> costCarA = calculateTravelTimes(starts.get(0), roads);
+        Map<String, Integer> costCarB = calculateTravelTimes(starts.get(1), roads);
 
-            graph.computeIfAbsent(origin, k -> new ArrayList<>()).add(new GraphNode(destination, duration));
-        }
-
-        // Step 2: Calculate shortest paths for each car's starting location
-        Map<String, Integer> car1Distances = dijkstra(graph, starts.get(0));
-        Map<String, Integer> car2Distances = dijkstra(graph, starts.get(1));
-
-        // Step 3: Assign people to cars based on who reaches first
+        // Assign people to cars
         Map<String, List<String>> result = new HashMap<>();
         result.put("Car 1", new ArrayList<>());
         result.put("Car 2", new ArrayList<>());
@@ -117,49 +95,35 @@ public class CarPooling {
             String name = person[0];
             String location = person[1];
 
-            int car1Time = car1Distances.getOrDefault(location, Integer.MAX_VALUE);
-            int car2Time = car2Distances.getOrDefault(location, Integer.MAX_VALUE);
+            // Integer .MAX VALUE. because car 2 will reach new Grafton before carA to pick jeremy
+            int car1Time = costCarA.getOrDefault(location, Integer.MAX_VALUE);
+            int car2Time = costCarB.getOrDefault(location, Integer.MAX_VALUE);
 
-            if (car1Time < car2Time) {
+            if (car1Time <= car2Time) {
                 result.get("Car 1").add(name);
-            } else if (car2Time < car1Time) {
-                result.get("Car 2").add(name);
             } else {
-                // If both cars arrive at the same time, the person can choose either car
-                result.get("Car 1").add(name);
+                result.get("Car 2").add(name);
             }
         }
 
         return result;
     }
 
-    private static Map<String, Integer> dijkstra(Map<String, List<GraphNode>> graph, String start) {
-        Map<String, Integer> distances = new HashMap<>();
-        PriorityQueue<GraphNode> pq = new PriorityQueue<>(Comparator.comparingInt(e -> e.duration));
+    private static Map<String, Integer> calculateTravelTimes(String start, List<String[]> roads) {
+        Map<String, Integer> times = new HashMap<>();
+        int time = 0;
+        String current = start;
 
-        pq.add(new GraphNode(start, 0));
-        distances.put(start, 0);
-
-        while (!pq.isEmpty()) {
-            GraphNode current = pq.poll();
-            String currentLocation = current.destination;
-            int currentDuration = current.duration;
-
-            if (currentDuration > distances.getOrDefault(currentLocation, Integer.MAX_VALUE)) {
-                continue;
-            }
-
-            for (GraphNode neighbor : graph.getOrDefault(currentLocation, new ArrayList<>())) {
-                int newDuration = currentDuration + neighbor.duration;
-
-                if (newDuration < distances.getOrDefault(neighbor.destination, Integer.MAX_VALUE)) {
-                    distances.put(neighbor.destination, newDuration);
-                    pq.add(new GraphNode(neighbor.destination, newDuration));
-                }
+        for (String[] road : roads) {
+            if (road[0].equals(current)) {
+                times.put(current, time);
+                time += Integer.parseInt(road[2]);
+                current = road[1];
             }
         }
 
-        return distances;
+        times.put(current, time); // Add final destination
+        return times;
     }
 
     public static void main(String[] args) {
@@ -201,3 +165,4 @@ public class CarPooling {
         System.out.println(result2);
     }
 }
+
