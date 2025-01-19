@@ -1,4 +1,4 @@
-package DSA.Graph.bfs;
+package DSA.Graph.Djikstra;
 
 import java.util.Arrays;
 import java.util.Comparator;
