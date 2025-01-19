@@ -29,6 +29,7 @@ public class PathWithMaximumProbability {
 
         for (int i = 0; i < edges.length; i++) {
             int[] edge = edges[i];
+            // need to put only single direction since we are going from start to end.
             graph.get(edge[0]).add(new GraphNode(edge[1], succProb[i]));
         }
         double[] cost = new double[n];
