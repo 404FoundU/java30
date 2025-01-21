@@ -1,36 +1,30 @@
 package DSA.Patterns.DivideAndConquer;
 
+//https://leetcode.com/discuss/study-guide/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
 
 public class BinarySearch {
     public static void main(String[] args) {
         BinarySearch test = new BinarySearch();
         int[] intArr = new int[] {1, 3, 4, 5,6,9,14,20,30,100};
 
-        test.testMethod(intArr, 9);
+        System.out.println(test.testMethod(intArr, 9));
 
     }
 
-    private int testMethod(int[] a, int elem) {
-        int left = 0;
-        int right = a.length - 1;
+    private int testMethod(int[] nums, int target) {
+        int left = 0, right = nums.length;
 
-        while (left <= right) {
+        while (left < right) {
+            int mid = left + (right - left) / 2;
 
-            int mid = (left + right) / 2;
-
-            if (a[mid] == elem) {
-                return mid;
+            if (nums[mid] >= target) {
+                right = mid; // Narrow the search range to the left
+            } else {
+                left = mid + 1; // Narrow the search range to the right
             }
-            if (elem > a[mid]) {
-                left = mid+1;
-            }
-            if (elem < a[mid]) {
-                right = mid-1;
-            }
-
         }
 
-        return -1;
+        return left; // `left` points to the correct index for insertion
     }
 
 

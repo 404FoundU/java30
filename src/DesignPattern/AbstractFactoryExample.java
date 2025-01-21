@@ -72,6 +72,7 @@ class MacFactory implements UIComponentFactory {
 
 // The Abstract Factory Pattern is used to create families of related or dependent objects,
 // ensuring that objects from the same family are used together.
+//Produces multiple related products like button, checkbox
 public class AbstractFactoryExample {
     public static void main(String[] args) {
         UIComponentFactory factory = new WindowsFactory();

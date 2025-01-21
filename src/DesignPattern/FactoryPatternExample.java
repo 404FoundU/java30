@@ -41,7 +41,7 @@ class RectangleFactory implements ShapeFactory {
 }
 
 //The Factory Method Pattern allows subclasses to decide which class to instantiate.
-// It focuses on creating one product.
+// Produces a single product shape
 public class FactoryPatternExample {
     public static void main(String[] args) {
         ShapeFactory factory = new CircleFactory();
