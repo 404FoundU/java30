@@ -19,38 +19,34 @@ public class SplitArrayLargestSum {
     }
 
     public static int splitArray(int[] nums, int m) {
-        int left = getMax(nums); // Minimum possible largest sum
-        int right = getSum(nums); // Maximum possible largest sum
+        int left = getMax(nums);
+        int right = getSum(nums);
 
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (canSplit(nums, m, mid)) {
-                right = mid; // Try a smaller largest sum
+                right = mid; // try smaller largest sum
             } else {
-                left = mid + 1; // Increase the largest sum
+                left = mid + 1;// increase the largest sum
             }
         }
-
-        return left; // The minimized largest sum
+        return left;
     }
 
     // Helper method to check if the array can be split into `m` subarrays with max sum `capacity`
     private static boolean canSplit(int[] nums, int m, int capacity) {
+        int count = 1;
         int currentSum = 0;
-        int subarrays = 1;
-
         for (int num : nums) {
             if (currentSum + num > capacity) {
-                subarrays++;
-                currentSum = num; // Start a new subarray
-                if (subarrays > m) {
-                    return false; // More subarrays than allowed
-                }
-            } else {
-                currentSum += num;
+                count++;
+                currentSum = 0;
+            }
+            currentSum += num;
+            if (count > m) {
+                return false;
             }
         }
-
         return true;
     }
 
