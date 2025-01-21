@@ -1,5 +1,6 @@
 package DSA.Patterns.DivideAndConquer;
 
+//https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 public class ShipWithinDays {
     public static void main(String[] args) {
         // Test cases
@@ -18,38 +19,34 @@ public class ShipWithinDays {
     }
 
     public static int shipWithinDays(int[] weights, int days) {
-        int left = getMax(weights); // Minimum capacity needed
-        int right = getSum(weights); // Maximum capacity possible
-
+        int left = getMax(weights);// min capacity is the largest Weight
+        int right = getSum(weights); // max Capcity is the sum of all the weights
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (canShip(weights, days, mid)) {
-                right = mid; // Try a smaller capacity
+                right = mid; // try a smaller capacity
             } else {
-                left = mid + 1; // Increase the capacity
+                left = mid + 1; // increase capacity
             }
         }
-
-        return left; // The minimum capacity to ship within days
+        return left;
     }
 
     // Helper method to check if a given capacity can ship all packages within days
     private static boolean canShip(int[] weights, int days, int capacity) {
+        int day = 1;
         int currentWeight = 0;
-        int daysNeeded = 1;
-
         for (int weight : weights) {
             if (currentWeight + weight > capacity) {
-                daysNeeded++;
+                day++;
                 currentWeight = 0;
             }
             currentWeight += weight;
 
-            if (daysNeeded > days) {
+            if (day > days) {
                 return false;
             }
         }
-
         return true;
     }
 
