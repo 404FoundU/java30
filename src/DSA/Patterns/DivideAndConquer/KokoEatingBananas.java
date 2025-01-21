@@ -23,7 +23,6 @@ public class KokoEatingBananas {
 
         while (left < right) {
             int mid = left + (right - left) / 2; // Calculate mid-point
-            System.out.println("Testing speed: " + mid);
 
             if (canEat(piles, h, mid)) {
                 right = mid; // Try a smaller speed
@@ -35,14 +34,19 @@ public class KokoEatingBananas {
     }
 
     private static boolean canEat(int[] piles, int h, int capacity) {
-        int hoursNeeded = 0;
+        double hoursNeeded = 0;
 
         for (int pile : piles) {
-            hoursNeeded += (pile + capacity - 1) / capacity; // Equivalent to Math.ceil((double)pile / k)
+            // Use Math.ceil to calculate the number of hours for each pile
+            hoursNeeded += Math.ceil((double) pile / capacity);
+            if (hoursNeeded > h) {
+                return false; // Stop early if hours exceed the limit
+            }
         }
 
         return hoursNeeded <= h;
     }
+
 
     private static int getMax(int[] nums) {
         int max = 0;
