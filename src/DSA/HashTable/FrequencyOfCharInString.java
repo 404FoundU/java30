@@ -15,10 +15,10 @@ public class FrequencyOfCharInString {
     }
 
     private void testMethod(String str) {
-        Map<Character, Long> frequencyChar = str.chars()
-                .mapToObj(c -> (char) c)
-                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-        System.out.println(frequencyChar);
+        Map<Character, Long> frequencyChar = str.chars()// // IntStream: [104, 101, 108, 108, 111] - hello - stream of primitive int
+                .mapToObj(c -> (char) c) // IntStream into a Stream<Character>: ['h', 'e', 'l', 'l', 'o']
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));//groupingBy requires a Stream of objects or Stream<Integer>, not a primitive stream (IntStream).
+        System.out.println(frequencyChar); // Output: {h=1, e=1, l=2, o=1}
         List<Character> uniqueChars = frequencyChar.entrySet().stream()
                 .filter(e -> e.getValue() == 1)
                 .map(e -> e.getKey())

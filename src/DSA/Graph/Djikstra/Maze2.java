@@ -1,59 +1,61 @@
 package DSA.Graph.Djikstra;
 
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 //https://leetcode.com/problems/the-maze-ii
 public class Maze2 {
+
+    public static final int[][] DIRECTIONS = {
+            {-1, 0}, {1, 0}, {0, 1}, {0, -1}
+    };
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
         int m = maze.length;
         int n = maze[0].length;
 
-        // Distance array to store the shortest distance to each cell
-        int[][] dist = new int[m][n];
-        for (int[] row : dist) {
-            Arrays.fill(row, Integer.MAX_VALUE);
+        int[][] cost = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                cost[i][j] = Integer.MAX_VALUE;
+            }
         }
+        cost[start[0]][start[1]] = 0;
 
-        // Priority Queue: {distance, row, col}
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        pq.offer(new int[]{0, start[0], start[1]});
-        dist[start[0]][start[1]] = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparing(a -> cost[a[0]][a[1]]));
+//        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(cost[a[0]][a[1]], cost[b[0]][b[1]]));
 
-        // Directions: right, down, left, up
-        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        pq.add(new int[]{start[0], start[1]});
 
         while (!pq.isEmpty()) {
-            int[] curr = pq.poll();
-            int currDist = curr[0], x = curr[1], y = curr[2];
-
-            // If we reach the destination, return the distance
-            if (x == destination[0] && y == destination[1]) {
-                return currDist;
+            int[] current = pq.poll();
+            int row = current[0];
+            int col = current[1];
+            // If we reach the destination, return the cost
+            if (row == destination[0] && col == destination[1]) {
+                return cost[row][col];
             }
-
-            // Explore all directions
-            for (int[] dir : directions) {
-                int nx = x, ny = y, steps = 0;
-
+            for (int[] direction : DIRECTIONS) {
+                int r = row;
+                int c = col;
+                int steps = 0;
                 // Roll the ball until it hits a wall or boundary
-                while (nx + dir[0] >= 0 && nx + dir[0] < m && ny + dir[1] >= 0 && ny + dir[1] < n && maze[nx + dir[0]][ny + dir[1]] == 0) {
-                    nx += dir[0];
-                    ny += dir[1];
+                while (r + direction[0] >= 0 && r + direction[0] < m &&
+                        c + direction[1] >= 0 && c + direction[1] < n &&
+                        maze[r + direction[0]][c + direction[1]] == 0) {
+                    r += direction[0];
+                    c += direction[1];
                     steps++;
                 }
-
-                // Check if we found a shorter distance to (nx, ny)
-                if (currDist + steps < dist[nx][ny]) {
-                    dist[nx][ny] = currDist + steps;
-                    pq.offer(new int[]{dist[nx][ny], nx, ny});
+                // update cost if we find shorter path
+                int candidateCost = cost[row][col] + steps;
+                if (candidateCost < cost[r][c]) {
+                    cost[r][c] = candidateCost;
+                    pq.add(new int[]{r, c});
                 }
             }
         }
-
-        // If destination is unreachable, return -1
+        // If the destination is unreachable, return -1
         return -1;
     }
 
