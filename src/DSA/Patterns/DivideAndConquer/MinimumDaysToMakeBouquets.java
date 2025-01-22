@@ -22,7 +22,7 @@ public class MinimumDaysToMakeBouquets {
         if (bloomDay.length < flowers * bouquets) {
             return -1;
         }
-        int left = getMin(bloomDay);
+        int left = 1;
         int right = getMax(bloomDay);
         while (left < right) {
             int mid = left + (right - left) / 2;
@@ -40,14 +40,14 @@ public class MinimumDaysToMakeBouquets {
         int flowersNeeded = 0;
         int bouquetNeeded = 0;
         for (int day : bloomDay) {
-            if (day <= maxDays) {
+            if (day > maxDays) {
+                flowersNeeded = 0;// Reset flowers since we need continuous days
+            } else {
                 flowersNeeded++;
                 if (flowersNeeded == flowers) {
                     bouquetNeeded++;
                     flowersNeeded = 0;
                 }
-            } else {
-                flowersNeeded = 0;// Reset flowers if flower didnt bloom
             }
             if (bouquetNeeded >= bouquets) {
                 return true;
@@ -66,11 +66,5 @@ public class MinimumDaysToMakeBouquets {
         return max;
     }
 
-    private static int getMin(int[] nums) {
-        int min = 0;
-        for (int num : nums) {
-            min = Math.min(min, num);
-        }
-        return min;
-    }
+
 }
