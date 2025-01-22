@@ -51,13 +51,14 @@ public class KokoEatingBananas {
 
         for (int pile : piles) {
             // Use Math.ceil to calculate the number of hours for each pile
-            hoursNeeded += Math.ceil((double) pile / capacity);
+            double hourForAPile = Math.ceil((double) pile / capacity);
+            hoursNeeded += hourForAPile;
             if (hoursNeeded > h) {
                 return false; // Stop early if hours exceed the limit
             }
         }
 
-        return hoursNeeded <= h;
+        return true;
     }
 
 
