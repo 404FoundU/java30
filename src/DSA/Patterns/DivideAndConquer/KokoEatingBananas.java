@@ -1,5 +1,9 @@
 package DSA.Patterns.DivideAndConquer;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class KokoEatingBananas {
     public static void main(String[] args) {
         // Test cases
@@ -15,6 +19,15 @@ public class KokoEatingBananas {
         System.out.println("Minimum eating speed: " + minEatingSpeed(piles1, h1));
         System.out.println("Minimum eating speed: " + minEatingSpeed(piles2, h2));
         System.out.println("Minimum eating speed: " + minEatingSpeed(piles3, h3));
+
+        int[] nums = new int[]{1, 2, 5, 8, 3, 5, 56, 3, 3};
+        List<Integer> list = Arrays.stream(nums)
+                .boxed()
+                .collect(Collectors.toList());
+        List<Integer> list2 = Arrays.stream(nums)
+                .mapToObj(i -> new Integer(i))
+                .collect(Collectors.toList());
+
     }
 
     public static int minEatingSpeed(int[] piles, int h) {
