@@ -24,20 +24,25 @@ public class KthSmallestInMultiplicationTable {
     }
 
     private static boolean enough(int num, int m, int n, int k) {
-        int count = 0;
+        int total = 0;
 
         for (int i = 1; i <= m; i++) {
-            int add;
+            //number of elements in a single row of the multiplication table that are less than or equal to num
+            int count;
             //For a given num, we want to count how many values in this row are ≤ num
+            /*
+            If num is smaller than the largest value in the row (i×n), only the first num/i values in the row are valid.
+Otherwise, all n values in the row are valid.
+             */
             if (num < n * i) {
-                add = num / i; // Use num / i if it's less than n
+                count = num / i; // Use num / i if it's less than n
             } else {
-                add = n; // Use n if num  >= n * i
+                count = n; // Use n if num  >= n * i
             }
 
-            count += add;
+            total += count;
 
-            if (count >= k) {
+            if (total >= k) {
                 return true; // Stop early if we already have enough numbers
             }
         }
