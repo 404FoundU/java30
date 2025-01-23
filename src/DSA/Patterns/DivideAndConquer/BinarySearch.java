@@ -11,6 +11,7 @@ public class BinarySearch {
 
     }
 
+    //binary search on Answer
     private int testMethod(int[] nums, int target) {
         int left = 0, right = nums.length;
 
