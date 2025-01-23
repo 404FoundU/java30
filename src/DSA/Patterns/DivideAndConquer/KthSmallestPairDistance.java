@@ -39,11 +39,12 @@ public class KthSmallestPairDistance {
     eg: mid=4 and noOfPairs having absolute diff >=k is 6.
     We need to reduce 6 to k by moving right to mid
      */
+            // count of pairs having abs diff>=mid are >=k
             if (enoughPairs(nums, mid, k)) {
                 right = mid; // Narrow search to smaller distances
             } else {
-                //pairs have absolute diff less than k. So increase left
-                left = mid + 1; // Increase distance
+                //pairs have absolute diff>=mid are less than k. So increase left
+                left = mid + 1; // Increase search to larger distance
             }
         }
 
@@ -55,16 +56,29 @@ public class KthSmallestPairDistance {
     private static boolean enoughPairs(int[] nums, int mid, int k) {
         int noOfPairs = 0;
         int left = 0;
-
         // Step 3: Count pairs with distance <= mid
         for (int right = 0; right < nums.length; right++) {
             while (nums[right] - nums[left] > mid) {
                 left++; // Move the left pointer to maintain the distance condition
             }
-            noOfPairs += right - left; // All pairs between [left, right] are valid
+            noOfPairs += right - left; // All pairs between [left, right] are valid since abs diff less than mid
+        }
+        return noOfPairs >= k;
+    }
+
+    private static boolean enoughPairs1(int[] nums, int distance, int k, int n) {
+        int count = 0;
+
+        // Check all pairs (i, j) where i < j
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[j] - nums[i] <= distance) {
+                    count++; // Increment count if the pair satisfies the condition
+                }
+            }
         }
 
-        return noOfPairs >= k;
+        return count >= k; // Return true if we have at least k pairs
     }
 }
 
