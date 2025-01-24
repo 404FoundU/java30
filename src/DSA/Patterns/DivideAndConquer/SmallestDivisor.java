@@ -1,5 +1,7 @@
 package DSA.Patterns.DivideAndConquer;
 
+import java.util.Arrays;
+
 public class SmallestDivisor {
     public static void main(String[] args) {
         // Test cases
