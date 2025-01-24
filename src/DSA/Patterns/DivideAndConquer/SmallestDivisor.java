@@ -34,18 +34,16 @@ public class SmallestDivisor {
 
         return left; // Smallest valid divisor
     }
-
     private static boolean isValid(int[] nums, int divisor, int threshold) {
         int sum = 0;
-
-        for (int num : nums) {
-            sum += (num + divisor - 1) / divisor; // Equivalent to Math.ceil(num / divisor)
+        for (float num : nums) {
+            sum += (int) Math.ceil(num / (float) divisor);
             if (sum > threshold) {
-                return false; // Early exit if sum exceeds threshold
+                return false;
             }
         }
-
         return sum <= threshold;
     }
+
 }
 
