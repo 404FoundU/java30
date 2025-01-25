@@ -31,6 +31,7 @@ public class LastStoneWeight {
         int[] stones = {2, 7, 4, 1, 8, 1};
         int result = solution.lastStoneWeight(stones);
         System.out.println("Last stone weight: " + result); // Output: 1
+        Runnable runnable = () -> solution.lastStoneWeight(stones);
     }
 }
 

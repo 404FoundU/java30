@@ -38,6 +38,7 @@ public class BiConsumerLambda {
 
         multiply.andThen(divide).accept(10, 2);
 
+
     }
 
 
