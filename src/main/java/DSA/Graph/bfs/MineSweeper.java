@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://leetcode.com/problems/minesweeper/description/
+//https://www.youtube.com/watch?v=lla6QlAF4HQ
 public class MineSweeper {
 
     private static final int[][] DIRECTIONS = {
