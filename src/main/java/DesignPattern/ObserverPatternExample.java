@@ -70,6 +70,7 @@ public class ObserverPatternExample {
 
         jobPublisher.removeObserver(sub1);
 
+        //notify subscribers who are actively seeking
         jobPublisher.publishJob("Js");
 
     }
