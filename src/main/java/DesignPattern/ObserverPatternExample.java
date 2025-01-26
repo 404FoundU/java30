@@ -8,10 +8,10 @@ interface Observer {
     void update(String message);
 }
 
-class Subscriber implements Observer {
+class JobObserver implements Observer {
     String name;
 
-    Subscriber(String name) {
+    JobObserver(String name) {
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ class Subscriber implements Observer {
     }
 }
 
-interface Subject {
+interface Jobs {
     void addObserver(Observer observer);
 
     void removeObserver(Observer observer);
@@ -29,7 +29,7 @@ interface Subject {
     void notifyObserver();
 }
 
-class JobService implements Subject {
+class JobPublisher implements Jobs {
     List<Observer> observers = new ArrayList<>();
     String job;
 
@@ -56,20 +56,21 @@ class JobService implements Subject {
     }
 }
 
+// multiple observers are notified when a job is published
 public class ObserverPatternExample {
     public static void main(String[] args) {
-        JobService jobService = new JobService();
-        Subscriber sub1 = new Subscriber("Unni");
-        Subscriber sub2 = new Subscriber("Rishi");
+        JobPublisher jobPublisher = new JobPublisher();
+        JobObserver sub1 = new JobObserver("Unni");
+        JobObserver sub2 = new JobObserver("Rishi");
 
-        jobService.addObserver(sub1);
-        jobService.addObserver(sub2);
+        jobPublisher.addObserver(sub1);
+        jobPublisher.addObserver(sub2);
 
-        jobService.publishJob("Java");
+        jobPublisher.publishJob("Java");
 
-        jobService.removeObserver(sub1);
+        jobPublisher.removeObserver(sub1);
 
-        jobService.publishJob("Js");
+        jobPublisher.publishJob("Js");
 
     }
 }
