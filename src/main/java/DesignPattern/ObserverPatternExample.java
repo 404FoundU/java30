@@ -57,6 +57,7 @@ class JobPublisher implements Jobs {
 }
 
 // multiple observers are notified when a job is published
+// @EventListener Springboot
 public class ObserverPatternExample {
     public static void main(String[] args) {
         JobPublisher jobPublisher = new JobPublisher();
