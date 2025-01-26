@@ -12,7 +12,7 @@ interface Aggregate<T> {
     Iterator<T> createIterator();
 }
 
-// This class is only for storing
+// This class is only for storing - COntainer
 class PlaylistCollection implements Aggregate<String> {
     private String[] songs;  // Array of songs
 
@@ -28,7 +28,7 @@ class PlaylistCollection implements Aggregate<String> {
 
 
 // Forward Iterator. We can create a reverse iterator
-// This class is only for traversing
+// This class is algorithm for traversing.
 class PlaylistForwardIterator implements Iterator<String> {
     private String[] songs;// switch to LL
     private int position = 0;  // Keep track of the current position
@@ -52,7 +52,7 @@ class PlaylistForwardIterator implements Iterator<String> {
 }
 
 
-// Client Code
+// Ipod with next and previous button
 public class IteratorPatternExample {
     public static void main(String[] args) {
         // Create a playlist of songs
