@@ -29,7 +29,7 @@ class PlaylistCollection implements Aggregate<String> {
 
 // Concrete Iterator
 class PlaylistIterator implements Iterator<String> {
-    private String[] songs;
+    private String[] songs;// switch to LL
     private int position = 0;  // Keep track of the current position
 
     public PlaylistIterator(String[] songs) {
