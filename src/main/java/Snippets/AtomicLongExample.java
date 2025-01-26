@@ -6,10 +6,16 @@ public class AtomicLongExample {
     private AtomicLong counter = new AtomicLong(0);
 
     public void increment() {
-        counter.incrementAndGet(); // Atomic increment
+        long l = counter.incrementAndGet();// Atomic increment
+    }
+
+    public void isUpdated() {
+        boolean isUpdated = counter.compareAndSet(0, 5);
+        // Atomic increment
     }
 
     public long getCounter() {
+        System.out.println(counter);
         return counter.get(); // Thread-safe read
     }
 

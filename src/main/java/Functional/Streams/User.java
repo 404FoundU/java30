@@ -13,6 +13,9 @@ public class User {
     private String firstName;
     private String lastName;
 
+    // Default constructor (needed for deserialization)
+    public User() {
+    }
     public User(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
