@@ -1,6 +1,7 @@
 package DSA.Arrays;
 
 
+
 import java.util.Arrays;
 
 public class ArrayListExample<E> {
@@ -55,6 +56,10 @@ public class ArrayListExample<E> {
     }
 
 
+    public Iterator<Object> createIterator() {
+        return new ArrayListIterator(elementData);  // Return a PlaylistIterator
+    }
+
     public static void main(String[] args) {
         ArrayListExample<Integer> ll = new ArrayListExample<>();
 
@@ -65,5 +70,35 @@ public class ArrayListExample<E> {
         ll.remove(2);
         ll.printList(ll);
 
+    }
+
+    public interface Iterator<T> {
+        boolean hasNext();
+
+        T next();
+    }
+
+}
+
+class ArrayListIterator implements ArrayListExample.Iterator<Object> {
+
+    Object[] elements;
+    int position = 0;
+
+    ArrayListIterator(Object[] elements) {
+        this.elements = elements;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return position < elements.length;
+    }
+
+    @Override
+    public Object next() {
+        if (hasNext()) {
+            return elements[position++];
+        }
+        return null;
     }
 }
