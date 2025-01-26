@@ -5,6 +5,11 @@ interface Shape {
     void draw();
 }
 
+// Abstract Factory
+interface ShapeFactory {
+    Shape createShape();
+}
+
 // Concrete implementations
 class Circle implements Shape {
     @Override
@@ -18,11 +23,6 @@ class Rectangle implements Shape {
     public void draw() {
         System.out.println("Drawing a Rectangle");
     }
-}
-
-// Abstract Factory
-interface ShapeFactory {
-    Shape createShape();
 }
 
 // Concrete Factories
@@ -44,7 +44,7 @@ class RectangleFactory implements ShapeFactory {
 // Produces a single product shape
 public class FactoryPatternExample {
     public static void main(String[] args) {
-        ShapeFactory factory = new CircleFactory();
+        CircleFactory factory = new CircleFactory();
         Shape shape = factory.createShape();
         shape.draw(); // Output: Drawing a Circle
     }

@@ -75,7 +75,7 @@ class MacFactory implements UIComponentFactory {
 //Produces multiple related products like button, checkbox
 public class AbstractFactoryExample {
     public static void main(String[] args) {
-        UIComponentFactory factory = new WindowsFactory();
+        WindowsFactory factory = new WindowsFactory();
 
         Button button = factory.createButton();
         Checkbox checkbox = factory.createCheckbox();
