@@ -1,5 +1,7 @@
 package DesignPattern;
 
+import java.util.Arrays;
+
 // Iterator Interface
 interface Iterator<T> {
     boolean hasNext();
@@ -67,6 +69,9 @@ public class IteratorPatternExample {
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+
+        Arrays.stream(songs)
+                .forEach((song) -> System.out.println(song));// similar to observer pattern
     }
 }
 

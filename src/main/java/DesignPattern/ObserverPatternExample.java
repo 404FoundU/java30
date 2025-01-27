@@ -70,6 +70,7 @@ public class ObserverPatternExample {
         jobPublisher.addObserver(sub2);
 
         jobPublisher.addObserver(sub3);
+        jobPublisher.addObserver(message -> System.out.println("Sreeku -> " + message));// similar to iterator pattern
 
         jobPublisher.publishJob("Java");
 
