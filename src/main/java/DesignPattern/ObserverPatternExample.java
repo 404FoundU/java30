@@ -63,13 +63,18 @@ public class ObserverPatternExample {
         JobPublisher jobPublisher = new JobPublisher();
         JobObserver sub1 = new JobObserver("Unni");
         JobObserver sub2 = new JobObserver("Rishi");
+        Observer sub3 = message -> System.out.println("Bo -> " + message);
 
         jobPublisher.addObserver(sub1);
+
         jobPublisher.addObserver(sub2);
+
+        jobPublisher.addObserver(sub3);
 
         jobPublisher.publishJob("Java");
 
         jobPublisher.removeObserver(sub1);
+        jobPublisher.removeObserver(sub3);
 
         //notify subscribers who are actively seeking
         jobPublisher.publishJob("Js");
