@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//https://leetcode.com/problems/minesweeper/description/
-//https://www.youtube.com/watch?v=lla6QlAF4HQ
 public class MineSweeper {
 
     private static final int[][] DIRECTIONS = {
@@ -13,44 +11,48 @@ public class MineSweeper {
     };
 
     public char[][] updateBoard(char[][] board, int[] click) {
+        if (board == null || board.length == 0 || board[0].length == 0) {
+            return board; // Handle edge case of empty board
+        }
+
         int m = board.length;
         int n = board[0].length;
-
-        int row = click[0];
-        int col = click[1];
+        int x = click[0];
+        int y = click[1];
 
         // If the clicked cell is a mine, mark it as 'X' and return the board
-        if (board[row][col] == 'M') {
-            board[row][col] = 'X';
+        if (board[x][y] == 'M') {
+            board[x][y] = 'X';
             return board;
         }
 
         // BFS to reveal cells
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{row, col});
+        queue.add(new int[]{x, y});
 
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
-            int r = current[0];
-            int c = current[1];
+            int row = current[0];
+            int col = current[1];
 
-            // Skip if the cell is already revealed
-            if (board[r][c] != 'E') continue;
-
-            // Count adjacent mines
-            int mines = countAdjacentMines(board, r, c);
+            // Skip if the cell is not unrevealed
+            if (board[row][col] != 'E') continue; //// E- unrevealed empty square
+            // if we did not click on a mine we have to reveal it as empty or count
+            int mines = countAdjacentMines(board, row, col);
 
             if (mines > 0) {
                 // If there are adjacent mines, update the cell with the mine count
-                board[r][c] = (char) ('0' + mines);
+                board[row][col] = (char) ('0' + mines);// store as char
             } else {
-                // If no adjacent mines, mark as 'B' and add adjacent cells to the queue
-                board[r][c] = 'B';
+                // we clicked on empty , mark as Blank and add all unrevealed adjacent cells to queue
+                board[row][col] = 'B';
                 for (int[] dir : DIRECTIONS) {
-                    int nr = r + dir[0];
-                    int nc = c + dir[1];
-                    if (nr >= 0 && nr < m && nc >= 0 && nc < n && board[nr][nc] == 'E') {
-                        queue.add(new int[]{nr, nc});
+                    int r = row + dir[0];
+                    int c = col + dir[1];
+                    if (r >= 0 && r < m && c >= 0 && c < n) {
+                        if (board[r][c] == 'E') {
+                            queue.add(new int[]{r, c});
+                        }
                     }
                 }
             }
@@ -59,14 +61,16 @@ public class MineSweeper {
         return board;
     }
 
-    // Helper method to count adjacent mines
-    private int countAdjacentMines(char[][] board, int r, int c) {
+    // count the number of mines around row,col
+    private int countAdjacentMines(char[][] board, int row, int col) {
         int count = 0;
         for (int[] dir : DIRECTIONS) {
-            int nr = r + dir[0];
-            int nc = c + dir[1];
-            if (nr >= 0 && nr < board.length && nc >= 0 && nc < board[0].length && board[nr][nc] == 'M') {
-                count++;
+            int r = row + dir[0];
+            int c = col + dir[1];
+            if (r >= 0 && r < board.length && c >= 0 && c < board[0].length) {
+                if (board[r][c] == 'M') {
+                    count++;
+                }
             }
         }
         return count;
@@ -102,4 +106,5 @@ public class MineSweeper {
         }
     }
 }
+
 
