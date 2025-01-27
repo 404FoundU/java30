@@ -4,6 +4,26 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+/*
+https://www.youtube.com/watch?v=lla6QlAF4HQ
+https://leetcode.com/problems/minesweeper/
+
+'M' - unrevealed mine
+'E' - unrevealed empty square
+'B' - revealed blank square (no adjacent or diagonal mines)
+'1'-'8' - how many mines adjacent and diagonal to square
+'X' - revealed mine
+
+Let x, y = click[x, y]
+If board[x][y] == 'M':
+    - change board[x][y] to 'X'
+Else:
+    If board[x][y] has adjacent mines:
+        - change board[x][y] to num of mines adjacent
+    Else if board[x][y] has NO adjacent mines:
+        - change board[x][y] to 'B'
+ */
 public class MineSweeper {
 
     private static final int[][] DIRECTIONS = {
