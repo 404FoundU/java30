@@ -60,11 +60,11 @@ class MyThread extends Thread {
 public class ThreadLifecycle {
     public static void main(String[] args) throws InterruptedException {
         MyThread t1 = new MyThread();
-
         System.out.println("Thread state after creation: " + t1.getState()); // NEW
         t1.start();
         System.out.println("Thread state after start: " + t1.getState());
-        Thread.sleep(500); // Allow thread to start
+
+        Thread.sleep(500); // Pause main thread. Allow t1 to start
         System.out.println("Thread state while sleeping: " + t1.getState()); // TIMED_WAITING
 
         System.out.println("Main thread waiting for t1 to finish...");
@@ -72,6 +72,7 @@ public class ThreadLifecycle {
 
         System.out.println("Thread state after join(): " + t1.getState()); // TERMINATED
         System.out.println("Main thread resumes execution.");
+
     }
 }
 
