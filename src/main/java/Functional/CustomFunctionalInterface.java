@@ -7,6 +7,13 @@ interface Calculator<T, R> {
 
 public class CustomFunctionalInterface {
     public static void main(String[] args) {
+
+        Calculator<Integer, Integer> addAnonymous = new Calculator<Integer, Integer>() {
+            @Override
+            public Integer operate(Integer a, Integer b) {
+                return a + b;
+            }
+        };
         // Lambda for addition
         Calculator<Integer, Integer> add = (a, b) -> a + b;
         // Lambda for subtraction
