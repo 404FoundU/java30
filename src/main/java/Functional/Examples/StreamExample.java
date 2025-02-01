@@ -129,7 +129,7 @@ public class StreamExample {
         String employeeNames = empList.stream()
                 .map(Employee::getName)
                 .collect(Collectors.joining(", ", "[", "]"));
-        System.out.println("Employee Names: " + employeeNames);
+        System.out.println("Employee Names: " + employeeNames);//[siva, reddy, raju, shivam, bob, alice, srinu]
 
         // employee names to set
         Set<String> employeeNameset = empList.stream()
