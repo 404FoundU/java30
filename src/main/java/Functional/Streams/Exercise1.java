@@ -36,7 +36,6 @@ public class Exercise1 {
                 .map(u -> u.getFirstName())
                 .forEach(name -> System.out.println(name));*/
         // Print first names in userStream for users that have IDs from number stream
-        // TODO: Write code here
         StreamSources.userStream()
                 .filter(user -> StreamSources.intNumbersStream().
                         anyMatch(num -> num == user.getId()))
