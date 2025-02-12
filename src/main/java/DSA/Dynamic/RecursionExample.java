@@ -1,65 +1,41 @@
 package DSA.Dynamic;
 
+import java.util.Arrays;
+
 public class RecursionExample {
     public static void main(String[] args) {
         RecursionExample re = new RecursionExample();
-        re.dib(5);
-
+        int[] array = {1, 2, 3, 4, 5}; // Example input
+        re.foo(array);
     }
 
-    private void dib(int i) {
-        if (i <= 1) {
-            return;
-        }
-        dib(i - 1);
-        dib(i - 1);
-    }
+    private void foo(int[] array) {
+        StringBuilder str = new StringBuilder();
 
+        int midIdx = array.length / 2;
+        int[] left = Arrays.copyOfRange(array, 0, midIdx);
+        int[] right = Arrays.copyOfRange(array, midIdx, array.length);
+
+        foo(left);
+        foo(right);
+    }
+}
 
 /*
-               (5)
-              /   \
-            (4)   (4)
-           /   \  /   \
-         (3)   (3)   (3)   (3)
-        /  \   /  \  /  \   /  \
-      (2)  (2)(2) (2)(2) (2)(2) (2)
-      / \  / \ / \ / \ / \ / \ / \ / \
-(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)
+Recursion Tree Visualization for an Example Input {1, 2, 3, 4, 5}:
 
+           12345
+          /     \
+       12       345
+      /  \      /   \
+     1    2    3    45
+                  /    \
+                 4      5
 
-Push: dib(4)     <-- First call
-Push: dib(3)     <-- First recursive call
-Push: dib(2)     <-- First recursive call
-___________block repeated_________
-Push: dib(1) ❌  <-- Base case, returns
-Pop: dib(1) ✅   <-- Function completes
-Push: dib(1) ❌  <-- Second recursive call
-Pop: dib(1) ✅   <-- Function completes
-Pop: dib(2) ✅   <-- Both dib(1) calls finished
-___________________________________________
-
-Push: dib(2)     <-- Second recursive call of dib(3)
-____________________________________________
-Push: dib(1) ❌  <-- Base case, returns
-Pop: dib(1) ✅   <-- Function completes
-Push: dib(1) ❌  <-- Second recursive call
-Pop: dib(1) ✅   <-- Function completes
-Pop: dib(2) ✅   <-- Both dib(1) calls finished
-Pop: dib(3) ✅   <-- Both dib(2) calls finished. Added new block
-______________________________________________________
-Push: dib(3)     <-- Second recursive call of dib(4)
-______________________________________________________
-Push: dib(2)     <-- First recursive call
-Push: dib(1) ❌  <-- Base case, returns
-Pop: dib(1) ✅   <-- Function completes
-Push: dib(1) ❌  <-- Second recursive call
-Pop: dib(1) ✅   <-- Function completes
-Pop: dib(2) ✅   <-- Both dib(1) calls finished
-
-Push: dib(2)     <-- Second recursive call of dib(3)
-Push: dib(1) ❌
-
- */
-
-}
+depth is log n
+width at level 1 is 1
+width at level 2 is 2
+width at level 3 is 4
+width:  n
+total = n log(n)
+*/
