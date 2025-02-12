@@ -1,8 +1,8 @@
 package DSA.Dynamic;
 
-public class RecursionExample2 {
+public class PolynomialRecursion {
     public static void main(String[] args) {
-        RecursionExample2 re = new RecursionExample2();
+        PolynomialRecursion re = new PolynomialRecursion();
         re.dib(5);
 
     }
@@ -37,6 +37,12 @@ public class RecursionExample2 {
 so 2^n
 Total = 2^n + n
 
+space:
+depth = n
+recursion does not create new arrays. O(1)
+total = O(n)
+
+Recursion stack:
 Push: dib(4)     <-- First call
 Push: dib(3)     <-- First recursive call
 Push: dib(2)     <-- First recursive call
