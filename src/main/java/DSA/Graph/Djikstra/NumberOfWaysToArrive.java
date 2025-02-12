@@ -51,10 +51,11 @@ public class NumberOfWaysToArrive {
 
                 if (candidateDist < cost[newDest]) {
                     cost[newDest] = candidateDist;
-                    ways[newDest] = ways[src];
                     pq.add(new GraphNode(newDest, candidateDist));
+                    //     ways[newDest] =  1; but need to count from the previous source
+                    ways[newDest] = ways[src];
                 } else if (candidateDist == cost[newDest]) {
-                    ways[newDest] += ways[src];
+                    ways[newDest] += ways[src]; // count all the way from prev source
                 }
             }
 
