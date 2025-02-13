@@ -7,10 +7,12 @@ class Car {
     private boolean airConditioning;
 
     // Private Constructor
-    private Car(CarBuilder builder) {
-        this.engine = builder.engine;
-        this.wheels = builder.wheels;
-        this.airConditioning = builder.airConditioning;
+
+
+    public Car(String engine, int wheels, boolean airConditioning) {
+        this.engine = engine;
+        this.wheels = wheels;
+        this.airConditioning = airConditioning;
     }
 
     // Display the Car details
@@ -35,7 +37,7 @@ class Car {
         }
 
         public Car build() {
-            return new Car(this);
+            return new Car(engine, wheels, airConditioning);
         }
     }
 }
@@ -47,7 +49,6 @@ public class BuilderPatternExample {
         Car car = new Car.CarBuilder("V8", 4)
                 .setAirConditioning(true)
                 .build();
-
         car.display();
     }
 }
