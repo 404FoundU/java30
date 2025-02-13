@@ -1,8 +1,8 @@
 package DSA.Dynamic;
 
-public class PolynomialRecursion {
+public class ExponentialRecursion {
     public static void main(String[] args) {
-        PolynomialRecursion re = new PolynomialRecursion();
+        ExponentialRecursion re = new ExponentialRecursion();
         re.dib(5);
 
     }
@@ -20,14 +20,14 @@ public class PolynomialRecursion {
                (5)
               /   \
             (4)   (4)
-           /   \  /   \
+           /   \      /   \
          (3)   (3)   (3)   (3)
         /  \   /  \  /  \   /  \
       (2)  (2)(2) (2)(2) (2)(2) (2)
       / \  / \ / \ / \ / \ / \ / \ / \
 (1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)(1)
 
-- Depth is n
+- Depth is n.  here we subtract the input 1 and not halve them
 - Each level the tree branches to 2.
 - Width at level 1 is 2^0 = 1
 - Width at level 2 is 2^1 = 2

@@ -2,9 +2,9 @@ package DSA.Dynamic;
 
 import java.util.Arrays;
 
-public class LogLinearRecursion {
+public class LinearRecursion2 {
     public static void main(String[] args) {
-        LogLinearRecursion re = new LogLinearRecursion();
+        LinearRecursion2 re = new LinearRecursion2();
         int[] array = {1, 2, 3, 4, 5}; // Example input
         re.foo(array);
     }
@@ -12,9 +12,6 @@ public class LogLinearRecursion {
     private void foo(int[] array) {
         StringBuilder str = new StringBuilder();
 
-        for (int i = 0; i < array.length; i++) {
-            str.append(i);
-        }
         int midIdx = array.length / 2;
         int[] left = Arrays.copyOfRange(array, 0, midIdx);
         int[] right = Arrays.copyOfRange(array, midIdx, array.length);
@@ -35,15 +32,14 @@ Recursion Tree Visualization for an Example Input {1, 2, 3, 4, 5}:
                   /    \
                  4      5
 
-depth is log n - Divide the input by half
-width: we do double the number of nodes by 2
- at level 1  - we do  extra work in each level like a for loop - 5 iteration
- at level 2 we do 2 recursive calls and also do extra work - 2 iteration + 3 iteration = 5
-so O(n)
+depth is log n
+ at level 1  - we do not do any extra work in each level like a for loop
+ at level 2 we do 2 recursive calls. double the nodes but input is halved. and do not do any extra work
+ so O(n) is width
 total = n * log n
 
-depth is O(log n).
-total size of newly created array remains O(n)
 
-space = n log(n)
+depth is O(log n).
+2 new arrays are created left and right. The total size of the array is O(n)
+space = n + log(n) = n
 */
