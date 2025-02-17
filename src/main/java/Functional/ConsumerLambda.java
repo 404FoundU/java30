@@ -38,10 +38,10 @@ public class ConsumerLambda {
     }
     public static void main(String[] args) {
         ConsumerLambda test = new ConsumerLambda();
-//        test.testMethod();
+        test.testMethod();
 //        printList();
 //        printNameAndActivities();
-        printNameAndActivitiesByGrade();
+//        printNameAndActivitiesByGrade();
     }
 
     private void testMethod() {

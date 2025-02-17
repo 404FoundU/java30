@@ -19,7 +19,7 @@ public class ExponentialRecursion {
 /*
                (5)
               /   \
-            (4)   (4)
+            (4)       (4)
            /   \      /   \
          (3)   (3)   (3)   (3)
         /  \   /  \  /  \   /  \
@@ -34,7 +34,7 @@ public class ExponentialRecursion {
 - Width at level 3 is 2^2 = 4
 - Width at level 1 is 2^3 = 8
 - Width at level 1 is 2^4 = 16
-so 2^n
+so 2^n width^ depth
 Total = 2^n + n
 
 space:
