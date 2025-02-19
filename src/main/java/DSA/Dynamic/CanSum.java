@@ -3,6 +3,7 @@ package DSA.Dynamic;
 import java.util.HashMap;
 import java.util.Map;
 
+// decision problem
 public class CanSum {
 
     public static void main(String[] args) {

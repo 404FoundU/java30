@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 // return null if you cant make targetSum
+
+//combinatoric problem
 public class HowSum {
 
     public static void main(String[] args) {

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 // return null if you cant make targetSum
+
+// optimization problem
 public class BestSum {
 
     public static void main(String[] args) {
@@ -25,10 +27,10 @@ public class BestSum {
             int newTargetSum = targetSum - num;
             List<Integer> integerList = bestSum(newTargetSum, nums);
             if (integerList != null) {
-                List<Integer> sumList = new ArrayList<>(integerList);
-                sumList.add(num);
-                if (shortestCombination == null || shortestCombination.size() > sumList.size()) {
-                    shortestCombination = new ArrayList<>(sumList);
+                List<Integer> combination = new ArrayList<>(integerList);
+                combination.add(num);
+                if (shortestCombination == null || shortestCombination.size() > combination.size()) {
+                    shortestCombination = new ArrayList<>(combination);
                 }
             }
         }
@@ -53,11 +55,10 @@ public class BestSum {
             int newTargetSum = targetSum - num;
             List<Integer> integerList = bestSum(newTargetSum, nums);
             if (integerList != null) {
-                List<Integer> sumList = new ArrayList<>(integerList);
-                sumList.add(num);
-                if (shortestCombination == null || shortestCombination.size() > sumList.size()) {
-                    shortestCombination = new ArrayList<>(sumList);
-                    memo.put(newTargetSum, shortestCombination);
+                List<Integer> combination = new ArrayList<>(integerList);
+                combination.add(num);
+                if (shortestCombination == null || shortestCombination.size() > combination.size()) {
+                    shortestCombination = new ArrayList<>(combination);
                 }
             }
         }
