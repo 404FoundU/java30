@@ -12,6 +12,6 @@ public class GraphNode implements Comparable<GraphNode> {
 
     public int compareTo(GraphNode other) {
         return this.weight - other.weight;
-    }
+    } // ascending order
 
 }

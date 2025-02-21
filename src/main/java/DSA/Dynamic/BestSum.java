@@ -18,7 +18,6 @@ public class BestSum {
         if (targetSum == 0) {
             return new ArrayList<>();
         }
-
         if (targetSum < 0) {
             return null;
         }
