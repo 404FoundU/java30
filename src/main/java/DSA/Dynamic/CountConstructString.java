@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-// decision problem
+// combinatorics problem
 public class CountConstructString {
 
     public static void main(String[] args) {
@@ -26,26 +26,26 @@ public class CountConstructString {
         return totalCount;
     }
 
-    private static final Map<String, Boolean> memo = new HashMap<>();
+    private static final Map<String, Integer> memo = new HashMap<>();
 
-    private static boolean canConstructMemo(String target, String[] words) {
+    private static int countConstructMemo(String target, String[] words) {
         if (target.isEmpty()) {
-            return true;
+            return 1;
         }
         if (memo.containsKey(target)) {
             return memo.get(target);
         }
+        int totalCount = 0;
+
         for (String word : words) {
             if (target.startsWith(word)) {
                 String suffix = target.substring(word.length());
-                if (canConstructMemo(suffix, words)) {
-                    memo.put(suffix, true);
-                    return true;
-                }
+                int count = countConstructMemo(suffix, words);
+                totalCount += count;
             }
         }
-        memo.put(target, false);
-        return false;
+        memo.put(target, totalCount);
+        return totalCount;
     }
 
 
