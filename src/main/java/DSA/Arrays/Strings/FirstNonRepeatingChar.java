@@ -4,29 +4,21 @@ public class FirstNonRepeatingChar {
 
     public static void main(String[] args) {
         System.out.println(testMethod("aabbbcddd"));
-
     }
 
     private static char testMethod(String str) {
-        int[] frequency = new int[255];
+        int[] asciiFrequency = new int[255];
         for (char c : str.toCharArray()) {
-            frequency[c]++;
+            //char to ascii
+            Integer i = Integer.valueOf(c);
+            asciiFrequency[i]++;
         }
-
-
-        // ch to int
-        //'5' to 5
-        //'125' to 5
-
-        Integer i = Integer.valueOf('A');
-        int i1 = Integer.parseInt("123");
-        System.out.println(i);
-
-        String s = String.valueOf(i);
-
-        System.out.println(s);
-
-        return 'A';
+        for (int i = 0; i < asciiFrequency.length; i++) {
+            if (asciiFrequency[i] == 0) {
+                return (char) i;
+            }
+        }
+        return '\0';
     }
 
 
