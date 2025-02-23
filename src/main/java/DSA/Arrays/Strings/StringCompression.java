@@ -1,32 +1,40 @@
 package DSA.Arrays.Strings;
 
 //https://leetcode.com/problems/string-compression/description/
+/*
+count = 2
+i = 2
+char i = b
+char i - 1 = b
+list = [ a
+ */
 public class StringCompression {
     public int compress(char[] chars) {
-        int write = 0, read = 0, n = chars.length;
+        int index = 0; // Write index in chars[]
+        int i = 0; // Read index in chars[]
 
-        while (read < n) {
-            char ch = chars[read];
+        while (i < chars.length) {
+            char currentChar = chars[i];
             int count = 0;
 
-            // Count consecutive occurrences
-            while (read < n && chars[read] == ch) {
+            // Count occurrences of currentChar
+            while (i < chars.length && chars[i] == currentChar) {
                 count++;
-                read++;
+                i++;
             }
 
-            // Write character
-            chars[write++] = ch;
+            // Write the character
+            chars[index++] = currentChar;
 
-            // Write count if greater than 1
+            // Write the count if greater than 1
             if (count > 1) {
                 for (char c : String.valueOf(count).toCharArray()) {
-                    chars[write++] = c;
+                    chars[index++] = c;
                 }
             }
         }
 
-        return write; // New length of compressed array
+        return index; // New length of the compressed array
     }
 
     public static void main(String[] args) {
@@ -42,4 +50,7 @@ public class StringCompression {
         System.out.println(solver.compress(chars3)); // Output: 4 (chars = ['a', 'b', '1', '0'])
     }
 }
+
+
+
 
