@@ -2,40 +2,39 @@ package DSA.Graph.bfs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 //https://www.youtube.com/watch?v=knLFe7hEp3Y&list=PLKYEe2WisBTHCmJ6IfEMjg8o--Bvfc5gt
 public class FindPathInGraph {
 
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        Map<Integer, List<Integer>> adjacencyList = new HashMap<>();
+
+        Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            adjacencyList.put(i, new ArrayList<>());
+            graph.put(i, new ArrayList<>());
         }
         for (int[] edge : edges) {
-            adjacencyList.get(edge[0]).add(edge[1]);
-            adjacencyList.get(edge[1]).add(edge[0]);
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
         }
 
-        Queue<Integer> queue = new LinkedList<>();
-        Set<Integer> visited = new HashSet<>();
-        queue.add(source);
-        visited.add(source);
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
+        boolean[] visited = new boolean[n];
+        visited[source] = true;
+        Queue<Integer> q = new LinkedList<>();
+        q.add(source);
+
+        while (!q.isEmpty()) {
+            int current = q.remove();
             if (current == destination) {
                 return true;
             }
-            List<Integer> neighbours = adjacencyList.get(current);
-            for (int neighbor : neighbours) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
+            for (int neighbour : graph.get(current)) {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    q.add(neighbour);
                 }
             }
         }
