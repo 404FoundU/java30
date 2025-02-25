@@ -29,7 +29,7 @@ public class AllConstructString {
 
                 for (List<String> way : suffixWays) { // add word to each level
                     List<String> newCombination = new ArrayList<>(way);
-                    newCombination.add(0, word); // Correctly add word at the beginning
+                    newCombination.add(word);
                     result.add(newCombination);
                 }
             }
@@ -53,7 +53,7 @@ public class AllConstructString {
                 List<List<String>> suffixWays = allConstructMemo(suffix, words);
                 for (List<String> way : suffixWays) { // add word to each level
                     List<String> newCombination = new ArrayList<>(way);
-                    newCombination.add(0, word); // Correctly add word at the beginning
+                    newCombination.add(word);
                     result.add(newCombination);
                 }
             }

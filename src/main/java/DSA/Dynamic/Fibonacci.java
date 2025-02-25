@@ -2,7 +2,6 @@ package DSA.Dynamic;
 
 
 import java.util.Arrays;
-import java.util.List;
 
 public class Fibonacci {
 
@@ -36,14 +35,28 @@ public class Fibonacci {
 
     }
 
-    // Bottom up (Tabulation )
-    private long fibonacciNumArray(int n) {
-        List<Integer> list = Arrays.asList(0, 1);
-        for (int i = 2; i < n + 1; i++) {
-            Integer newElem = list.get(i - 2) + list.get(i - 1);
-            list.add(newElem);
+  /*  private long fibonacciTabulation(int n) {
+        int[] arr = new int[n + 1];
+        arr[0] = 0;
+        arr[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            arr[i] = arr[i-1] + arr[i-2];
+
         }
-        return list.get(n);
+        return arr[n];
+    }*/
+
+
+    // Bottom up (Tabulation )
+    private long fibonacciTabulation2(int n) {
+        int[] arr = new int[n + 1];
+        Arrays.fill(arr, 0);
+        arr[1] = 1;
+        for (int i = 0; i <= n; i++) {
+            arr[i + 1] += arr[i];
+            arr[i + 2] += arr[i];
+        }
+        return arr[n];
     }
 
     // Bottom up ( No memory )
