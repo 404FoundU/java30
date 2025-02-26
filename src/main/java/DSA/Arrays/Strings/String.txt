@@ -7,3 +7,13 @@ https://leetcode.com/problems/interleaving-string/description/
 https://leetcode.com/problems/longest-common-prefix/description/
 
 https://leetcode.com/problems/longest-palindromic-substring/description/
+
+https://leetcode.com/problems/basic-calculator/description/
+
+https://leetcode.com/problems/decode-string/
+
+https://leetcode.com/studyplan/top-interview-150/
+
+https://www.linkedin.com/posts/ankitapy_dsa-leetcode-interview-activity-7298578598326677504-iL9e/?utm_source=share&utm_medium=member_android&rcm=ACoAABy1og4Bq-2ulddHwGqg602z1mMXxI8yb_U
+
+https://www.designgurus.io/blind75
