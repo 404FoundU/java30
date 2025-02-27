@@ -9,23 +9,23 @@ public class Combinations2 {
     static List<List<Integer>> result = new ArrayList<>();
 
     public static List<List<Integer>> combine(int n, int k) {
-
         backtrack(new ArrayList<>(), n, k, 1);
         return result;
     }
-
     private static void backtrack(List<Integer> tempList, int n, int k, int start) {
-        // Base case: If k elements are selected, add to result
+        // If reached goal
         if (tempList.size() == k) {
             result.add(new ArrayList<>(tempList));
             return;
         }
 
-        // Loop from 'start' to 'n' to ensure uniqueness
+        // Loop through all choices (NB_CHOICES)
         for (int i = start; i <= n; i++) {
-            tempList.add(i); // Pick the number
-            backtrack(tempList, n, k, i + 1); // Move to next choice
-            tempList.remove(tempList.size() - 1); // Undo choice (Backtrack)
+            //include the number
+            tempList.add(i);
+            backtrack(tempList, n, k, i);
+            //dont include the number
+            tempList.remove(tempList.size() - 1);
         }
     }
 
