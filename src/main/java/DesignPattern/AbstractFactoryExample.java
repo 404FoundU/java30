@@ -39,14 +39,13 @@ class MacCheckbox implements Checkbox {
 }
 
 // Abstract Factory
-interface UIComponentFactory {
+interface UIFactory {
     Button createButton();
-
     Checkbox createCheckbox();
 }
 
 // Concrete Factories
-class WindowsFactory implements UIComponentFactory {
+class WindowsFactory implements UIFactory {
     @Override
     public Button createButton() {
         return new WindowsButton();
@@ -58,7 +57,7 @@ class WindowsFactory implements UIComponentFactory {
     }
 }
 
-class MacFactory implements UIComponentFactory {
+class MacFactory implements UIFactory {
     @Override
     public Button createButton() {
         return new MacButton();
@@ -70,18 +69,28 @@ class MacFactory implements UIComponentFactory {
     }
 }
 
-// The Abstract Factory Pattern is used to create families of related or dependent objects,
-// ensuring that objects from the same family are used together.
-//Produces multiple related products like button, checkbox
+class UIFactoryProducer {
+    public static UIFactory getType(String type) {
+        if (type.equals("Windows")) {
+            return new WindowsFactory();
+        }
+        if (type.equals("Mac")) {
+            return new MacFactory();
+        }
+        return null;
+    }
+}
+
+//  used to create families of related  objects,
+// Factory of Factories ( UIFactoryProducer returns another WindowsFactory or MacFactory)
+// BeanFactory, ApplicationContext
 public class AbstractFactoryExample {
     public static void main(String[] args) {
-        WindowsFactory factory = new WindowsFactory();
-
-        Button button = factory.createButton();
-        Checkbox checkbox = factory.createCheckbox();
-
-        button.render(); // Output: Rendering Windows Button
-        checkbox.render(); // Output: Rendering Windows Checkbox
+        UIFactory windowsFactory = UIFactoryProducer.getType("Windows");
+        Button windowsButton = windowsFactory.createButton();
+        Checkbox windowsCheckbox = windowsFactory.createCheckbox();
+        windowsButton.render();
+        windowsCheckbox.render();
     }
 }
 

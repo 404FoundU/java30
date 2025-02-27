@@ -4,11 +4,11 @@ interface Vehicle {
     void drive();
 }
 
-class Car implements Vehicle {
+class Suv implements Vehicle {
 
     @Override
     public void drive() {
-        System.out.println("car");
+        System.out.println("suv");
     }
 }
 
@@ -20,10 +20,10 @@ class Bike implements Vehicle {
     }
 }
 
-class VehicleFactory {
+class FactoryProducer {
     public Vehicle getType(String type) {
-        if (type.equals("Car")) {
-            return new Car();
+        if (type.equals("Suv")) {
+            return new Suv();
         }
         if (type.equals("Bike")) {
             return new Bike();
@@ -33,12 +33,15 @@ class VehicleFactory {
     }
 }
 
+// Create objects of one type
+//  FactoryProducer return a concrete class
+//JDBCTemplate, KafkaTemplate
 public class FactoryPattern {
     public static void main(String[] args) {
-        VehicleFactory vehicleFactory = new VehicleFactory();
-        Vehicle car = vehicleFactory.getType("car");
+        FactoryProducer factoryProducer = new FactoryProducer();
+        Vehicle car = factoryProducer.getType("car");
         car.drive();
-        Vehicle bike = vehicleFactory.getType("bike");
+        Vehicle bike = factoryProducer.getType("bike");
         bike.drive();
     }
 }
