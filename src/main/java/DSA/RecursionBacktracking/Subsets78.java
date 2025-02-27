@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 //https://www.youtube.com/watch?v=3tpjp5h3M6Y&t=210s
-public class SubsetsBTArray {
+//https://www.youtube.com/watch?v=UP3dOYJa05s
+
+public class Subsets78 {
     static List<List<Integer>> result = new ArrayList<>();
 
     public static List<List<Integer>> subsets(int[] nums) {
