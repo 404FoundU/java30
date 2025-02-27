@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //https://leetcode.com/problems/combinations/description/
-public class Combinations2 {
+public class Combinations77 {
 
     static List<List<Integer>> result = new ArrayList<>();
 

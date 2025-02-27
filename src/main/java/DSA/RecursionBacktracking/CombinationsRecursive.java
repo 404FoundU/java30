@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Combinations {
+public class CombinationsRecursive {
 
     public static void main(String[] args) {
         char[] arr = {'a', 'b', 'c'};
