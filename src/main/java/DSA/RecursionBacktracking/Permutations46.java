@@ -5,31 +5,29 @@ import java.util.List;
 
 public class Permutations46 {
 
+    static List<List<Integer>> result = new ArrayList<>();
     public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        backtrack(result, new ArrayList<>(), nums, new boolean[nums.length]);
+        backtrack(new ArrayList<>(), nums, new boolean[nums.length]);
         return result;
     }
 
-    private static void backtrack(List<List<Integer>> result, List<Integer> tempList, int[] nums, boolean[] used) {
-        // Base Case: If all numbers are used, store the permutation
+    private static void backtrack(List<Integer> tempList, int[] nums, boolean[] used) {
+        // If reached goal
         if (tempList.size() == nums.length) {
             result.add(new ArrayList<>(tempList));
             return;
         }
 
-        // Try each number that hasn't been used yet
+        // Loop through all choices (NB_CHOICES)
         for (int i = 0; i < nums.length; i++) {
-            if (used[i]) continue; // Skip already used numbers
-
-            // Pick the number
+            if (used[i]) {
+                continue; // skip already used numbers
+            }
+            //include the number
             used[i] = true;
             tempList.add(nums[i]);
-
-            // Recur to generate remaining permutations
-            backtrack(result, tempList, nums, used);
-
-            // Undo choice (Backtrack)
+            backtrack(tempList, nums, used);
+            //dont include the number
             used[i] = false;
             tempList.remove(tempList.size() - 1);
         }
