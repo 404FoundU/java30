@@ -1,4 +1,4 @@
-package DSA.Dynamic;
+package DSA.Dynamic.recursion;
 
 public class ExponentialRecursion {
     public static void main(String[] args) {
