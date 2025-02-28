@@ -8,21 +8,20 @@ import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters {
     public static int lengthOfLongestSubstring(String s) {
-        Set<Character> charSet = new HashSet<>();
-        int left = 0, maxLength = 0;
-
-        for (int right = 0; right < s.length(); right++) {
-            // If the character is a duplicate, move left pointer
-            while (charSet.contains(s.charAt(right))) {
-                charSet.remove(s.charAt(left));
-                left++;
+        char[] charArray = s.toCharArray();
+        int l = 0;
+        int maxSubstringLength = 0;
+        Set<Character> set = new HashSet<>();
+        for (int r = 0; r < charArray.length; r++) {
+            while (set.contains(charArray[r])) {
+                // remove the character at l and then move l
+                set.remove(charArray[l]);
+                l++;
             }
-            // Add the character to the set and update max length
-            charSet.add(s.charAt(right));
-            maxLength = Math.max(maxLength, right - left + 1);
+            set.add(charArray[r]);
+            maxSubstringLength = Math.max(maxSubstringLength, r - l + 1);
         }
-
-        return maxLength;
+        return maxSubstringLength;
     }
 
     public static void main(String[] args) {
