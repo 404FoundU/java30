@@ -17,7 +17,7 @@ public class Permutations46 {
             result.add(new ArrayList<>(tempList));
             return;
         }
-
+// no need of used
         // Loop through all choices (NB_CHOICES)
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) {
