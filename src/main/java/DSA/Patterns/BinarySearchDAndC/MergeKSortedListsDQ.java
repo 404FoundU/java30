@@ -1,4 +1,4 @@
-package DSA.Patterns.DivideAndConquer;
+package DSA.Patterns.BinarySearchDAndC;
 
 class ListNode {
     int val;

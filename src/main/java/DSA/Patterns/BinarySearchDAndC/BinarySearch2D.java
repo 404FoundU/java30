@@ -1,4 +1,4 @@
-package DSA.Patterns.DivideAndConquer;
+package DSA.Patterns.BinarySearchDAndC;
 
 
 //https://www.youtube.com/watch?v=x-dYOtIudzc

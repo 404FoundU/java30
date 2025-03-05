@@ -1,4 +1,4 @@
-package DSA.Patterns.DivideAndConquer;
+package DSA.Patterns.BinarySearchDAndC;
 
 //https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 public class ShipWithinDays {

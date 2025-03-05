@@ -1,4 +1,4 @@
-package DSA.Patterns.DivideAndConquer;
+package DSA.Patterns.BinarySearchDAndC;
 
 //https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
 public class KthSmallestInMultiplicationTable {

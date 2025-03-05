@@ -1,4 +1,4 @@
-package DSA.Patterns.DivideAndConquer;
+package DSA.Patterns.BinarySearchDAndC;
 
 //https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/
 public class MinimumDaysToMakeBouquets {
