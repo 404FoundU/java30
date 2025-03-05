@@ -10,7 +10,7 @@ class RandomPickWeight {
     private Random random;
 
     public RandomPickWeight(int[] w) {
-        random = new Random(); // Move Random initialization here
+        random = new Random();
         int total = 0;
         cumulativeSum = new int[w.length];
         for (int i = 0; i < w.length; i++) {
