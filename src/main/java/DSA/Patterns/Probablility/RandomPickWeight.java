@@ -1,4 +1,4 @@
-package DSA.Patterns.BinarySearchDAndC;
+package DSA.Patterns.Probablility;
 
 import java.util.HashMap;
 import java.util.Map;
