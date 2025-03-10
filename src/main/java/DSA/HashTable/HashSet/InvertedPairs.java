@@ -1,4 +1,4 @@
-package DSA.HashSet;
+package DSA.HashTable.HashSet;
 
 import java.util.ArrayList;
 import java.util.HashSet;
