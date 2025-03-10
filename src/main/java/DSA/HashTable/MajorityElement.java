@@ -1,6 +1,6 @@
 package DSA.HashTable;
 
-//https://leetcode.com/problems/majority-element/description/
+//https://www.youtube.com/watch?v=c1B3LZQtZ_s
 // Boyer Moore Voting algorithm
 public class MajorityElement {
     public static int majorityElement(int[] nums) {
