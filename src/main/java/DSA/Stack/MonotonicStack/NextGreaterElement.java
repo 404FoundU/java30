@@ -35,3 +35,26 @@ class NextGreaterElement {
         // Output: [-1, 9, 5, 9, 5, 9, 12, 12, 12, -1]
     }
 }
+/*
+For finding next greater elements (not equal) we use a monotonic non increasing stack (type 4)
+If the question was to find next greater or equal elements, then we would have used a monotonic strictly decreasing stack (type 3)
+We use the operator < in while loop condition above - this results in a monotonic non increasing stack (type 4). If we use <= operator, then this becomes a monotonic strictly decreasing stack (type 3)
+Time and space complexity - O(n)
+
+
+arr:    [13,  8,  1,  5,  2,  5,  9,  7,  6, 12]
+result: [-1,  9,  5,  9,  5,  9, 12, 12, 12, -1]
+
+Stack-based resolution:
+- [13] has no next greater → -1
+- [8] next greater → 9
+- [1] next greater → 5
+- [5] next greater → 9
+- [2] next greater → 5
+- [5] next greater → 9
+- [9] next greater → 12
+- [7] next greater → 12
+- [6] next greater → 12
+- [12] no next greater → -1
+
+ */
