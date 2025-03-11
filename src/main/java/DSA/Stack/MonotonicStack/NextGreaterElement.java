@@ -7,19 +7,23 @@ import java.util.Stack;
 class NextGreaterElement {
     public int[] nextGreaterElements(int[] arr) {
         int n = arr.length;
-        int[] result = new int[n];
-        Arrays.fill(result, -1);
+        int[] nextGreaterArray = new int[n];
+        Arrays.fill(nextGreaterArray, -1);
         Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && arr[i] > arr[stack.peek()]) {
-                int prevIndex = stack.pop();
-                result[prevIndex] = arr[i];
+
+            // the element represented by stack top is STRICTLY SMALLER than the current element
+            // This means, the stack will always be monotonic non increasing (type 4)
+            while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+                int stackTop = stack.pop();
+                // nextGreater element of stackTop is the element at index i
+                nextGreaterArray[stackTop] = arr[i];
             }
             stack.push(i);
         }
 
-        return result;
+        return nextGreaterArray;
     }
 
     public static void main(String[] args) {
