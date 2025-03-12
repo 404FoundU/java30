@@ -2,6 +2,7 @@ package Snippets;
 
 import java.io.Serializable;
 
+// extends enum class by default
 enum Day {
     SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
 }

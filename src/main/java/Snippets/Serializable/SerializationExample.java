@@ -1,6 +1,6 @@
 package Snippets.Serializable;
 
-import Functional.Streams.User;
+import Snippets.Functional.Streams.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

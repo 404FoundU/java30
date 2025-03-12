@@ -1,7 +1,7 @@
 package DSA.Stack.Queue;
 
-import Functional.data.Student;
-import Functional.data.StudentDataBase;
+import Snippets.Functional.data.Student;
+import Snippets.Functional.data.StudentDataBase;
 
 import java.util.PriorityQueue;
 
