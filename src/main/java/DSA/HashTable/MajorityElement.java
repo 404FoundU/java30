@@ -1,7 +1,7 @@
 package DSA.HashTable;
 
 //https://www.youtube.com/watch?v=c1B3LZQtZ_s
-// Boyer Moore Voting algorithm
+// Boyer Moore Voting for Majority
 public class MajorityElement {
     public static int majorityElement(int[] nums) {
         int element = nums[0];

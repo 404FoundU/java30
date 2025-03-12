@@ -15,11 +15,12 @@ public class MaxSumContiguousArrayKadens {
 
     private int testMethod(int[] nums) {
         int currSum = 0;
-        int maxSum = Integer.MIN_VALUE;
+        int maxSum = Integer.MIN_VALUE; // can have negative values
 
         for (int num : nums) {
             currSum += num;
             maxSum = Math.max(currSum, maxSum);
+            // having a negative integer is not gonna help us. so reset it
             if (currSum < 0) {
                 currSum = 0;
             }
