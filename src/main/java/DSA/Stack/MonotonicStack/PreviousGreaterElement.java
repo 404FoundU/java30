@@ -6,8 +6,8 @@ import java.util.Stack;
 class PreviousGreaterElement {
     public int[] previousGreaterElements(int[] arr) {
         int n = arr.length;
-        int[] result = new int[n];
-        Arrays.fill(result, -1);
+        int[] prevGreaterArray = new int[n];
+        Arrays.fill(prevGreaterArray, -1);
 
         //holds indices of previous greater elements, with -1 indicating no previous greater element exists.
         Stack<Integer> stack = new Stack<>();
@@ -17,19 +17,24 @@ class PreviousGreaterElement {
             // This means, the stack will always be strictly decreasing (type 3) - because elements are popped when they are equal
             // so equal elements will never stay in the stack (definition of strictly decreasing stack)
 
+            // Pop until stack top > current element
             while (!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
                 stack.pop();
             }
 
             // after the while loop, only the elements which are greater than the current element are left in stack
             // this means we can confidentally decide the previous greater element of the current element i, that's stack top
-            if (!stack.isEmpty()) {
-                result[i] = stack.peek();
+            // If stack is empty, no previous greater element
+            if (stack.isEmpty()) {
+                prevGreaterArray[i] = -1;
+            } else {
+                // Top of stack is previous greater element
+                prevGreaterArray[i] = stack.peek();
             }
             stack.push(i);
         }
 
-        return result;
+        return prevGreaterArray;
     }
 
     public static void main(String[] args) {

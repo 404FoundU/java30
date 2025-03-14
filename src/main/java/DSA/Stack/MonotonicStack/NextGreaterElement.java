@@ -13,8 +13,12 @@ class NextGreaterElement {
 
         for (int i = 0; i < n; i++) {
 
+
             // the element represented by stack top is STRICTLY SMALLER than the current element
-            // This means, the stack will always be monotonic non increasing (type 4)
+            // Check if the current element is greater than stack top
+            // This means, the stack will always be ( monotonic decreasing  ( monotonic non increasing (type 4) )
+
+            // Pop until stack top > current element
             while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
                 int stackTop = stack.pop();
                 // nextGreater element of stackTop is the element at index i
