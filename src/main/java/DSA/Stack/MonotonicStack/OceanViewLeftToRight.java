@@ -19,7 +19,7 @@ class OceanViewLeftToRight {
             // building with equal or greater height in view
             // this means the monotonic stack is going to be strictly decreasing
             // If current building is taller, remove shorter ones behind it.
-            while (!stack.isEmpty() && heights[i] >= heights[stack.peek()]) {
+            while (!stack.isEmpty() && heights[stack.peek()] <= heights[i]) {
                 stack.pop();  // smaller building loses ocean view
             }
             stack.push(i);  // current building potentially has ocean view
