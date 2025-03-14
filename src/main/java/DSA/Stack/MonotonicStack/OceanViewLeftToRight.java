@@ -5,10 +5,19 @@ import java.util.Stack;
 
 class OceanViewLeftToRight {
     public int[] findBuildings(int[] heights) {
+
+        // in other words, we want to find which of the buildings
+        // have a next greater element
+        // at the end, the elements left in the stack will be the ones
+        // which wouldn't have any greater elements after them
         int n = heights.length;
         Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < n; i++) {
+            // note the operator used is <=
+            // because we want to pop out the buildings which have another
+            // building with equal or greater height in view
+            // this means the monotonic stack is going to be strictly decreasing
             // If current building is taller, remove shorter ones behind it.
             while (!stack.isEmpty() && heights[i] >= heights[stack.peek()]) {
                 stack.pop();  // smaller building loses ocean view
