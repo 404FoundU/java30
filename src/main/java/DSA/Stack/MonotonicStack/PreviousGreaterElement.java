@@ -17,6 +17,7 @@ class PreviousGreaterElement {
             // This means, the stack will always be strictly decreasing (type 3) - because elements are popped when they are equal
             // so equal elements will never stay in the stack (definition of strictly decreasing stack)
 
+            //monotonic decreasing
             // Pop until stack top > current element
             while (!stack.isEmpty() && arr[stack.peek()] <= arr[i]) {
                 stack.pop();
