@@ -53,54 +53,63 @@ There is exactly one (possibly indirect) connection between any two distinct cit
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
+
 
 public class MaxCitiesTrip {
 
-    private static int bfs(int[] T) {
-        int n = T.length;
-        List<List<Integer>> graph = new ArrayList<>();
-        boolean[] visited = new boolean[n];
 
-        for (int i = 0; i < n; i++)
-            graph.add(new ArrayList<>());
-
-        for (int i = 1; i < n; i++) {
-            graph.get(i).add(T[i]);
-            graph.get(T[i]).add(i);
-        }
-
-        Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[]{0, 1, 0}); // city, count, oddVisited
-        visited[0] = true;
-        int maxCities = 1;
-
-        while (!queue.isEmpty()) {
-            int[] curr = queue.poll();
-            int city = curr[0], count = curr[1], oddVisited = curr[2];
-            maxCities = Math.max(maxCities, count);
-
-            for (int neighbor : graph.get(city)) {
-                if (!visited[neighbor]) {
-                    int isOdd = neighbor % 2;
-                    if (isOddAllowed(oddVisited, isOdd)) {
-                        visited[neighbor] = true;
-                        queue.offer(new int[]{neighbor, count + 1, oddVisited | isOdd});
-                    }
-                }
-            }
-        }
-        return maxCities;
-    }
 
     private static boolean isOddAllowed(int oddVisited, int isOdd) {
         return isOdd == 0 || (isOdd == 1 && oddVisited == 0);
     }
 
-    public int solution(int[] T) {
-        return bfs(T);
+    public int solution(int[] arr) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (i != arr[i]) {
+                graph.get(i).add(arr[i]);
+                graph.get(arr[i]).add(i);
+            }
+        }
+
+        int source = 0;
+        int maxCityCount = 1;
+        Set<Integer> visited = new HashSet<>();
+        visited.add(source);
+
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{source, 1, 0}); // city, count, oddVisited
+
+        while (!q.isEmpty()) {
+            int[] current = q.poll();
+            int city = current[0];
+            int count = current[1];
+            int oddVisitedCount = current[2];
+
+            maxCityCount = Math.max(maxCityCount, count);
+
+            for (int neighbor : graph.get(city)) {
+                if (!visited.contains(neighbor)) {
+                    int newOddVisitedCount = oddVisitedCount + (neighbor % 2);
+
+                    if (newOddVisitedCount <= 1) {
+                        visited.add(neighbor);
+                        q.add(new int[]{neighbor, count + 1, newOddVisitedCount});
+                    }
+                }
+            }
+        }
+        return maxCityCount;
     }
 
     public static void main(String[] args) {
