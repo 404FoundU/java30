@@ -9,10 +9,12 @@ class TrappingRainWater {
         int total = 0;
         for (int i = 0; i < height.length; i++) {
             while (!stack.isEmpty() && height[stack.peek()] <= height[i]) {
-                Integer top = stack.pop(); // reference the popped value as top
+                Integer top = stack.pop(); // reference the popped value as top. Bottom bar index
                 if (stack.isEmpty()) break; // no left boundary
                 int currentStackTopIndex = stack.peek();
+                // distance between left & right boundaries
                 // currentIndex - currentStackTop - 1
+                //we're counting the number of bars BETWEEN these boundaries, not including the bars themselves. so -1
                 int w = i - currentStackTopIndex - 1;
                 // Min of height[currentIndex], height[currentStackTop] - top
                 int h = Math.min(height[currentStackTopIndex], height[i]) - height[top];
