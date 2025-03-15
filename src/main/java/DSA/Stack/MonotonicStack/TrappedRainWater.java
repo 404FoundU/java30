@@ -2,27 +2,25 @@ package DSA.Stack.MonotonicStack;
 
 import java.util.Stack;
 
+//https://www.youtube.com/watch?v=UMFKP9cTDtI
 class TrappingRainWater {
     public int trap(int[] height) {
         Stack<Integer> stack = new Stack<>();
-        int waterTrapped = 0;
-
+        int total = 0;
         for (int i = 0; i < height.length; i++) {
-            // While current bar height is greater than stack top bar height
-            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
-                int bottom = stack.pop(); // bottom bar index
-
+            while (!stack.isEmpty() && height[stack.peek()] <= height[i]) {
+                Integer top = stack.pop(); // reference the popped value as top
                 if (stack.isEmpty()) break; // no left boundary
-
-                int leftBoundary = stack.peek(); // left boundary index
-                int width = i - leftBoundary - 1; // distance between left & right boundaries
-                int boundedHeight = Math.min(height[leftBoundary], height[i]) - height[bottom];
-
-                waterTrapped += width * boundedHeight;
+                int currentStackTopIndex = stack.peek();
+                // currentIndex - currentStackTop - 1
+                int w = i - currentStackTopIndex - 1;
+                // Min of height[currentIndex], height[currentStackTop] - top
+                int h = Math.min(height[currentStackTopIndex], height[i]) - height[top];
+                total += w * h;
             }
             stack.push(i);
         }
-        return waterTrapped;
+        return total;
     }
 
     public static void main(String[] args) {
