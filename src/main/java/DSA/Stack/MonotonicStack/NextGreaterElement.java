@@ -5,6 +5,8 @@ import java.util.Stack;
 
 // https://leetcode.com/discuss/post/2347639/a-comprehensive-guide-and-template-for-m-irii/
 // immediate next greater and not the greatest
+
+//https://www.youtube.com/watch?v=UMFKP9cTDtI
 class NextGreaterElement {
     public int[] nextGreaterElements(int[] arr) {
         int n = arr.length;
