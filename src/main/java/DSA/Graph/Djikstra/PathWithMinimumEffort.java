@@ -20,7 +20,11 @@ public class PathWithMinimumEffort {
             Arrays.fill(row, Integer.MAX_VALUE);
         }
 
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> cost[a[0]][a[1]]));
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(point -> {
+            int row = point[0];
+            int col = point[1];
+            return cost[row][col];
+        }));
         pq.add(new int[]{0, 0}); // Start at top-left corner
         cost[0][0] = 0;
 
