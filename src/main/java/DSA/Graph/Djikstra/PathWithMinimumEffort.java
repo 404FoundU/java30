@@ -25,6 +25,10 @@ public class PathWithMinimumEffort {
             int col = point[1];
             return cost[row][col];
         }));
+        PriorityQueue<int[]> pq2 = new PriorityQueue<>((x, y) -> Integer.compare(cost[x[0]][x[1]], cost[y[0]][y[1]]));
+        PriorityQueue<int[]> pq3 = new PriorityQueue<>((x, y) -> cost[x[0]][x[1]] - cost[y[0]][y[1]]);
+
+
         pq.add(new int[]{0, 0}); // Start at top-left corner
         cost[0][0] = 0;
 
