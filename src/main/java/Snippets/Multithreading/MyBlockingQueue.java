@@ -6,6 +6,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+
+//https://www.youtube.com/watch?v=UOr9kMCCa5g
 public class MyBlockingQueue<E> {
 
     private final Queue<E> queue;
@@ -36,7 +38,7 @@ public class MyBlockingQueue<E> {
         }
     }
 
-    public E get() throws InterruptedException {
+    public E take() throws InterruptedException {
         lock.lock();
         try {
             while (queue.isEmpty()) {
@@ -44,10 +46,47 @@ public class MyBlockingQueue<E> {
                 isNotEmpty.await();
             }
             E e = queue.remove();
-            isNotFull.notifyAll();
+            isNotFull.signalAll();
             return e;
         } finally {
             lock.unlock();
         }
+    }
+}
+
+class ProducerConsumer {
+
+    public static void main(String[] args) {
+        MyBlockingQueue<String> q = new MyBlockingQueue<>(10);
+
+        Runnable producer = () -> {
+            int count = 0;
+            try {
+                while (true) {
+                    String item = "item" + count++;
+                    System.out.println("produce" + item);
+                    q.put(item);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
+
+        Runnable consumer = () -> {
+            try {
+                while (true) {
+                    String item = q.take();
+                    System.out.println("consumed" + item);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        };
+
+        new Thread(producer).start();
+        new Thread(consumer).start();
+
     }
 }
