@@ -18,8 +18,9 @@ public class LongestConsecutiveSequence {
         for (int i = 0; i < nums.length; i++) {
             // check left
             int leftElement = nums[i] - 1;
-            int currentStreak = 1;
 
+            int currentStreak = 1;
+            // if left is present then its not start of the sequence
             if (!set.contains(leftElement)) {
                 int nextElement = nums[i] + 1;
                 while (set.contains(nextElement)) {
