@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Test {
     public static void main(String[] args) {
         testMethod();
@@ -5,11 +9,22 @@ public class Test {
     }
 
     private static void testMethod() {
-        int PAGE_SIZE = 1000;
-        double totalEntityCount = 0.1;
-        int totalPage = (int) Math.ceil(totalEntityCount / PAGE_SIZE);
-        int test = 0;
+        //use iterator to remove not forEach
+        List<String> list = new ArrayList<>();
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+
+        Iterator<String> it = list.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals("banana")) {
+                it.remove();  // safely removes "banana"
+            }
+        }
+        System.out.println(list); // [apple, cherry]
 
     }
 
 }
+
+

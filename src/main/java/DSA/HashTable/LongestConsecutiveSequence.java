@@ -45,33 +45,26 @@ public class LongestConsecutiveSequence {
     }
 
     public static int longestConsecutiveBruteForce(int[] nums) {
+        int maxLength = 0;
         Arrays.sort(nums);
-        Map<Integer, Integer> diffCountMap = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                int diff = nums[j] - nums[i];
-                if (diffCountMap.containsKey(diff)) {
-                    int diffCount = diffCountMap.get(diff);
-                    diffCountMap.put(diff, diffCount + 1);
-                } else {
-                    diffCountMap.put(diff, 1);
-                }
-
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length - 1; i++) {
+            int diff = nums[i + 1] - nums[i];
+            if (!map.containsKey(diff)) {
+                map.put(diff, 2);
+            } else {
+                int count = map.get(diff);
+                map.put(diff, ++count);
             }
         }
-       /* int maxCount = 0;
+//        map.forEach((k, v) -> {
+//            System.out.println(k + "=" + v);
+//        });
 
-        for (Map.Entry<Integer, Integer> entry : diffCountMap.entrySet()) {
-            maxCount = Math.max(maxCount, entry.getValue());
-
-        }*/
-
-        int maxCount = diffCountMap.values().stream()
-                .max((a, b) -> a.compareTo(b))
+        return map.values().stream()
+                .max((a, b) -> Integer.compare(a, b))
                 .orElse(0);
 
-
-        return maxCount;
     }
 
 
