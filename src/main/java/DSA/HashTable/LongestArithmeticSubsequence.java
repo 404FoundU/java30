@@ -1,26 +1,24 @@
 package DSA.HashTable;
 
 public class LongestArithmeticSubsequence {
-    public static int longestArithSeqLength(int[] nums) {
+    public static int longestArithSeqLengthBF(int[] nums) {
         int n = nums.length;
-        if (n <= 1) return n;
-
+        if (n <= 1) return 0;
         int maxLength = 2;
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int diff = nums[j] - nums[i];
-                int length = 2;
+                int currLength = 2;
                 int prev = nums[j];
-
                 for (int k = j + 1; k < n; k++) {
-                    if (nums[k] - prev == diff) {
-                        length++;
+
+                    if (diff == nums[k] - prev) {
+                        currLength++;
                         prev = nums[k];
                     }
                 }
-
-                maxLength = Math.max(maxLength, length);
+                maxLength = Math.max(currLength, maxLength);
             }
         }
 
@@ -32,8 +30,8 @@ public class LongestArithmeticSubsequence {
         int[] nums2 = {9, 4, 7, 2, 10};
         int[] nums3 = {20, 1, 15, 3, 10, 5, 8};
 
-        System.out.println("Example 1: " + longestArithSeqLength(nums1)); // 4
-        System.out.println("Example 2: " + longestArithSeqLength(nums2)); // 3
-        System.out.println("Example 3: " + longestArithSeqLength(nums3)); // 4
+        System.out.println("Example 1: " + longestArithSeqLengthBF(nums1)); // 4
+        System.out.println("Example 2: " + longestArithSeqLengthBF(nums2)); // 3
+        System.out.println("Example 3: " + longestArithSeqLengthBF(nums3)); // 4
     }
 }
