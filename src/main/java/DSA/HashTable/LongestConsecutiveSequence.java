@@ -1,9 +1,7 @@
 package DSA.HashTable;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class LongestConsecutiveSequence {
     public static int longestConsecutive(int[] nums) {
@@ -45,26 +43,24 @@ public class LongestConsecutiveSequence {
     }
 
     public static int longestConsecutiveBruteForce(int[] nums) {
-        int maxLength = 0;
+        if (nums.length == 0) return 0;
+
         Arrays.sort(nums);
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length - 1; i++) {
-            int diff = nums[i + 1] - nums[i];
-            if (!map.containsKey(diff)) {
-                map.put(diff, 2);
+        int maxLength = 1;
+        int currentStreak = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) continue;
+
+            if (nums[i] - nums[i - 1] == 1) {
+                currentStreak++;
             } else {
-                int count = map.get(diff);
-                map.put(diff, ++count);
+                maxLength = Math.max(maxLength, currentStreak);
+                currentStreak = 1;
             }
         }
-//        map.forEach((k, v) -> {
-//            System.out.println(k + "=" + v);
-//        });
 
-        return map.values().stream()
-                .max((a, b) -> Integer.compare(a, b))
-                .orElse(0);
 
+        return maxLength;
     }
 
 
