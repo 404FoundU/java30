@@ -13,21 +13,19 @@ public class LongestArithmeticSubsequence {
         Map<Integer, Integer>[] dp = new HashMap[n];
         Integer[] intArray = new Integer[]{};
         int maxLength = 2;
+        for (int k = 0; k < n; k++) {
+            dp[k] = new HashMap<>();
+        }
 
         for (int i = 0; i < n; i++) {
-
-            dp[i] = new HashMap<>();
             for (int j = 0; j < n; j++) {
                 // diff of all the elements wrt i
                 int diff = nums[j] - nums[i];
 
                 int existingLength;
-                // calculate from existing map
+
                 Map<Integer, Integer> diffMap = dp[j];
 
-                if (diffMap == null) {
-                    continue;
-                }
                 //does the same difference exist in the previous map. Increment it by 1
                 if (diffMap.containsKey(diff)) {
                     existingLength = diffMap.get(diff);
@@ -38,6 +36,7 @@ public class LongestArithmeticSubsequence {
                 int calculatedLength = existingLength + 1;
                 // for 3,6 we do not have any elements prior to it so
                 // for index 1 we have (diff, calLength) = (-3, 2 )
+                // UPdate current map with the diff count from previous map
                 dp[i].put(diff, calculatedLength);
                 maxLength = Math.max(calculatedLength, maxLength);
 
