@@ -3,22 +3,22 @@ package DSA.Stack;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class MyStack<T> {
 
-    private static class Node {
-        private final int data;
-        private Node next;
+    private class StackNode {
+        private final T data;
+        private StackNode next;
 
-        public Node(int data) {
+        public StackNode(T data) {
             this.data = data;
             this.next = null;
         }
     }
 
-    private Node top;
+    private StackNode top;
     private int length;
 
-    public Stack() {
+    public MyStack() {
         this.top = null;
         this.length = 0;
     }
@@ -27,8 +27,8 @@ public class Stack {
         return this.length == 0;
     }
 
-    private void push(int value) {
-        Node temp = new Node(value);
+    public void push(T value) {
+        StackNode temp = new StackNode(value);
         if (this.top != null) {
             temp.next = this.top;
         }
@@ -37,17 +37,17 @@ public class Stack {
         this.length++;
     }
 
-    private int pop() {
+    public T pop() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        int result = this.top.data;
+        T result = this.top.data;
         this.top = this.top.next;
         this.length--;
         return result;
     }
 
-    public int peek() {
+    public T peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
@@ -56,7 +56,7 @@ public class Stack {
 
 
     private void printStack() {
-        Node current = this.top;
+        StackNode current = this.top;
         while (current.next != null) {
             System.out.println(current.data);
             current = current.next;
@@ -65,7 +65,7 @@ public class Stack {
     }
 
     public static void main(String[] args) {
-        Stack ll = new Stack();
+        MyStack ll = new MyStack();
 
         ll.push(1);
         ll.push(2);
