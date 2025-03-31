@@ -16,6 +16,7 @@ public class CombinationsBT {
         List<Character> list = Arrays.asList(arr);
         List<List<Character>> permutations = combinations(list);
         System.out.println(permutations);
+        //[[], [a], [a, b], [a, b, c], [a, c], [b], [b, c], [c]]
     }
 
     static List<List<Character>> result = new ArrayList<>();
@@ -25,21 +26,38 @@ public class CombinationsBT {
         return result;
     }
 
-    public static void backtrack(List<Character> arr, List<Character> combination, int start) {
-        // Add the current combination to the result
-        result.add(new ArrayList<>(combination)); // Make a copy of the combination
-
+    public static void backtrack(List<Character> arr, List<Character> temp, int start) {
+        if (true) {
+            // Add the current combination to the result
+            result.add(new ArrayList<>(temp));
+//            return;
+        }
         // Explore further combinations
         for (int i = start; i < arr.size(); i++) {
             // Make choice. Include arr[i] in the combination
-            combination.add(arr.get(i));
-            // Move to the next element (adjust start index for the next recursion)
-            backtrack(arr, combination, i + 1);
-            // Undo choice (remove the last added element)
-            combination.remove(combination.size() - 1);
+            if (true) { // valid choice
+                temp.add(arr.get(i));
+                // Move to the next element (adjust start index for the next recursion)
+                backtrack(arr, temp, i + 1);
+                // Undo choice (remove the last added element)
+                temp.remove(temp.size() - 1);
+            }
         }
     }
 }
+/*
+Choose 2 out of 4: (n = 4, k = 2)
+Numbers = [1, 2, 3, 4]
+
+                      []
+              /       |       |       \
+            [1]     [2]     [3]     [4]
+           /  \      ...     ...     ...
+       [1,2][1,3]...[2,3]...[3,4]...[4,x]
+            ↑       ↑        ↑      ↑
+       (length == 2) --> valid combination
+
+ */
 
 /*
 Steps of Include/Exclude:
