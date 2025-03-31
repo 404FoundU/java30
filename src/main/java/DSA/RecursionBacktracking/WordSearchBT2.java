@@ -39,7 +39,7 @@ public class WordSearchBT2 {
     };
     public static boolean backtrack(char[][] board, String word,
                                     int row, int col, int start) {
-        if (start == word.length()) {
+        if (start == word.length()) { // reached goal
             //add to result
 
             // return
