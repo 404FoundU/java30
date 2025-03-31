@@ -38,3 +38,21 @@ public class Combinations77 {
     }
 }
 
+/*
+Choose 2 out of 4: (n = 4, k = 2)
+Numbers = [1, 2, 3, 4]
+
+                      []
+              /       |       |       \
+            [1]     [2]     [3]     [4]
+           /  \      ...     ...     ...
+       [1,2][1,3]...[2,3]...[3,4]...[4,x]
+            ↑       ↑        ↑      ↑
+       (length == 2) --> valid combination
+
+ */
+/*
+From the same 5 letters (A, B, C, D, E), how many ways can you select 3 letters?
+P(5,3)= n!/(n-r)! * r! =10
+10 ways to choose 3 letters from 5 when order doesn’t matter
+ */

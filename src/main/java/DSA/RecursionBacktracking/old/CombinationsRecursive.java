@@ -1,4 +1,4 @@
-package DSA.RecursionBacktracking;
+package DSA.RecursionBacktracking.old;
 
 import java.util.ArrayList;
 import java.util.Arrays;
