@@ -3,75 +3,57 @@ package DSA.Stack;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.Stack;
 
 public class MinStack {
-    private static class Node {
-        int val;
-        int id; // unique id to sync between stack and heap
 
-        Node(int val, int id) {
-            this.val = val;
-            this.id = id;
-        }
-    }
-
-    MyStack<Node> stack;
-    PriorityQueue<Node> minHeap;
+    Stack<Integer> stack;
+    PriorityQueue<Integer> pq;
     Set<Integer> deletedIds;
-    int counter;
-
     public MinStack() {
-        stack = new MyStack<>();
+        stack = new Stack<>();
+        pq = new PriorityQueue<>();
         deletedIds = new HashSet<>();
-        counter = 0;
-
-        minHeap = new PriorityQueue<>((a, b) -> {
-            if (a.val != b.val) return Integer.compare(a.val, b.val);
-            return Integer.compare(a.id, b.id);
-        });
     }
 
     public void push(int val) {
-        Node node = new Node(val, counter++);
-        stack.push(node);
-        minHeap.offer(node);
+        stack.push(val);
+        pq.add(val);
     }
 
     public void pop() {
         cleanUpStack();
-        if (!stack.isEmpty()) {
-            Node node = stack.pop();
-            deletedIds.add(node.id);
-        }
+        Integer pop = stack.pop();
+        deletedIds.add(pop);
     }
 
     public int top() {
         cleanUpStack();
-        return stack.peek().val;
+        return stack.peek();
     }
 
     public int getMin() {
         cleanUpHeap();
-        return minHeap.peek().val;
+        return pq.peek();
     }
 
     public void removeMin() {
         cleanUpHeap();
-        if (!minHeap.isEmpty()) {
-            Node min = minHeap.poll();
-            deletedIds.add(min.id);
+        if (!pq.isEmpty()) {
+            int removedVal = pq.poll();
+            deletedIds.add(removedVal);
         }
     }
 
     private void cleanUpStack() {
-        while (!stack.isEmpty() && deletedIds.contains(stack.peek().id)) {
+        while (!stack.isEmpty() && deletedIds.contains(stack.peek())) {
             stack.pop();
         }
     }
 
     private void cleanUpHeap() {
-        while (!minHeap.isEmpty() && deletedIds.contains(minHeap.peek().id)) {
-            minHeap.poll();
+        while (!pq.isEmpty() && deletedIds.contains(pq.peek())) {
+            pq.poll();
         }
     }
 
