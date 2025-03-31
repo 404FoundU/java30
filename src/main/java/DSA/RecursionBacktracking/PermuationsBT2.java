@@ -31,9 +31,10 @@ public class PermuationsBT2 {
     }
 
     public static void main(String[] args) {
-        List<Integer> nums = List.of(1, 2, 3);  // Example input
+        List<Integer> nums = List.of(1, 2, 3);
         List<List<Integer>> result = permutations(nums);
         System.out.println(result);
+        //[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     }
 }
 
