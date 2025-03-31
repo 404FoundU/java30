@@ -96,3 +96,9 @@ Include a: ['a'].
         Include c: ['c'] → Add to result.
 This exploration of choices leads to the generation of all combinations, including the empty set.
  */
+
+/*
+From the same 5 letters (A, B, C, D, E), how many ways can you select 3 letters?
+P(5,3)= n!/(n-r)! * r! =10
+10 ways to choose 3 letters from 5 when order doesn’t matter
+ */

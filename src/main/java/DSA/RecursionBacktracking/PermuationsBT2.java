@@ -37,7 +37,13 @@ public class PermuationsBT2 {
         //[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
     }
 }
+/*
+Problem: How many ways can you arrange 3 letters out of 5 distinct letters: A, B, C, D, E?
 
+We are arranging 3 out of 5 → use permutation:
+P(5,3)= n!/(n-r)! =60
+✅ Answer: 60 ways to arrange 3 letters out of 5 when order matters.
+ */
 
 
 
