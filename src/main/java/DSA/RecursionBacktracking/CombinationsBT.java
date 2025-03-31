@@ -14,14 +14,14 @@ public class CombinationsBT {
             arr[i] = charr[i];
         }
         List<Character> list = Arrays.asList(arr);
-        List<List<Character>> permutations = combinations(list);
-        System.out.println(permutations);
+        List<List<Character>> allCombinations = subsets(list); // subsets . 2^n
+        System.out.println(allCombinations);
         //[[], [a], [a, b], [a, b, c], [a, c], [b], [b, c], [c]]
     }
 
     static List<List<Character>> result = new ArrayList<>();
 
-    public static List<List<Character>> combinations(List<Character> arr) {
+    public static List<List<Character>> subsets(List<Character> arr) {
         backtrack(arr, new ArrayList<>(), 0);
         return result;
     }
