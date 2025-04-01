@@ -1,7 +1,7 @@
 package DSA.RecursionBacktracking;
 
-//https://www.youtube.com/watch?v=m9TrOL1ETxI
 //https://leetcode.com/problems/word-search/
+//https://www.youtube.com/watch?v=Sn2DqF-S2h8&t=1s
 public class WordSearchBT2 {
 
 
@@ -51,7 +51,7 @@ public class WordSearchBT2 {
         if (board[row][col] != word.charAt(start)) {
             return false;
         }
-
+        // found the first word. Do the same process for the next word from there
         // make choice
         char temp = board[row][col];
         board[row][col] = '#'; // mark visited

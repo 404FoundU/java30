@@ -3,12 +3,14 @@ package DSA.HashTable;
 
 import java.util.Arrays;
 
-public class TwoSumSorted {
+// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+public class TwoSumII {
 
 
     public static void main(String[] args) {
-        TwoSumSorted test = new TwoSumSorted();
+        TwoSumII test = new TwoSumII();
 
+        //input array is sorted
         int[] ints = {2, 7, 11, 15};
         int sum = 18;
         System.out.println(Arrays.toString(test.testMethod(ints, sum)));
@@ -32,3 +34,4 @@ public class TwoSumSorted {
         return new int[]{};
     }
 }
+// 2 pointer
