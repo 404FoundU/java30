@@ -18,6 +18,7 @@ public class ThreeSum {
 
             int left = i + 1;
             int right = n - 1;
+            //nums[left] + nums[right] = 0 -nums[i] // 2Sum with Array sorted
             int target = 0 - nums[i];
             while (left < right) {
                 int sum = nums[left] + nums[right];
