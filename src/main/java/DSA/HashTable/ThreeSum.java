@@ -7,6 +7,7 @@ import java.util.List;
 //https://www.youtube.com/watch?v=54VcLqAHrHk
 public class ThreeSum {
 
+    //solve TwoSumII
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
@@ -17,10 +18,11 @@ public class ThreeSum {
 
             int left = i + 1;
             int right = n - 1;
+            int target = 0 - nums[i];
             while (left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
+                int sum = nums[left] + nums[right];
 
-                if (sum == 0) {
+                if (sum == target) {
                     result.add(Arrays.asList(nums[i], nums[left], nums[right]));
 
                     // Skip duplicate left and right
@@ -30,7 +32,7 @@ public class ThreeSum {
                     left++;
                     right--;
 
-                } else if (sum < 0) {
+                } else if (sum < target) {
                     left++; // need a bigger number
                 } else {
                     right--; // need a smaller number
