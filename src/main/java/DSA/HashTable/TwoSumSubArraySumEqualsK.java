@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 //https://www.youtube.com/watch?v=AmlVSNBHzJg
-
+//https://youtu.be/EFzYA9H0MfQ?si=Sil5VR2KCbEuFOsL
+//https://leetcode.com/problems/subarray-sum-equals-k/description/
 /*
 Say you are given an array e.g. [a0, a1, a2, a3, a4, a5, a6... an] .
 
@@ -33,25 +34,52 @@ public class TwoSumSubArraySumEqualsK {
 
         int[] ints = {1, 1, 1};
         int target = 2;
-        System.out.println(test.testMethod(ints, target));
+        System.out.println(subarraySum(ints, target));
 
     }
 
-    private int testMethod(int[] num, int target) {
-        Map<Integer, Integer> sumTimes = new HashMap<>();
-        int currentSum = 0;
+    public static int subarraySum(int[] nums, int k) {
         int count = 0;
-        // we have seen a sum of zero once
-        sumTimes.put(currentSum, 1);
-        // have we seen the target - currentSum before
-        for (int i = 0; i < num.length; i++) {
-            currentSum = currentSum + num[i];
-            int sumI = currentSum - target;
-            if (sumTimes.containsKey(sumI)) {
-                count = count + sumTimes.get(sumI);
+        int sum = 0;
+
+        Map<Integer, Integer> prefixSumFreq = new HashMap<>();
+        prefixSumFreq.put(0, 1); // base case: one way to get sum = 0
+
+        for (int num : nums) {
+            sum += num;
+
+            int required = sum - k;
+            // have we seen the required sum before
+            if (prefixSumFreq.containsKey(required)) {
+                count += prefixSumFreq.get(required);
             }
-            sumTimes.put(currentSum, sumTimes.getOrDefault(currentSum, 0) + 1);
+
+            if (prefixSumFreq.containsKey(sum)) {
+                int freq = prefixSumFreq.get(sum);
+                prefixSumFreq.put(sum, freq + 1);
+            } else {
+                prefixSumFreq.put(sum, 1);
+            }
         }
+
+        return count;
+    }
+
+    public static int subarraySumBF(int[] nums, int k) {
+        int count = 0;
+        int n = nums.length;
+
+        for (int start = 0; start < n; start++) {
+            int sum = 0;
+            for (int end = start; end < n; end++) {
+                sum += nums[end];
+
+                if (sum == k) {
+                    count++;
+                }
+            }
+        }
+
         return count;
     }
 }
