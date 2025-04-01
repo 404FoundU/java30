@@ -65,3 +65,20 @@ public class LetterCombinationsBT {
     }
 }
 
+/*
+Start
+├── a
+│   ├── d → "ad" ✅
+│   ├── e → "ae" ✅
+│   └── f → "af" ✅
+├── b
+│   ├── d → "bd" ✅
+│   ├── e → "be" ✅
+│   └── f → "bf" ✅
+└── c
+    ├── d → "cd" ✅
+    ├── e → "ce" ✅
+    └── f → "cf" ✅
+
+ */
+
