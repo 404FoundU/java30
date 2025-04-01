@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //https://www.youtube.com/watch?v=_xIkHvSZpDE
+//https://leetcode.com/problems/longest-arithmetic-subsequence/description/
 public class LongestArithmeticSubsequence {
 
 

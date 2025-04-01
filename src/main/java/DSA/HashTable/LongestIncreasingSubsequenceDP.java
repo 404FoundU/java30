@@ -11,17 +11,17 @@ public class LongestIncreasingSubsequenceDP {
 
         int maxLength = 0;
 
-        int[] dp = new int[n];
-        Arrays.fill(dp, 1); // Every number is at least a subsequence of length 1
+        int[] lis = new int[n];
+        Arrays.fill(lis, 1); // Every number is at least a subsequence of length 1
         for (int i = 0; i < n; i++) {
 
             for (int j = 0; j < n; j++) {
 
                 if (nums[i] > nums[j]) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                    lis[i] = Math.max(lis[i], lis[j] + 1);
                 }
             }
-            maxLength = Math.max(maxLength, dp[i]);
+            maxLength = Math.max(maxLength, lis[i]);
 
 
         }
