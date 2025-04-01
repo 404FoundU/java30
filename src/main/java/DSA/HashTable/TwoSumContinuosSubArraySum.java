@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-//https://www.youtube.com/watch?v=AmlVSNBHzJg
+//https://youtu.be/EFzYA9H0MfQ?si=Sil5VR2KCbEuFOsL
 //https://leetcode.com/problems/subarray-sum-equals-k/description/
 public class TwoSumContinuosSubArraySum {
 
@@ -19,27 +19,10 @@ public class TwoSumContinuosSubArraySum {
 
     }
 
-    public static int subarraySumSW(int[] nums, int k) {
-        int left = 0;
-        int sum = 0;
-        int count = 0;
+    // sliding window sol
 
-        for (int right = 0; right < nums.length; right++) {
-            sum += nums[right];
-
-            while (sum > k && left <= right) {
-                sum -= nums[left];
-                left++;
-            }
-
-            if (sum == k) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
+    //prefix sum or cumulative sum
+    //https://www.youtube.com/watch?v=AmlVSNBHzJg&t=313s
     public static int subarraySum(int[] nums, int k) {
         int count = 0;
         int sum = 0;
@@ -51,6 +34,7 @@ public class TwoSumContinuosSubArraySum {
             sum += num;
 
             int required = sum - k;
+            // have we seen the required sum before
             if (prefixSumFreq.containsKey(required)) {
                 count += prefixSumFreq.get(required);
             }
@@ -66,6 +50,31 @@ public class TwoSumContinuosSubArraySum {
         return count;
     }
 
+
+    /*
+
+
+
+Say you are given an array e.g. [a0, a1, a2, a3, a4, a5, a6... an] .
+
+[a0,  a1,  a2,    a3,   a4,   a5,  a6, ... an]
+	        ^	                   ^
+             sumI	                sumJ
+
+
+sumI = sum of numbers till a2 (a0 + a1 + a2)
+sumJ = sum of numbers till a5 (a0 + a1 + a2 + a3 + a4 + a5)
+
+
+Now lets say the difference between sumJ and sumI is equal to k.
+What that means is, the sum of numbers between a2 and a5 is equal to k ( a3 + a4 + a5 = k ), which means we found a subarray whose sum is equal to k.
+
+We can write a3 + a4 + a5 = k as sumJ - sumI = k and sumJ - sumI = k can be written as sumJ - k = sumI
+
+The expression sumJ - k = sumI, means have we already seen a sum which is equal to sum at current index j minus k. If yes, it means we found a subarray whose sum is equal to k.
+
+And we keep track of how many times we see a particular sum using a HashMap.
+     */
 
     private int[] testMethod(int[] num, int target) {
         HashTable<Integer, Integer> cumulativeSumIndex = new HashTable<>();
