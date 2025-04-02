@@ -3,6 +3,7 @@ package DSA.RecursionBacktracking;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://leetcode.com/problems/combination-sum-ii/description/
 public class CombinationSumBT2 {
     static List<List<Integer>> result = new ArrayList<>();
 
@@ -38,7 +39,7 @@ Start with 7(target)
 ├── use 2 → 5
 │           ├── use 2 → 3(target)
 │           │            ├── use 2 → 1
-│           │            │            ├── use 2 → -1 ✖ backtrack
+│           │            │            ├── use 2 → -1 ✖ backtrack prune
 │           │            ├── use 3 → 0 ✅ [2,2,3]
 │           ├── use 3 → 2
 │           ├── use 6 → -1 ✖
