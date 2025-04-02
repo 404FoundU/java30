@@ -20,7 +20,8 @@ sumJ = sum of numbers till a5 (a0 + a1 + a2 + a3 + a4 + a5)
 
 
 Now lets say the difference between sumJ and sumI is equal to k.
-What that means is, the sum of numbers between a2 and a5 is equal to k ( a3 + a4 + a5 = k ), which means we found a subarray whose sum is equal to k.
+What that means is, the sum of numbers between a2 and a5 is equal to k ( a3 + a4 + a5 = k ),
+ which means we found a subarray whose sum is equal to k.
 
 We can write a3 + a4 + a5 = k as sumJ - sumI = k and sumJ - sumI = k can be written as sumJ - k = sumI
 
@@ -48,6 +49,7 @@ public class TwoSumSubArraySumEqualsK {
         for (int num : nums) {
             sum += num;
 
+            //sumI = sumJ-k
             int required = sum - k;
             // have we seen the required sum before
             if (prefixSumFreq.containsKey(required)) {
