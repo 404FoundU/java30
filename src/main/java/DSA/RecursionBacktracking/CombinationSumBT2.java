@@ -34,18 +34,18 @@ public class CombinationSumBT2 {
     }
 }
 /*
-Start with 7
+Start with 7(target)
 ├── use 2 → 5
-│   ├── use 2 → 3
-│   │   ├── use 2 → 1
-│   │   │   ├── use 2 → -1 ✖ backtrack
-│   │   ├── use 3 → 0 ✅ [2,2,3]
-│   ├── use 3 → 2
-│   ├── use 6 → -1 ✖
+│           ├── use 2 → 3(target)
+│           │            ├── use 2 → 1
+│           │            │            ├── use 2 → -1 ✖ backtrack
+│           │            ├── use 3 → 0 ✅ [2,2,3]
+│           ├── use 3 → 2
+│           ├── use 6 → -1 ✖
 ├── use 3 → 4
 ├── use 6 → 1
 ├── use 7 → 0 ✅ [7]
-[]
+
  */
 
 
