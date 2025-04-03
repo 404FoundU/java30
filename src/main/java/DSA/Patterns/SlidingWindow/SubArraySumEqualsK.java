@@ -5,6 +5,17 @@ package DSA.Patterns.SlidingWindow;
 //https://leetcode.com/problems/subarray-sum-equals-k/description/
 public class SubArraySumEqualsK {
 
+/*
+*
+Example 1:
+
+Input: nums = [1,1,1], k = 2
+Output: 2
+Example 2:
+
+Input: nums = [1,2,3], k = 3
+Output: 2
+ */
 
     public static void main(String[] args) {
         SubArraySumEqualsK test = new SubArraySumEqualsK();
@@ -12,7 +23,7 @@ public class SubArraySumEqualsK {
         // for positiver integers
         int[] ints = {1, 2, 3, 4, 5};
         int target = 9;
-        System.out.println(subarraySumSW(ints, target));
+        System.out.println(subarraySumSW(ints, target)); // 2
 
     }
 
