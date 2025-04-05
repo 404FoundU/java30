@@ -1,136 +1,131 @@
 package DSA.Patterns.Heaps;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-
-import static DSA.Utility.swapArrayIndexes;
 
 public class BinaryHeap {
-    int[] array;
-    int sizeOfTree;
 
-    BinaryHeap(int size) {
-        array = new int[size + 1];
-        this.sizeOfTree = 0;
+    int[] h;
+    int maxSize;
+    int size;
+
+    BinaryHeap(int maxSize) {
+        this.maxSize = maxSize;
+        size = 0;
+        h = new int[maxSize];
     }
 
-    void insert(int val, String heapType) {
-        array[++sizeOfTree] = val; // Insert as the last element
-        heapifyBottomToTop(sizeOfTree, heapType);
-    }
-
-    private void heapifyBottomToTop(int index, String heapType) {
-        int parentIndex = index / 2;
-        if (index <= 1) {
+    void insert(int val) {
+        if (size >= maxSize) {
+            System.out.println("heap full");
             return;
         }
-        if (heapType.equals("MIN")) {
-            if (array[index] < array[parentIndex]) {
-                swapArrayIndexes(array, index, parentIndex);
-                heapifyBottomToTop(parentIndex, heapType);
-            }
+        h[size] = val;
+        heapifyBottomToTop(size); // ✅ use current size before incrementing
+        size++;
+    }
+
+    private void heapifyBottomToTop(int index) {
+        if (index <= 0) {
+            return;
         }
-        if (heapType.equals("MAX")) {
-            if (array[index] > array[parentIndex]) {
-                swapArrayIndexes(array, index, parentIndex);
-                heapifyBottomToTop(parentIndex, heapType);
-            }
+        int parentIndex = (index - 1) / 2;
+
+        if (h[parentIndex] < h[index]) {
+            swap(parentIndex, index);
+            heapifyBottomToTop(parentIndex);
         }
     }
 
-    private void heapifyTopToBottom(int index, String heapType) {
-        int leftChild = index * 2;
-        int rightChild = index * 2 + 1;
-        int swapChild = index;
+    private void heapifyTopToBottom(int i) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int largest = i;
 
-        if (heapType.equals("MIN")) {
-            if (leftChild <= sizeOfTree && array[leftChild] < array[swapChild]) {
-                swapChild = leftChild;
-            }
-            if (rightChild <= sizeOfTree && array[rightChild] < array[swapChild]) {
-                swapChild = rightChild;
-            }
-        }
-        if (heapType.equals("MAX")) {
-            if (leftChild <= sizeOfTree && array[leftChild] > array[swapChild]) {
-                swapChild = leftChild;
-            }
-            if (rightChild <= sizeOfTree && array[rightChild] > array[swapChild]) {
-                swapChild = rightChild;
-            }
+        if (left < size && h[left] > h[largest]) {
+            largest = left;
         }
 
-        // If a swap is needed
-        if (swapChild != index) {
-            swapArrayIndexes(array, index, swapChild);
-            heapifyTopToBottom(swapChild, heapType); // Continue heapifying downwards
+        if (right < size && h[right] > h[largest]) {
+            largest = right;
+        }
+
+        if (largest != i) {
+            swap(i, largest);
+            heapifyTopToBottom(largest);
         }
     }
 
-    boolean isEmpty() {
-        return sizeOfTree == 0;
-    }
-
-    int extractHead(String heapType) {
-        if (isEmpty()) {
+    int extractHead() {
+        if (size == 0) {
             throw new IllegalStateException("Heap is empty");
         }
 
-        // Get the root (head of the heap)
-        int head = array[1];
-
-        // Move the last element to the root
-        array[1] = array[sizeOfTree];
-
-        // Decrease the heap size
-        sizeOfTree--;
-
-        // Restore the heap property
-        heapifyTopToBottom(1, heapType);
-
-        // Return the extracted head
+        int head = h[0];
+        h[0] = h[size - 1];
+        size--;
+        heapifyTopToBottom(0);
         return head;
     }
 
     void levelOrderTraversalArrayHeap() {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(array[1]);
-        int l = 1;
-        while (!q.isEmpty()) {
-            Integer current = q.poll();
-            System.out.println(current);
-            l = l * 2;
-            int r = l + 1;
-            if (l <= sizeOfTree) {
-                q.add(array[l]);
+        System.out.print("Level Order: ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(h[i] + " ");
+        }
+        System.out.println();
+    }
+
+    void swap(int index1, int index2) {
+        int temp = h[index1];
+        h[index1] = h[index2];
+        h[index2] = temp;
+    }
+
+    boolean isEmpty() {
+        return size == 0;
+    }
+
+    public void printHeap() {
+        for (int i = 0; i < size / 2; i++) {
+            System.out.print("Parent: " + h[i]);
+            if (leftChild(i) < size) {
+                System.out.print(" Left Child: " + h[leftChild(i)]);
             }
-            if (r <= sizeOfTree) {
-                q.add(array[r]);
+            if (rightChild(i) < size) {
+                System.out.print(" Right Child: " + h[rightChild(i)]);
             }
+            System.out.println();
         }
     }
 
+    private int leftChild(int index) {
+        return (2 * index) + 1;
+    }
 
+    private int rightChild(int index) {
+        return (2 * index) + 2;
+    }
 
     public static void main(String[] args) {
         BinaryHeap heap = new BinaryHeap(7);
-        heap.insert(20, "MAX");
-        heap.insert(10, "MAX");
-        heap.insert(15, "MAX");
-        heap.insert(5, "MAX");
-        heap.insert(1, "MAX");
-        heap.insert(3, "MAX");
-        heap.insert(4, "MAX");
+        heap.insert(20);
+        heap.insert(10);
+        heap.insert(15);
+        heap.insert(5);
+        heap.insert(1);
+        heap.insert(3);
+        heap.insert(4);
 
-        System.out.println("Heap before extraction: " + Arrays.toString(heap.array));
+        System.out.println("Heap before extraction: " + Arrays.toString(Arrays.copyOf(heap.h, heap.size)));
 
-        int max = heap.extractHead("MAX");
+        int max = heap.extractHead();
         System.out.println("Extracted head: " + max);
 
-        System.out.println("Heap after extraction: " + Arrays.toString(heap.array));
+        System.out.println("Heap after extraction: " + Arrays.toString(Arrays.copyOf(heap.h, heap.size)));
+
         heap.levelOrderTraversalArrayHeap();
     }
 }
+
 
 

@@ -10,7 +10,7 @@ public class HeapSort {
     }
 
     void sort() {
-        BinaryHeap heap = new BinaryHeap(arr.length);
+        BinaryHeapOld heap = new BinaryHeapOld(arr.length);
         for (int i = 0; i < arr.length; i++) {
             heap.insert(arr[i], "MIN");
         }

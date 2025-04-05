@@ -1,6 +1,6 @@
 package DSA.Dynamic;
 
-public class MaxProductSubArray {
+public class MaxProductSubArrayKadens {
 
     public static int maxProduct(int[] nums) {
         int maxSoFar = nums[0];
