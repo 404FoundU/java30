@@ -18,11 +18,9 @@ public class MinSelectionSort { // O(n^2) due to 2 loops
 
     private void testMethod(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            int min = arr[i];
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) { //iterate whole array and find min
-                if (arr[j] < min) {
-                    min = arr[j];
+                if (arr[j] < arr[minIndex]) {
                     minIndex = j;
                 }
             }
