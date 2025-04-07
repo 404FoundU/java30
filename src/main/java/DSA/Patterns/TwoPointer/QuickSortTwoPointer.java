@@ -22,6 +22,7 @@ public class QuickSortTwoPointer { // O(n^2 worst case pivot, avg is n log n) di
 
     public void quickSortHelper(int[] arr, int lowIndex, int highIndex) {
 
+        // opposite of insertion sort with 2 pointer running away
         if (lowIndex >= highIndex) {// only one element
             return;
         }

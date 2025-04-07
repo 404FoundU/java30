@@ -14,26 +14,24 @@ public class CountingSort { // O(n+k)
 
     private void testMethod(int[] arr) {
         int max = 0;
+        for (int n : arr) {
+            max = Math.max(n, max);
+        }
+        int[] c = new int[max + 1];
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
+            int num = arr[i];
+            c[num]++;
+        }
+        System.out.println(Arrays.toString(c));
+        int j = 0;
+        for (int i = 0; i < c.length; i++) {
+            while (c[i] > 0) {
+                arr[j] = i;
+                j++;
+                c[i]--;
             }
         }
-        int[] counts = new int[max + 1];// new array with max indices
-        Arrays.fill(counts, 0);
-        for (int i = 0; i < arr.length; i++) {
-            int elem = arr[i];
-            counts[elem] = counts[elem] + 1;
-        }
-//        System.out.println("counts = " + Arrays.toString(counts));
-        int i = 0;
-        for (int c = 0; c < counts.length; c++) {
-            while (counts[c] > 0) {
-                arr[i++] = c;
-                counts[c] = counts[c] - 1;
-            }
 
-        }
     }
 
 

@@ -1,4 +1,4 @@
-package DSA.Patterns.BinarySearchDAndC;
+package DSA.Patterns.TwoPointer;
 
 
 import java.util.ArrayList;
