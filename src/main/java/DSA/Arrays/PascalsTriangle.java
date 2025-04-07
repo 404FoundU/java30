@@ -3,6 +3,10 @@ package DSA.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+https://www.youtube.com/watch?v=icoql2WKmbA
+https://leetcode.com/problems/pascals-triangle/description/
+ */
 public class PascalsTriangle {
     public static void main(String[] args) {
         PascalsTriangle test = new PascalsTriangle();
