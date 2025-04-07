@@ -1,6 +1,8 @@
 package DSA.HashTable;
 
-//https://leetcode.com/problems/valid-anagram/description/
+/*
+https://leetcode.com/problems/valid-anagram/description/
+ */
 public class AngramValid {
     public static boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) {
