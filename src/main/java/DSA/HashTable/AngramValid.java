@@ -8,20 +8,22 @@ public class AngramValid {
         if (s.length() != t.length()) {
             return false;
         }
-
-        int[] count = new int[26]; // only lowercase a-z
-
+        int[] count = new int[26];
         for (int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'a']++;
-            count[t.charAt(i) - 'a']--;
+            char c = s.charAt(i);
+            int ascii = (int) c - 97;
+            count[ascii]++;
         }
-
+        for (int i = 0; i < t.length(); i++) {
+            char c = s.charAt(i);
+            int ascii = (int) c - 97;
+            count[ascii]--;
+        }
         for (int val : count) {
             if (val != 0) {
                 return false;
             }
         }
-
         return true;
     }
 
