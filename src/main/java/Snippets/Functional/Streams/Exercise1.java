@@ -41,10 +41,11 @@ public class Exercise1 {
 
         StreamSources.userStream()
                 .filter(user -> {
-                    return StreamSources.intNumbersStream()
+                    boolean b = StreamSources.intNumbersStream()
                             .anyMatch(num ->
                                     user.getId() == num
                             );
+                    return b;
                 })
                 .map(u -> u.getFirstName())
                 .collect(Collectors.toList());
