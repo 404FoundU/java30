@@ -1,5 +1,6 @@
 package Snippets.Functional.Streams;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Exercise1 {
@@ -35,12 +36,19 @@ public class Exercise1 {
         /*StreamSources.userStream()
                 .map(u -> u.getFirstName())
                 .forEach(name -> System.out.println(name));*/
+
         // Print first names in userStream for users that have IDs from number stream
+
         StreamSources.userStream()
-                .filter(user -> StreamSources.intNumbersStream().
-                        anyMatch(num -> num == user.getId()))
+                .filter(user -> {
+                    return StreamSources.intNumbersStream()
+                            .anyMatch(num ->
+                                    user.getId() == num
+                            );
+                })
                 .map(u -> u.getFirstName())
-                .forEach(s -> System.out.println(s));
+                .collect(Collectors.toList());
+
 
         StreamSources.intNumbersStream()
                 .flatMap(num -> { // to flatten Stream<Stream<User>>

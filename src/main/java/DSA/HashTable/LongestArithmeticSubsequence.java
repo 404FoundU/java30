@@ -12,8 +12,8 @@ public class LongestArithmeticSubsequence {
         int n = nums.length;
         if (n <= 1) return 0;
         Map<Integer, Integer>[] dp = new HashMap[n];
-        Integer[] intArray = new Integer[]{};
         int maxLength = 2;
+        // total number of hashmaps. hashmap array marks the index under consideration
         for (int k = 0; k < n; k++) {
             dp[k] = new HashMap<>();
         }
