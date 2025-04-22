@@ -1,4 +1,4 @@
-package DSA.Patterns.PrefixSum;
+package DSA.Patterns.Prefix;
 
 
 import java.util.HashMap;
