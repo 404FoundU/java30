@@ -13,8 +13,8 @@ public class KokoEatingBananas {
         int[] piles3 = {30, 11, 23, 4, 20};
         int h3 = 6; // Expected output: 23
 
-        System.out.println("Minimum eating speed: " + minEatingSpeedBF(piles1, h1));
-//        System.out.println("Minimum eating speed: " + minEatingSpeed(piles1, h1));
+//        System.out.println("Minimum eating speed: " + minEatingSpeedBF(piles1, h1));
+        System.out.println("Minimum eating speed: " + minEatingSpeed(piles1, h1));
 //        System.out.println("Minimum eating speed: " + minEatingSpeed(piles2, h2));
 //        System.out.println("Minimum eating speed: " + minEatingSpeed(piles3, h3));
 
@@ -23,44 +23,37 @@ public class KokoEatingBananas {
     }
 
     public static int minEatingSpeed(int[] piles, int h) {
-        int left = 1; // Minimum speed
-        int right = getMax(piles); // Maximum speed
-
-        while (left < right) {
-            int mid = left + (right - left) / 2; // Calculate mid-point
-
-            if (canEat(piles, h, mid)) {
-                right = mid; // Try a smaller speed
-            } else {
-                left = mid + 1; // Increase speed
-            }
-        }
-        return left; // Minimum feasible speed
-    }
-
-    private static boolean canEat(int[] piles, int h, int capacity) {
-        double hoursNeeded = 0;
-
+        int max = Integer.MIN_VALUE;
         for (int pile : piles) {
-            // Use Math.ceil to calculate the number of hours for each pile
-            double hourForAPile = Math.ceil((double) pile / capacity);
-            hoursNeeded += hourForAPile;
-            if (hoursNeeded > h) {
-                return false; // Stop early if hours exceed the limit
+            max = Math.max(pile, max);
+        }
+        int left = 1;
+        int right = max;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (canEat(piles, h, mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
-
-        return true;
+        return left;
     }
 
-
-    private static int getMax(int[] nums) {
-        int max = 0;
-        for (int num : nums) {
-            max = Math.max(max, num);
+    private static boolean canEat(int[] piles, int h, int k) {
+        int hours = 0;
+        for (int pile : piles) {
+            while (pile > 0) {
+                pile = pile - k;
+                hours++;
+            }
         }
-        return max;
+        if (hours <= h) {
+            return true;
+        }
+        return false;
     }
+
 
     public static int minEatingSpeedBF(int[] piles, int h) {
         int max = Integer.MIN_VALUE;
