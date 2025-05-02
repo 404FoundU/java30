@@ -1,9 +1,6 @@
 package DSA.Patterns.BinarySearchDAndC;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
+//https://leetcode.com/problems/koko-eating-bananas/description/
 public class KokoEatingBananas {
     public static void main(String[] args) {
         // Test cases
@@ -16,17 +13,12 @@ public class KokoEatingBananas {
         int[] piles3 = {30, 11, 23, 4, 20};
         int h3 = 6; // Expected output: 23
 
-        System.out.println("Minimum eating speed: " + minEatingSpeed(piles1, h1));
-        System.out.println("Minimum eating speed: " + minEatingSpeed(piles2, h2));
-        System.out.println("Minimum eating speed: " + minEatingSpeed(piles3, h3));
+        System.out.println("Minimum eating speed: " + minEatingSpeedBF(piles1, h1));
+//        System.out.println("Minimum eating speed: " + minEatingSpeed(piles1, h1));
+//        System.out.println("Minimum eating speed: " + minEatingSpeed(piles2, h2));
+//        System.out.println("Minimum eating speed: " + minEatingSpeed(piles3, h3));
 
-        int[] nums = new int[]{1, 2, 5, 8, 3, 5, 56, 3, 3};
-        List<Integer> list = Arrays.stream(nums)
-                .boxed()
-                .collect(Collectors.toList());
-        List<Integer> list2 = Arrays.stream(nums)
-                .mapToObj(i -> new Integer(i))
-                .collect(Collectors.toList());
+
 
     }
 
@@ -68,6 +60,27 @@ public class KokoEatingBananas {
             max = Math.max(max, num);
         }
         return max;
+    }
+
+    public static int minEatingSpeedBF(int[] piles, int h) {
+        int max = Integer.MIN_VALUE;
+        for (int pile : piles) {
+            max = Math.max(pile, max);
+        }
+        int minEatingSpeed = Integer.MAX_VALUE;
+        for (int k = max; k > 0; k--) {
+            int hours = 0;
+            for (int pile : piles) {
+                while (pile > 0) {
+                    pile = pile - k;
+                    hours++;
+                }
+            }
+            if (hours <= h) {
+                minEatingSpeed = Math.min(minEatingSpeed, k);
+            }
+        }
+        return minEatingSpeed;
     }
 }
 
