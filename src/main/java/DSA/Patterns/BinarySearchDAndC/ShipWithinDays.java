@@ -1,5 +1,6 @@
 package DSA.Patterns.BinarySearchDAndC;
 
+
 //https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 public class ShipWithinDays {
     public static void main(String[] args) {
@@ -18,36 +19,47 @@ public class ShipWithinDays {
         System.out.println("Minimum capacity: " + shipWithinDays(weights3, days3));
     }
 
+    /*
+    l = 10
+    r = 55
+     */
     public static int shipWithinDays(int[] weights, int days) {
-        int left = getMax(weights);// min capacity is the largest Weight
-        int right = getSum(weights); // max Capcity is the sum of all the weights
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (canShip(weights, days, mid)) {
-                right = mid; // try a smaller capacity
+        int l = getMax(weights); // min weight
+        int r = getSum(weights); // total weight could be shipped in 1 day
+
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            if (canShip(weights, m, days)) {
+                r = m;
             } else {
-                left = mid + 1; // increase capacity
+                l = m + 1;
             }
         }
-        return left;
+        return l;
+
     }
 
     // Helper method to check if a given capacity can ship all packages within days
-    private static boolean canShip(int[] weights, int days, int capacity) {
-        int day = 1;
-        int currentWeight = 0;
-        for (int weight : weights) {
-            if (currentWeight + weight > capacity) {
-                day++;
-                currentWeight = 0;
-            }
-            currentWeight += weight;
+    /*
+    d = 0
+    totalWeight = 0
+   capacity = 35
+     */
+    static boolean canShip(int[] weights, int capacity, int days) {
+        int d = 1;
+        int totalWeight = 0;
 
-            if (day > days) {
-                return false;
+        for (int w : weights) {
+            totalWeight += w;
+            if (totalWeight > capacity) {
+                totalWeight = w;
+                d++;
             }
         }
-        return true;
+        if (d <= days) {
+            return true;
+        }
+        return false;
     }
 
     // Helper method to get the maximum weight in the array
