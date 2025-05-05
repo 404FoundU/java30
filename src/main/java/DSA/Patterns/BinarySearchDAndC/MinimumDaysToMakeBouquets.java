@@ -16,6 +16,8 @@ public class MinimumDaysToMakeBouquets {
         System.out.println("Minimum days: " + minDays(bloomDay1, m1, k1));
         System.out.println("Minimum days: " + minDays(bloomDay2, m2, k2));
         System.out.println("Minimum days: " + minDays(bloomDay3, m3, k3));
+        System.out.println("Minimum days: " + minDaysBF(bloomDay3, m3, k3));
+
     }
 
     private static int minDays(int[] bloomDay, int bouquets, int flowers) {
@@ -66,5 +68,38 @@ public class MinimumDaysToMakeBouquets {
         return max;
     }
 
+    private static int minDaysBF(int[] bloomDay, int bouquets, int flowers) {
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int day : bloomDay) {
+            max = Math.max(day, max);
+            min = Math.min(day, min);
+        }
+        int days = Integer.MAX_VALUE;
+        for (int i = min; i <= max; i++) {
+            int b = 0;
+            int currentFlowers = 0;
 
+            for (int day : bloomDay) {
+                if (day <= i) {
+                    currentFlowers++;
+                    if (currentFlowers == flowers) {
+                        b++;
+                        currentFlowers = 0;
+                    }
+                } else {
+                    currentFlowers = 0; // reset flowers
+                }
+            }
+            if (b >= bouquets) {
+                days = Math.min(days, i);
+            }
+
+        }
+        if (days == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return days;
+
+    }
 }
