@@ -27,58 +27,90 @@ We can write a3 + a4 + a5 = k as sumJ - sumI = k and sumJ - sumI = k can be writ
 as sumJ - k = sumI
 
 
-The expression sumJ - k = sumI, means have we already seen a sum which is equal to sum at current index j minus k. If yes, it means we found a subarray whose sum is equal to k.
+The expression sumJ - k = sumI, means have we already seen a sum which is equal to sum at current index j minus k.
+If yes, it means we found a subarray whose sum is equal to k.
  */
 public class TwoSumSubArraySumEqualsK {
 
 
     public static void main(String[] args) {
         TwoSumSubArraySumEqualsK test = new TwoSumSubArraySumEqualsK();
+        int[] nums1 = {1, 1, 1};
+        int k1 = 2;
+//        System.out.println(subarraySum(nums1, k1)); // Output: 2
 
-        int[] ints = {1, 1, 1};
-        int target = 2;
-        System.out.println(subarraySum(ints, target));
+        int[] nums2 = {1, 2, 3};
+        int k2 = 3;
+        System.out.println(subarraySum(nums2, k2)); // Output: 2
+
+        int[] nums3 = {3, 4, 7, 2, -3, 1, 4, 2};
+        int k3 = 7;
+//        System.out.println(subarraySum(nums3, k3)); // Output: 4
 
     }
 
     public static int subarraySum(int[] nums, int k) {
-        int count = 0;
+        Map<Integer, Integer> prefixSumAndCount = new HashMap<>();
+        prefixSumAndCount.put(0, 1); // base case: one way to get sum = 0
         int sum = 0;
-
-        Map<Integer, Integer> prefixSumFreq = new HashMap<>();
-        prefixSumFreq.put(0, 1); // base case: one way to get sum = 0
-
+        int count = 0;
         for (int num : nums) {
             sum += num;
-
-            //sumI = sumJ-k
             int target = sum - k;
-            // have we seen the target sum before
-            if (prefixSumFreq.containsKey(target)) {
-                count += prefixSumFreq.get(target);
+            if (prefixSumAndCount.containsKey(target)) {
+                int existingCountForTargetSum = prefixSumAndCount.get(target);
+                count += existingCountForTargetSum;
             }
-
-            if (prefixSumFreq.containsKey(sum)) {
-                int freq = prefixSumFreq.get(sum);
-                prefixSumFreq.put(sum, freq + 1);
+            if (prefixSumAndCount.containsKey(sum)) {
+                int existingCount = prefixSumAndCount.get(sum);
+                prefixSumAndCount.put(sum, existingCount + 1);
             } else {
-                prefixSumFreq.put(sum, 1);
+                prefixSumAndCount.put(sum, 1);
             }
         }
-
         return count;
     }
 
     public static int subarraySumBF(int[] nums, int k) {
-        int count = 0;
+        Map<Integer, Integer> prefixSumAndCount = new HashMap<>();
+        prefixSumAndCount.put(0, 1);
+        int sum = 0;
+        int start = 0;
+        while (start < nums.length) {
+            for (int i = start; i < nums.length; i++) {
+                sum += nums[i];
+                if (prefixSumAndCount.containsKey(sum)) {
+                    int existingCount = prefixSumAndCount.get(sum);
+                    prefixSumAndCount.put(sum, existingCount + 1);
+                } else {
+                    prefixSumAndCount.put(sum, 1);
+                }
+            }
+            start++;
+            sum = 0;
+        }
+        return prefixSumAndCount.get(k);
+
+    }
+
+
+    public static int subarraySumUsingPrefixArray(int[] nums, int k) {
         int n = nums.length;
 
-        for (int start = 0; start < n; start++) {
-            int sum = 0;
-            for (int end = start; end < n; end++) {
-                sum += nums[end];
+        // Build cumulative prefix sum array
+        int[] prefixSum = new int[n + 1];
+        prefixSum[0] = 0;
 
-                if (sum == k) {
+        for (int i = 0; i < n; i++) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+        }
+
+        int count = 0;
+
+        // Check all pairs (i, j)
+        for (int start = 0; start < n; start++) {
+            for (int end = start + 1; end <= n; end++) {
+                if (prefixSum[end] - prefixSum[start] == k) {
                     count++;
                 }
             }
@@ -86,4 +118,5 @@ public class TwoSumSubArraySumEqualsK {
 
         return count;
     }
+
 }
