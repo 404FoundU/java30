@@ -32,3 +32,12 @@ public class RangeSumQuery {
         System.out.println(obj.sumRange(0, 5)); // Output: -3
     }
 }
+
+/*
+nums:       [-2,  0,  3, -5,  2, -1]
+index:        0   1   2   3   4   5
+prefixSum: [ 0, -2, -2, 1, -4, -2, -3]
+
+sumRange(2, 5) = prefixSum[6] - prefixSum[2] = -3 - (-2) = -1
+
+ */
