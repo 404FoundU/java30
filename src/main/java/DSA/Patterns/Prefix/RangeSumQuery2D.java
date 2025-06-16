@@ -54,4 +54,40 @@ public class RangeSumQuery2D {
         System.out.println(numMatrix.sumRegion(1, 1, 2, 2)); // Output: 11
         System.out.println(numMatrix.sumRegion(1, 2, 2, 4)); // Output: 12
     }
+
+
+    /*
+
+prefix =
+[
+  [ 0,  0,  0,  0,  0,  0],  ← row 0 (padding)
+  [ 0,  3,  3,  4,  8, 10],  ← row 1
+  [ 0,  8, 14, 18, 24, 27],  ← row 2
+  [ 0,  9, 17, 21, 28, 36],  ← row 3
+  [ 0, 13, 22, 26, 34, 49],  ← row 4
+  [ 0, 14, 23, 30, 38, 58]   ← row 5
+]
+
+
+= prefix[5][4]  // 38
+- prefix[2][4]  // 24
+- prefix[5][1]  // 14
++ prefix[2][1]  // 8
+= 38 - 24 - 14 + 8 = 8 ✅
+
+    prefix:
+   c0  c1  c2  c3  c4  c5
+r0 [ 0,  0,  0,  0,  0,  0 ]
+r1 [ 0,  3,  3,  4,  8, 10 ]
+r2 [ 0,  8, 14, 18, 24, 27 ]
+r3 [ 0,  9, 17, 21, 28, 36 ]
+r4 [ 0, 13, 22, 26, 34, 49 ]
+r5 [ 0, 14, 23, 30, 38, 58 ]
+     ↑           ↑
+   r1=2        r2+1=5
+     |___________|
+     |           |
+   c1=1       c2+1=4
+
+     */
 }

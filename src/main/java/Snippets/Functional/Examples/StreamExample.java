@@ -10,9 +10,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamExample {
     public static void main(String[] args) {
+
         List<Employee> empList = new ArrayList<>();
 
         empList.add(new Employee(101, "siva", 101, "active", 2000));
@@ -191,36 +193,57 @@ public class StreamExample {
         Optional<Object> optional = Optional.ofNullable(null);
         optional.ifPresent(System.out::println);
 
+
+        List<String> wordList = Arrays.asList("apple", "banana", "cherry");
+        // Group words by their length using a LinkedHashMap
+
+        Map<Integer, List<String>> groupedWords = wordList.stream()
+                .collect(Collectors.groupingBy(
+                        String::length, // Key: Word length
+                        LinkedHashMap::new, // Custom Map Supplier
+                        Collectors.toList() // Downstream collector
+                ));
+
+
+        String result = words.stream()
+                .reduce("", (a, b) -> a + b);
+
+        // no identity
+        // Find the maximum value
+        List<Integer> numbers = Arrays.asList(10, 20, 30, 5, 15);
+        Optional<Integer> max = numbers.stream()
+                .reduce((a, b) -> a > b ? a : b); // Accumulator finds the max
+
+
+        // Parallel stream reduction
+        int sum = numbers.parallelStream()
+                .reduce(0,
+                        (partialSum, element) -> partialSum + element, // Accumulator
+                        (sum1, sum2) -> sum1 + sum2); // Combiner
+
+
+        List<String> a = List.of("apple", "banana");
+        System.out.println(a.getClass());
+// a.add("cherry"); // throws UnsupportedOperationException
+// a.set(0, "grape"); // throws UnsupportedOperationException
+
+        List<String> b = Arrays.asList("apple", "banana");
+        b.set(0, "grape"); // ✅ OK
+// b.add("cherry"); // ❌ throws UnsupportedOperationException
+
+        List<String> c = new ArrayList<>(List.of("a", "b", "c"));
+        c.set(1, "x");  // OK
+
+        List<String> listA = Stream.of("a", "b", "c")
+                .collect(Collectors.toList());
+        System.out.println(listA);
+
+        List<String> listB = Stream.of("a", "b", "c")
+                .toList();
+        System.out.println(listB);
+
+
     }
-
-    List<String> words = Arrays.asList("apple", "banana", "cherry");
-    // Group words by their length using a LinkedHashMap
-
-    Map<Integer, List<String>> groupedWords = words.stream()
-            .collect(Collectors.groupingBy(
-                    String::length, // Key: Word length
-                    LinkedHashMap::new, // Custom Map Supplier
-                    Collectors.toList() // Downstream collector
-            ));
-
-
-    String result = words.stream()
-            .reduce("", (a, b) -> a + b);
-
-    // no identity
-    // Find the maximum value
-    List<Integer> numbers = Arrays.asList(10, 20, 30, 5, 15);
-    Optional<Integer> max = numbers.stream()
-            .reduce((a, b) -> a > b ? a : b); // Accumulator finds the max
-
-
-    // Parallel stream reduction
-    int sum = numbers.parallelStream()
-            .reduce(0,
-                    (partialSum, element) -> partialSum + element, // Accumulator
-                    (sum1, sum2) -> sum1 + sum2); // Combiner
-
-
 }
 
 // Assuming the Employee class looks something like this:
