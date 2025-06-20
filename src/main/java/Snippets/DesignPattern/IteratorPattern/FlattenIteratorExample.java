@@ -1,11 +1,11 @@
-package Snippets.Interfaces;
+package Snippets.DesignPattern.IteratorPattern;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class IteratorExample {
+public class FlattenIteratorExample {
     public static void main(String[] args) {
 
         // { { 1, 1, 2, 3 }, { 4, 5, 6, 6 } } -> { 1, 1, 2, 3, 4, 5, 6, 6 }

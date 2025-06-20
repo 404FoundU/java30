@@ -32,7 +32,7 @@ public class ListDemo {
         //streams with Lamda
         System.out.println("____________lamda______");
         list1.stream().forEach(el-> System.out.println(el));
-        //Iterator
+        //IteratorPattern
         Iterator<String> itr = list1.iterator();//apply iterator
         while (itr.hasNext()) {
             System.out.println(itr.next());
